@@ -49,12 +49,26 @@
     .progress{height:100%;width:0%;background:var(--turq);transition:width .3s ease}
     .progress-meta{font-weight:800;font-size:12px;color:var(--muted)}
 
+    .badgebox{margin-top:14px;padding:12px;border-radius:18px;background:linear-gradient(90deg,rgba(32,184,174,.12),rgba(255,201,40,.12));border:2px solid rgba(16,17,20,.10)}
+    .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+    .badge{display:inline-flex;align-items:center;gap:10px;padding:10px 12px;border-radius:16px;background:#fff;border:2px solid rgba(16,17,20,.10);font-weight:900}
+    .dot{width:14px;height:14px;border-radius:999px;background:rgba(0,0,0,.08)}
+    .badge[data-on="1"] .dot{background:var(--turq)}
+    .badge small{display:block;color:var(--muted);font-weight:700}
+
     .panel{margin-top:14px;border-radius:18px;border:3px solid rgba(16,17,20,.08);box-shadow:0 8px 16px rgba(16,17,20,.06);overflow:hidden}
     .panel-h{padding:14px 14px;background:rgba(191,239,232,.25);display:flex;align-items:center;justify-content:space-between;gap:10px}
     .panel-h h2{font-size:18px}
     .chip{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:#fff;border:2px solid rgba(16,17,20,.08);font-weight:900;font-size:11px}
     .panel-b{padding:14px}
     .hint{color:var(--muted);font-weight:600;font-size:13px;line-height:1.4}
+
+    /* NEW: mission locale microlearning capsule */
+    .ml-tip{margin-top:10px;padding:10px 12px;border-radius:16px;background:rgba(0,0,0,.04);border-left:5px solid var(--yellow);color:var(--muted);font-weight:700;line-height:1.45}
+    .ml-tip strong{color:var(--ink)}
+    .ml-steps{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .step{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:999px;background:#fff;border:2px solid rgba(16,17,20,.10);font-weight:900;font-size:12px}
+    .step .b{width:18px;height:18px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font-family:'Baloo 2',cursive;font-weight:900;background:rgba(0,0,0,.06)}
 
     .cardset{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
     .opt{border-radius:16px;border:2px solid rgba(16,17,20,.10);background:#fff;padding:12px;cursor:pointer;transition:.15s;min-height:78px}
@@ -73,13 +87,6 @@
     .btn.ghost{background:#fff;border:2px solid rgba(16,17,20,.12);color:var(--ink);box-shadow:0 2px 4px rgba(0,0,0,.05)}
     .btn.warn{background:var(--red);color:#fff}
     .mini{font-size:12px;color:var(--muted);font-weight:700}
-
-    .badgebox{margin-top:14px;padding:12px;border-radius:18px;background:linear-gradient(90deg,rgba(32,184,174,.12),rgba(255,201,40,.12));border:2px solid rgba(16,17,20,.10)}
-    .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
-    .badge{display:inline-flex;align-items:center;gap:10px;padding:10px 12px;border-radius:16px;background:#fff;border:2px solid rgba(16,17,20,.10);font-weight:900}
-    .dot{width:14px;height:14px;border-radius:999px;background:rgba(0,0,0,.08)}
-    .badge[data-on="1"] .dot{background:var(--turq)}
-    .badge small{display:block;color:var(--muted);font-weight:700}
 
     .frieze{display:flex;gap:12px;padding:0 20px;margin-top:10px;margin-bottom:24px;background:#fff}
     .capsule{height:16px;border-radius:999px;flex:1;box-shadow:inset 0 2px 4px rgba(0,0,0,.1)}
@@ -117,7 +124,7 @@
             </div>
 
             <div class="title-center">
-              <h1 class="hero-title">ACCUEILLIR<small>Microlearning — ~1h</small></h1>
+              <h1 class="hero-title">ACCUEILLIR<small>Mode Mission Locale — ludique & utile (~1h)</small></h1>
             </div>
 
             <div class="logo-right">
@@ -137,9 +144,32 @@
           <div class="progress-meta"><span id="pct">0%</span> complété</div>
         </div>
 
+        <!-- NEW: Simplification / vulgarisation intro -->
         <div class="badgebox">
-          <div style="font-weight:900;">Objectif du pilier</div>
-          <div class="hint">Créer du lien + ajuster ton image professionnelle. Tu débloques le badge <strong>Relieur</strong> quand tu termines les 4 micro-activités (sans quiz).</div>
+          <div style="font-weight:900;">Pourquoi ce pilier ?</div>
+          <div class="hint">
+            À la Mission Locale, “accueillir” c’est simple : <strong>je crée un lien</strong>, je montre que je suis <strong>pro</strong>,
+            et je peux avancer avec les autres (atelier, entreprise, asso, équipe).
+            <br><br>
+            Ici, tu fais 4 micro-activités (sans quiz) → tu récupères des phrases prêtes à réutiliser en vrai.
+          </div>
+
+          <div class="ml-steps" aria-label="micro-objectif">
+            <div class="step"><span class="b">1</span> J’arrive</div>
+            <div class="step"><span class="b">2</span> Je lis l’ambiance</div>
+            <div class="step"><span class="b">3</span> Je reçois un retour</div>
+            <div class="step"><span class="b">4</span> Je garde ma “signature”</div>
+          </div>
+
+          <div class="ml-tip">
+            <strong>Petit secret :</strong> ce n’est pas “être extraverti”. C’est savoir faire <strong>un mini geste pro</strong> au bon moment.
+            Exemple : <em>bonjour + une question simple</em>.
+          </div>
+
+          <div class="hint" style="margin-top:10px;">
+            Tu débloques le badge <strong>Relieur</strong> quand tu termines les 4 micro-activités.
+          </div>
+
           <div class="badges">
             <div class="badge" id="b-relieur"><span class="dot"></span>Relieur <small>Accueillir validé</small></div>
           </div>
@@ -148,24 +178,32 @@
         <!-- MICRO 1 -->
         <div class="panel" data-step="1">
           <div class="panel-h">
-            <h2>Micro 1 — Entrer dans un lieu nouveau (8–10 min)</h2>
+            <h2>Micro 1 — Mon arrivée (8–10 min)</h2>
             <span class="chip"><i data-lucide="sparkles"></i>Scène</span>
           </div>
           <div class="panel-b">
-            <div class="hint"><strong>Hook :</strong> tu arrives dans un atelier / une entreprise / une asso. Choisis ta première posture (pas de bonne réponse, juste des effets).</div>
+            <div class="hint">
+              <strong>Mission :</strong> choisir une “entrée” simple (pas de bonne réponse).
+              <br>Tu veux juste éviter le piège : <em>arriver, se fermer, disparaître</em>.
+            </div>
+
+            <div class="ml-tip">
+              <strong>Astuce Mission Locale :</strong> si tu stresses, utilise la règle <strong>1 phrase + 1 question</strong>.
+              <br>Ex : “Bonjour, je m’appelle …” + “Je commence par quoi ?”
+            </div>
 
             <div class="cardset" id="m1">
-              <div class="opt" data-k="posture" data-v="observer"><strong>J’observe d’abord</strong><small>Je prends 30 secondes pour comprendre.</small></div>
-              <div class="opt" data-k="posture" data-v="saluer"><strong>Je salue direct</strong><small>Je dis bonjour + je souris.</small></div>
-              <div class="opt" data-k="posture" data-v="discret"><strong>Je reste discret</strong><small>Je me mets sur le côté.</small></div>
-              <div class="opt" data-k="posture" data-v="initiative"><strong>Je vais vers quelqu’un</strong><small>Je me présente en 1 phrase.</small></div>
+              <div class="opt" data-k="posture" data-v="observer"><strong>Je regarde 30 sec</strong><small>Je capte le lieu et les gens.</small></div>
+              <div class="opt" data-k="posture" data-v="saluer"><strong>Bonjour direct</strong><small>Simple + sourire = pro.</small></div>
+              <div class="opt" data-k="posture" data-v="discret"><strong>Je me pose calmement</strong><small>OK si je fais un signe d’ouverture.</small></div>
+              <div class="opt" data-k="posture" data-v="initiative"><strong>Je me présente</strong><small>1 phrase + 1 question.</small></div>
             </div>
 
             <div id="m1story" class="story" style="display:none;"></div>
 
             <div class="field">
-              <label class="mini" for="m1action">Ton micro-ajustement (1 phrase) :</label>
-              <textarea id="m1action" placeholder="Ex : “Je dis bonjour en regardant la personne + je pose une question simple.”"></textarea>
+              <label class="mini" for="m1action">Mon micro-ajustement (1 phrase utile en vrai) :</label>
+              <textarea id="m1action" placeholder='Ex : “Bonjour, je suis … Je peux m’installer où ?”'></textarea>
             </div>
 
             <div class="actions">
@@ -178,31 +216,39 @@
         <!-- MICRO 2 -->
         <div class="panel" data-step="2">
           <div class="panel-h" style="background: rgba(255,201,40,.18);">
-            <h2>Micro 2 — Lire les signaux (10–12 min)</h2>
+            <h2>Micro 2 — Je lis l’ambiance (10–12 min)</h2>
             <span class="chip"><i data-lucide="eye"></i>Observation</span>
           </div>
           <div class="panel-b">
-            <div class="hint">Clique une situation, puis choisis le signal principal. Le but : <strong>mettre des mots</strong>, pas “réussir”.</div>
+            <div class="hint">
+              <strong>Mission :</strong> mettre des mots sur ce qui se passe.
+              <br>Plus tu “lis” bien, plus tu te sens à l’aise.
+            </div>
+
+            <div class="ml-tip">
+              <strong>Mini technique :</strong> tu choisis <strong>un signal</strong> à repérer (rythme / règles / attente / émotion).
+              C’est comme un “radar”.
+            </div>
 
             <div class="cardset" id="m2scene">
-              <div class="opt" data-k="scene" data-v="entretien"><strong>Entretien</strong><small>Le recruteur parle peu.</small></div>
-              <div class="opt" data-k="scene" data-v="atelier"><strong>Atelier ML</strong><small>Le groupe est déjà formé.</small></div>
-              <div class="opt" data-k="scene" data-v="client"><strong>Client</strong><small>La personne est pressée.</small></div>
-              <div class="opt" data-k="scene" data-v="equipe"><strong>Équipe</strong><small>Tout le monde se connaît.</small></div>
+              <div class="opt" data-k="scene" data-v="entretien"><strong>Entretien</strong><small>Silences, questions, regard.</small></div>
+              <div class="opt" data-k="scene" data-v="atelier"><strong>Atelier ML</strong><small>Groupe déjà lancé.</small></div>
+              <div class="opt" data-k="scene" data-v="client"><strong>Client</strong><small>Pressé / impatient.</small></div>
+              <div class="opt" data-k="scene" data-v="equipe"><strong>Équipe</strong><small>Ils se connaissent.</small></div>
             </div>
 
             <div class="cardset" id="m2signal" style="margin-top:10px;">
-              <div class="opt" data-k="signal" data-v="rythme"><strong>Rythme</strong><small>Vitesse / ton / silences.</small></div>
-              <div class="opt" data-k="signal" data-v="regles"><strong>Règles</strong><small>Codes implicites du lieu.</small></div>
-              <div class="opt" data-k="signal" data-v="attente"><strong>Attente</strong><small>Ce qu’on veut de moi là, maintenant.</small></div>
-              <div class="opt" data-k="signal" data-v="emotion"><strong>Émotion</strong><small>Stress / irritation / écoute.</small></div>
+              <div class="opt" data-k="signal" data-v="rythme"><strong>Rythme</strong><small>Vitesse, silences, ton.</small></div>
+              <div class="opt" data-k="signal" data-v="regles"><strong>Règles</strong><small>Les codes du lieu.</small></div>
+              <div class="opt" data-k="signal" data-v="attente"><strong>Attente</strong><small>Ce qu’on veut de moi.</small></div>
+              <div class="opt" data-k="signal" data-v="emotion"><strong>Émotion</strong><small>Stress, tension, écoute.</small></div>
             </div>
 
             <div id="m2story" class="story" style="display:none;"></div>
 
             <div class="field">
-              <label class="mini" for="m2learn">Ce que je comprends mieux (1 phrase) :</label>
-              <input id="m2learn" placeholder="Ex : “Quand il y a des silences, je reformule au lieu de paniquer.”" />
+              <label class="mini" for="m2learn">Ma phrase “je gère mieux” :</label>
+              <input id="m2learn" placeholder="Ex : “Si c’est tendu, je parle plus calmement et je reformule.”" />
             </div>
 
             <div class="actions">
@@ -215,11 +261,20 @@
         <!-- MICRO 3 -->
         <div class="panel" data-step="3">
           <div class="panel-h" style="background: rgba(32,184,174,.12);">
-            <h2>Micro 3 — Recevoir un feedback (10–12 min)</h2>
+            <h2>Micro 3 — Je reçois un retour (10–12 min)</h2>
             <span class="chip"><i data-lucide="message-circle"></i>Dialogue</span>
           </div>
           <div class="panel-b">
-            <div class="hint">Mini discussion. Tu choisis une réponse → le dialogue continue. <strong>Aucune note.</strong></div>
+            <div class="hint">
+              <strong>Mission :</strong> transformer un feedback en “prochaine action”.
+              <br>À la Mission Locale, c’est ça qui fait la différence : <em>je comprends + je change un truc</em>.
+            </div>
+
+            <div class="ml-tip">
+              <strong>La règle en 3 mouvements :</strong>
+              écouter → reformuler → dire l’action.
+              (Même si tu n’es pas d’accord, tu peux rester pro.)
+            </div>
 
             <div class="story" id="chatBox">
               <div><strong>Conseiller :</strong> “Aujourd’hui tu es arrivé en retard. Ça bloque le groupe.”</div>
@@ -227,17 +282,17 @@
             </div>
 
             <div class="cardset" id="m3choices" style="margin-top:10px;">
-              <div class="opt" data-v="def"><strong>Défense</strong><small>“Oui mais…”</small></div>
-              <div class="opt" data-v="neutre"><strong>Neutre</strong><small>“Ok.”</small></div>
-              <div class="opt" data-v="ouvert"><strong>Ouvert</strong><small>“Je comprends. Que tu attends de moi ?”</small></div>
-              <div class="opt" data-v="reform"><strong>Reformuler</strong><small>“Si je comprends, ça impacte tout le monde.”</small></div>
+              <div class="opt" data-v="def"><strong>Je me défends</strong><small>“Oui mais…”</small></div>
+              <div class="opt" data-v="neutre"><strong>Je ferme</strong><small>“Ok.”</small></div>
+              <div class="opt" data-v="ouvert"><strong>Je reste ouvert</strong><small>“Je comprends, tu attends quoi ?”</small></div>
+              <div class="opt" data-v="reform"><strong>Je reformule</strong><small>“Donc ça impacte tout le monde.”</small></div>
             </div>
 
             <div id="m3story" class="story" style="display:none;"></div>
 
             <div class="field">
-              <label class="mini" for="m3phrase">Ma phrase “feedback accepté” :</label>
-              <input id="m3phrase" placeholder='Ex : “Ok, je comprends. Je vais m’organiser pour arriver 10 min avant.”' />
+              <label class="mini" for="m3phrase">Ma phrase “prochaine action” :</label>
+              <input id="m3phrase" placeholder='Ex : “Ok, je note. Je viens 10 min avant demain.”' />
             </div>
 
             <div class="actions">
@@ -250,24 +305,32 @@
         <!-- MICRO 4 -->
         <div class="panel" data-step="4">
           <div class="panel-h" style="background: rgba(255,176,103,.16);">
-            <h2>Micro 4 — Ma signature relationnelle (12–15 min)</h2>
+            <h2>Micro 4 — Ma “signature relationnelle” (12–15 min)</h2>
             <span class="chip"><i data-lucide="badge-check"></i>Badge</span>
           </div>
           <div class="panel-b">
-            <div class="hint">Choisis 2 tags qui te ressemblent <strong>aujourd’hui</strong>. Puis écris ta signature en 1 phrase.</div>
+            <div class="hint">
+              <strong>Mission :</strong> choisir 2 qualités que tu veux montrer <em>en vrai</em>.
+              Puis écrire une phrase courte que tu peux sortir en entretien, en stage, en atelier.
+            </div>
+
+            <div class="ml-tip">
+              <strong>Astuce :</strong> choisis des mots “observables”.
+              Exemple : “fiable” = <em>je fais ce que je dis</em>.
+            </div>
 
             <div class="cardset" id="m4tags">
               <div class="opt" data-v="fiable"><strong>Fiable</strong><small>Je fais ce que je dis.</small></div>
-              <div class="opt" data-v="calme"><strong>Calme</strong><small>Je garde mon sang-froid.</small></div>
+              <div class="opt" data-v="calme"><strong>Calme</strong><small>Je ne m’emballe pas.</small></div>
               <div class="opt" data-v="soutenant"><strong>Soutenant</strong><small>J’aide le collectif.</small></div>
               <div class="opt" data-v="curieux"><strong>Curieux</strong><small>Je pose des questions.</small></div>
-              <div class="opt" data-v="proactif"><strong>Proactif</strong><small>Je propose des solutions.</small></div>
+              <div class="opt" data-v="proactif"><strong>Proactif</strong><small>Je propose une solution.</small></div>
               <div class="opt" data-v="respect"><strong>Respectueux</strong><small>Je fais attention aux autres.</small></div>
             </div>
 
             <div class="field">
-              <label class="mini" for="m4sign">Ma signature relationnelle pro :</label>
-              <textarea id="m4sign" placeholder="Ex : “Je suis quelqu’un de fiable : j’écoute, je reformule, puis je fais une action claire.”"></textarea>
+              <label class="mini" for="m4sign">Ma phrase (signature pro) :</label>
+              <textarea id="m4sign" placeholder='Ex : “Je suis fiable : j’écoute, je reformule, puis je fais une action claire.”'></textarea>
             </div>
 
             <div class="actions">
@@ -275,7 +338,9 @@
               <button class="btn ghost" onclick="autoSuggest4()"><i data-lucide="wand-2"></i> Suggestion</button>
               <button class="btn warn" onclick="finishAccueillir()"><i data-lucide="trophy"></i> Terminer le pilier</button>
             </div>
-            <div class="mini" style="margin-top:8px;">Une fois terminé, le badge <strong>Relieur</strong> s’active et tu peux voir ton Passeport.</div>
+            <div class="mini" style="margin-top:8px;">
+              Quand tu termines : badge <strong>Relieur</strong> activé → ton Passeport se remplit automatiquement.
+            </div>
           </div>
         </div>
 
@@ -337,7 +402,7 @@
         const el=e.target.closest(".opt"); if(!el) return;
         const k=el.getAttribute("data-k");
         const v=el.getAttribute("data-v") || el.getAttribute("data-v");
-        if(k){ // single select by key
+        if(k){
           [...box.querySelectorAll(`.opt[data-k="${k}"]`)].forEach(x=>x.dataset.on="0");
           el.dataset.on="1";
           S.accueillir = S.accueillir || {};
@@ -345,7 +410,7 @@
           writeState(S);
           if(groupId==="m1") renderM1();
           if(groupId==="m2scene"||groupId==="m2signal") renderM2();
-        } else { // tags multi
+        } else {
           const selected=[...box.querySelectorAll('.opt[data-on="1"]')];
           if(el.dataset.on==="1"){ el.dataset.on="0"; }
           else{
@@ -365,13 +430,13 @@
       const box=document.getElementById("m1story");
       if(!pick){ box.style.display="none"; return; }
       const map={
-        observer:"Tu donnes une image posée. Astuce : ajoute un “bonjour” rapide pour ouvrir le lien.",
-        saluer:"Tu crées un climat positif. Astuce : une question simple te rend crédible (“je me mets où ?”).",
-        discret:"Tu évites le stress, mais tu peux paraître fermé. Astuce : un micro-signe d’ouverture suffit.",
-        initiative:"Tu parais engagé. Astuce : reste simple, 1 phrase + 1 question."
+        observer:"Tu parais posé. Astuce : ajoute un “bonjour” rapide pour ouvrir le lien.",
+        saluer:"Tu poses un climat positif. Astuce : ajoute une question simple (crédible).",
+        discret:"Tu te protèges. Astuce : fais un micro-signe (bonjour / sourire / regard).",
+        initiative:"Tu parais engagé. Astuce : reste simple : 1 phrase + 1 question."
       };
       box.style.display="block";
-      box.innerHTML = "<strong>Effet probable :</strong> " + map[pick];
+      box.innerHTML = "<strong>Ce que ça peut donner :</strong> " + map[pick];
     }
 
     function renderM2(){
@@ -381,26 +446,26 @@
       if(!scene || !signal){ box.style.display="none"; return; }
 
       const sceneTxt={
-        entretien:"En entretien, le silence peut être un test : reformule au lieu de combler.",
-        atelier:"Dans un groupe déjà formé, l’entrée passe souvent par une question simple et utile.",
-        client:"Avec une personne pressée : va à l’essentiel, propose une solution courte.",
+        entretien:"En entretien, un silence peut être normal : tu peux reformuler calmement.",
+        atelier:"Dans un groupe déjà lancé : une question utile te fait entrer.",
+        client:"Avec quelqu’un de pressé : va au but et propose une solution courte.",
         equipe:"Dans une équipe qui se connaît : observe 30 sec puis connecte-toi à une tâche."
       };
       const sigTxt={
-        rythme:"Repère vitesse/pauses → adapte ton débit + respire.",
-        regles:"Cherche la règle implicite → “comment ça se passe ici ?”.",
-        attente:"Trouve l’attente du moment → “qu’est-ce qui est le plus important là ?”.",
-        emotion:"Repère l’émotion → calme / écoute / reformule."
+        rythme:"Je m’aligne sur le débit + je respire.",
+        regles:"Je cherche les codes : “comment ça se passe ici ?”",
+        attente:"Je clarifie : “tu attends quoi de moi maintenant ?”",
+        emotion:"Je repère l’émotion et je reste calme / clair."
       };
       box.style.display="block";
-      box.innerHTML = "<strong>Lecture utile :</strong> " + sceneTxt[scene] + "<br><strong>Signal choisi :</strong> " + sigTxt[signal];
+      box.innerHTML = "<strong>Lecture utile :</strong> " + sceneTxt[scene] + "<br><strong>Mon radar :</strong> " + sigTxt[signal];
     }
 
-    // Suggestions (pas IA, pas inventées : phrases génériques)
-    function autoSuggest1(){ document.getElementById("m1action").value="Je dis bonjour en regardant la personne et je pose une question simple (où je me mets / par quoi je commence)."; }
+    // Suggestions (phrases génériques)
+    function autoSuggest1(){ document.getElementById("m1action").value="Bonjour, je suis … Je commence par quoi / je m’installe où ?"; }
     function autoSuggest2(){ document.getElementById("m2learn").value="Quand je ne comprends pas l’ambiance, je pose une question courte au lieu de me fermer."; }
     function autoSuggest3(){ document.getElementById("m3phrase").value="Je comprends. Je m’organise pour arriver 10 minutes avant la prochaine fois."; }
-    function autoSuggest4(){ document.getElementById("m4sign").value="Je suis quelqu’un de fiable : j’écoute, je reformule, puis je fais une action claire."; }
+    function autoSuggest4(){ document.getElementById("m4sign").value="Je suis fiable : j’écoute, je reformule, puis je fais une action claire."; }
 
     // Micro saves
     function saveMicro1(){
@@ -441,10 +506,10 @@
       const v=el.getAttribute("data-v");
       const box=document.getElementById("m3story");
       const map={
-        def:"Effet : tu protèges ton ego, mais l’autre n’entend pas la responsabilité. Essaye une reformulation + action.",
-        neutre:"Effet : tu acceptes, mais tu ne montres pas ce que tu vas changer. Ajoute une action concrète.",
-        ouvert:"Effet : tu ouvres une solution. Ajoute : “Je fais quoi la prochaine fois ?”",
-        reform:"Effet : tu montres de la maturité. Ajoute une action et tu gagnes en crédibilité."
+        def:"Tu te protèges, mais l’autre entend peu ta responsabilité. Essaye “je reformule + action”.",
+        neutre:"Tu acceptes, mais sans action on ne voit pas le changement. Ajoute une action claire.",
+        ouvert:"Tu ouvres une solution. Bonus : demande la règle pour la prochaine fois.",
+        reform:"Très pro : tu montres que tu as compris. Ajoute une action et c’est parfait."
       };
       box.style.display="block";
       box.innerHTML="<strong>Retour :</strong> "+map[v];
@@ -454,24 +519,22 @@
     });
 
     function finishAccueillir(){
-      // conditions simples = productions remplies
       const ok = !!S.accueillir.m1?.action && !!S.accueillir.m2?.learn && !!S.accueillir.m3?.phrase && !!S.accueillir.m4?.sign;
       if(!ok){ alert("Il te manque au moins une production. Remplis les champs (Micro 1 à 4) puis réessaie."); return; }
       S.done.accueillir=true;
       S.badges.relieur=true;
-      // On pousse des extraits dans un “passeport” commun
+
       S.profile.signatureRelationnelle = S.accueillir.m4.sign;
       S.profile.ajustementAccueil = S.accueillir.m1.action;
       S.profile.feedbackPhrase = S.accueillir.m3.phrase;
+
       writeState(S);
       setProgress();
       alert("✅ Pilier ACCUEILLIR terminé — badge Relieur débloqué !");
       window.location.href="./synthese.html";
     }
 
-    // restore UI
     function restoreUI(){
-      // m1
       if(S.accueillir.posture){
         [...document.querySelectorAll('#m1 .opt')].forEach(x=>{
           if(x.getAttribute("data-v")===S.accueillir.posture) x.dataset.on="1";
@@ -480,7 +543,6 @@
       }
       if(S.accueillir.m1?.action) document.getElementById("m1action").value=S.accueillir.m1.action;
 
-      // m2
       if(S.accueillir.scene){
         [...document.querySelectorAll('#m2scene .opt')].forEach(x=>{
           if(x.getAttribute("data-v")===S.accueillir.scene) x.dataset.on="1";
@@ -494,10 +556,8 @@
       renderM2();
       if(S.accueillir.m2?.learn) document.getElementById("m2learn").value=S.accueillir.m2.learn;
 
-      // m3
       if(S.accueillir.m3?.phrase) document.getElementById("m3phrase").value=S.accueillir.m3.phrase;
 
-      // m4
       const tags=S.accueillir.m4?.tags||[];
       [...document.querySelectorAll('#m4tags .opt')].forEach(x=>{
         if(tags.includes(x.getAttribute("data-v"))) x.dataset.on="1";
@@ -516,21 +576,6 @@
       restoreUI();
     });
   </script>
-  <div style="margin-top:40px; text-align:center;">
-  <a href="./index.html"
-     style="
-       display:inline-block;
-       padding:14px 22px;
-       background:#C62828;
-       color:white;
-       text-decoration:none;
-       border-radius:12px;
-       font-weight:700;
-       font-family:Montserrat, Arial;
-       box-shadow:0 6px 14px rgba(0,0,0,0.15);
-     ">
-     ← Retour au parcours MLS4YOU
-  </a>
-</div>
 </body>
 </html>
+
