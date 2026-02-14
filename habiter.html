@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MLS4YOU #2 — Habiter</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@0.263.1/dist/umd/lucide.min.js"></script>
+
+  <style>
+    :root { --red:#C62828; --yellow:#FFC928; --turq:#20B8AE; --mint:#BFEFE8; --orange:#FFB067; --bg:#FFF9F0; --ink:#101114; --muted:rgba(16,17,20,.7); --max:980px; }
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:'Montserrat',system-ui,-apple-system,sans-serif;overflow-x:hidden}
+    h1,h2,h3{font-family:'Baloo 2',cursive;font-weight:800;margin:0}
+    .wrap{position:relative;z-index:1;max-width:var(--max);margin:22px auto 28px;padding:0 16px 26px}
+    .frame{border-radius:24px;box-shadow:0 20px 40px rgba(0,0,0,.1);overflow:hidden;border:5px solid transparent;background-image:linear-gradient(rgba(255,255,255,.95),rgba(255,255,255,.95)),linear-gradient(135deg,var(--red),var(--yellow),var(--turq));background-origin:border-box;background-clip:padding-box,border-box}
+    .hero{position:relative;border-bottom:4px solid var(--turq);padding:16px;background:#fff}
+    .hero-inner{position:relative;border-radius:18px;overflow:hidden;min-height:clamp(120px,22vw,170px);display:flex;align-items:center;padding:22px 28px}
+    .header-pattern{position:absolute;inset:0;background:#fdfdfd;z-index:0}
+    .hs{position:absolute;border-radius:50%;opacity:.65;mix-blend-mode:multiply}
+    .hs-1{background:var(--red);width:140px;height:140px;top:-40px;left:10%}
+    .hs-2{background:var(--yellow);width:180px;height:180px;bottom:-60px;right:20%}
+    .hs-3{background:var(--turq);width:120px;height:120px;top:20px;right:40%}
+    .hs-4{background:var(--mint);width:90px;height:90px;bottom:10px;left:30%}
+    .hs-5{background:var(--orange);width:70px;height:70px;top:60px;left:45%}
+    .header-content{position:relative;z-index:10;display:flex;width:100%;justify-content:space-between;align-items:flex-start}
+    .logo-left,.logo-right{display:flex;z-index:20}
+    .logo-left{margin-top:-12px;margin-left:-16px}
+    .logo-right{margin-top:-12px;margin-right:-16px}
+    .header-logo{height:58px;object-fit:contain;mix-blend-mode:multiply;filter:drop-shadow(0 4px 6px rgba(0,0,0,.05))}
+    .title-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;z-index:15}
+    .hero-title{font-size:clamp(28px,3.6vw,38px);color:var(--red);line-height:1;text-shadow:-3px -3px 0 #fff,3px -3px 0 #fff,-3px 3px 0 #fff,3px 3px 0 #fff,0 8px 16px rgba(0,0,0,.12)}
+    .hero-title small{display:block;font-family:'Montserrat',sans-serif;font-size:clamp(12px,1.8vw,16px);color:var(--ink);text-transform:uppercase;letter-spacing:.05em;margin-top:8px;text-shadow:-2px -2px 0 #fff,2px -2px 0 #fff,-2px 2px 0 #fff,2px 2px 0 #fff}
+
+    .content{background:#fff;padding:18px 16px 14px}
+    .toprow{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:900;padding:10px 12px;border-radius:999px;background:#fff;border:2px solid rgba(16,17,20,.08);box-shadow:0 2px 4px rgba(0,0,0,.05)}
+    .progress-wrap{flex:1;min-width:240px;max-width:420px;background:rgba(0,0,0,.06);border-radius:999px;overflow:hidden;height:12px}
+    .progress{height:100%;width:0%;background:var(--turq);transition:width .3s ease}
+    .progress-meta{font-weight:800;font-size:12px;color:var(--muted)}
+
+    .badgebox{margin-top:14px;padding:12px;border-radius:18px;background:linear-gradient(90deg,rgba(32,184,174,.14),rgba(191,239,232,.18));border:2px solid rgba(16,17,20,.10)}
+    .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+    .badge{display:inline-flex;align-items:center;gap:10px;padding:10px 12px;border-radius:16px;background:#fff;border:2px solid rgba(16,17,20,.10);font-weight:900}
+    .dot{width:14px;height:14px;border-radius:999px;background:rgba(0,0,0,.08)}
+    .badge[data-on="1"] .dot{background:var(--turq)}
+    .badge small{display:block;color:var(--muted);font-weight:700}
+
+    .panel{margin-top:14px;border-radius:18px;border:3px solid rgba(16,17,20,.08);box-shadow:0 8px 16px rgba(16,17,20,.06);overflow:hidden}
+    .panel-h{padding:14px;background:rgba(32,184,174,.12);display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .panel-h h2{font-size:18px}
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:#fff;border:2px solid rgba(16,17,20,.08);font-weight:900;font-size:11px}
+    .panel-b{padding:14px}
+    .hint{color:var(--muted);font-weight:600;font-size:13px;line-height:1.4}
+
+    .cardset{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+    .opt{border-radius:16px;border:2px solid rgba(16,17,20,.10);background:#fff;padding:12px;cursor:pointer;transition:.15s;min-height:78px}
+    .opt:hover{transform:translateY(-2px);box-shadow:0 10px 18px rgba(0,0,0,.08)}
+    .opt strong{display:block}
+    .opt small{display:block;margin-top:6px;color:var(--muted);font-weight:600}
+    .opt[data-on="1"]{border-color:var(--turq);box-shadow:0 0 0 4px rgba(32,184,174,.15)}
+
+    textarea,input{width:100%;padding:12px;border-radius:14px;border:2px solid rgba(16,17,20,.12);font:inherit;font-weight:600}
+    textarea{min-height:86px;resize:vertical}
+    .field{margin-top:12px}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 14px;border-radius:14px;border:none;font-weight:900;cursor:pointer;text-transform:uppercase;letter-spacing:.05em;box-shadow:0 4px 12px rgba(0,0,0,.10)}
+    .btn.primary{background:var(--turq);color:#fff}
+    .btn.ghost{background:#fff;border:2px solid rgba(16,17,20,.12);color:var(--ink);box-shadow:0 2px 4px rgba(0,0,0,.05)}
+    .btn.warn{background:var(--red);color:#fff}
+    .mini{font-size:12px;color:var(--muted);font-weight:700}
+    .story{margin-top:12px;padding:12px;border-radius:16px;background:rgba(0,0,0,.05);border-left:5px solid var(--turq);color:var(--muted);font-weight:600;line-height:1.5}
+
+    .frieze{display:flex;gap:12px;padding:0 20px;margin-top:10px;margin-bottom:24px;background:#fff}
+    .capsule{height:16px;border-radius:999px;flex:1;box-shadow:inset 0 2px 4px rgba(0,0,0,.1)}
+    .eu{margin:0 20px 20px;border-radius:20px;background:#fff;border:3px solid rgba(16,17,20,.08);box-shadow:0 10px 20px rgba(16,17,20,.05);padding:20px;text-align:center}
+    .eu-logo{height:65px;mix-blend-mode:multiply;filter:drop-shadow(0 4px 6px rgba(0,0,0,.05))}
+    .eu p{margin:8px auto 0;max-width:90ch;font-size:12px;line-height:1.6;color:var(--muted);font-weight:500}
+    .eu .copyright{color:var(--ink);font-weight:800;font-size:12px;margin-top:4px}
+    .eu .link{display:inline-block;margin-top:12px;color:var(--turq);font-weight:900;text-decoration:none;font-size:13px}
+    .eu .link:hover{text-decoration:underline;color:var(--red)}
+    @media(max-width:760px){ .title-center{position:relative;top:auto;left:auto;transform:none;width:100%;margin-top:10px} .cardset{grid-template-columns:1fr} }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <section class="frame">
+
+      <header class="hero">
+        <div class="hero-inner">
+          <div class="header-pattern" aria-hidden="true">
+            <div class="hs hs-1"></div><div class="hs hs-2"></div><div class="hs hs-3"></div><div class="hs hs-4"></div><div class="hs hs-5"></div>
+          </div>
+
+          <div class="header-content">
+            <div class="logo-left">
+              <img src="https://static.wixstatic.com/media/dd5dab_47743b1c86024865ba19e623a3db327f~mv2.avif/v1/fill/w_224,h_60,al_c,q_80,enc_avif,quality_auto/dd5dab_47743b1c86024865ba19e623a3db327f~mv2.avif" alt="Logo Mission Locale Pays Basque" class="header-logo" loading="lazy" />
+            </div>
+            <div class="title-center">
+              <h1 class="hero-title">HABITER<small>Microlearning — ~1h</small></h1>
+            </div>
+            <div class="logo-right">
+              <img src="https://www.lifeskills4youth.eu/wp-content/uploads/2024/07/LS4YOU_Logo.png" alt="Logo LS4YOU" class="header-logo" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="content">
+        <div class="toprow">
+          <a class="back" href="./index.html"><i data-lucide="arrow-left"></i> Retour</a>
+          <div class="progress-wrap"><div id="progress" class="progress"></div></div>
+          <div class="progress-meta"><span id="pct">0%</span> complété</div>
+        </div>
+
+        <div class="badgebox">
+          <div style="font-weight:900;">Objectif du pilier</div>
+          <div class="hint">Rendre ton projet viable sur ton territoire : ressources, mobilité, budget, imprévus. Badge <strong>Ancré</strong> quand tu termines les 4 micro-activités.</div>
+          <div class="badges">
+            <div class="badge" id="b-ancre"><span class="dot"></span>Ancré <small>Habiter validé</small></div>
+          </div>
+        </div>
+
+        <!-- MICRO 1 -->
+        <div class="panel">
+          <div class="panel-h">
+            <h2>Micro 1 — Cartographie rapide (12–15 min)</h2>
+            <span class="chip"><i data-lucide="map"></i>Ressources</span>
+          </div>
+          <div class="panel-b">
+            <div class="hint">Tu fais une carte “simple” : 2 ressources + 2 obstacles + 1 allié. (Écrit court, utile.)</div>
+            <div class="field">
+              <label class="mini" for="m1res">2 ressources (ce qui m’aide) :</label>
+              <textarea id="m1res" placeholder="Ex : bus / conseiller ML / famille / ami / dispositif / appli…"></textarea>
+            </div>
+            <div class="field">
+              <label class="mini" for="m1obs">2 obstacles (ce qui bloque) :</label>
+              <textarea id="m1obs" placeholder="Ex : horaires / fatigue / coût / distance / papier…"></textarea>
+            </div>
+            <div class="field">
+              <label class="mini" for="m1ally">1 allié (personne/lieu) :</label>
+              <input id="m1ally" placeholder="Ex : un conseiller, un employeur, une asso, un proche…" />
+            </div>
+            <div class="actions">
+              <button class="btn primary" onclick="saveM1()"><i data-lucide="save"></i> Enregistrer</button>
+              <button class="btn ghost" onclick="suggestM1()"><i data-lucide="wand-2"></i> Suggestion</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- MICRO 2 -->
+        <div class="panel">
+          <div class="panel-h" style="background: rgba(255,201,40,.18);">
+            <h2>Micro 2 — Simulation “imprévu” (10–12 min)</h2>
+            <span class="chip"><i data-lucide="zap"></i>Scénario</span>
+          </div>
+          <div class="panel-b">
+            <div class="hint">Choisis 1 imprévu. Ton défi : écrire une réponse viable en 2 étapes (maintenant / demain).</div>
+            <div class="cardset" id="m2imp">
+              <div class="opt" data-k="imp" data-v="retard"><strong>Transport en retard</strong><small>Tu arrives en décalage.</small></div>
+              <div class="opt" data-k="imp" data-v="argent"><strong>Plus d’argent</strong><small>Fin de mois dur.</small></div>
+              <div class="opt" data-k="imp" data-v="sante"><strong>Coup de fatigue</strong><small>Tu perds ton énergie.</small></div>
+              <div class="opt" data-k="imp" data-v="papier"><strong>Paperasse</strong><small>Doc manquant / blocage.</small></div>
+            </div>
+            <div id="m2story" class="story" style="display:none;"></div>
+
+            <div class="field">
+              <label class="mini" for="m2now">Maintenant (1 action) :</label>
+              <input id="m2now" placeholder="Ex : prévenir / demander / reporter / plan B…" />
+            </div>
+            <div class="field">
+              <label class="mini" for="m2tom">Demain (1 sécurisation) :</label>
+              <input id="m2tom" placeholder="Ex : refaire un plan, anticiper, contacter un allié…" />
+            </div>
+
+            <div class="actions">
+              <button class="btn primary" onclick="saveM2()"><i data-lucide="save"></i> Enregistrer</button>
+              <button class="btn ghost" onclick="suggestM2()"><i data-lucide="wand-2"></i> Suggestion</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- MICRO 3 -->
+        <div class="panel">
+          <div class="panel-h" style="background: rgba(255,176,103,.16);">
+            <h2>Micro 3 — Deux sécurités “anti-galère” (12–15 min)</h2>
+            <span class="chip"><i data-lucide="shield"></i>Sécurité</span>
+          </div>
+          <div class="panel-b">
+            <div class="hint">Tu choisis 2 sécurités parmi 6. Puis tu écris la version “à toi”.</div>
+            <div class="cardset" id="m3sec">
+              <div class="opt" data-v="planA"><strong>Plan A / Plan B</strong><small>Si ça bloque → alternative.</small></div>
+              <div class="opt" data-v="contact"><strong>Contact secours</strong><small>1 personne activable.</small></div>
+              <div class="opt" data-v="budget"><strong>Mini budget</strong><small>3 lignes fixes.</small></div>
+              <div class="opt" data-v="trajet"><strong>Trajet prêt</strong><small>Itinéraire + marge.</small></div>
+              <div class="opt" data-v="papier"><strong>Dossier simple</strong><small>Docs regroupés.</small></div>
+              <div class="opt" data-v="rythme"><strong>Rythme</strong><small>Sommeil/repas/hydratation.</small></div>
+            </div>
+
+            <div class="field">
+              <label class="mini" for="m3text">Mes 2 sécurités (décrites simplement) :</label>
+              <textarea id="m3text" placeholder="Ex : “Plan B = je prends le bus X. Contact secours = …”"></textarea>
+            </div>
+
+            <div class="actions">
+              <button class="btn primary" onclick="saveM3()"><i data-lucide="save"></i> Enregistrer</button>
+              <button class="btn ghost" onclick="suggestM3()"><i data-lucide="wand-2"></i> Suggestion</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- MICRO 4 -->
+        <div class="panel">
+          <div class="panel-h" style="background: rgba(198,40,40,.08);">
+            <h2>Micro 4 — Une demande claire (10–12 min)</h2>
+            <span class="chip"><i data-lucide="send"></i>Demande</span>
+          </div>
+          <div class="panel-b">
+            <div class="hint">Tu écris 1 demande claire (à la Mission Locale / un partenaire / un proche). Format : contexte → besoin → action attendue.</div>
+            <div class="field">
+              <label class="mini" for="m4ask">Ma demande :</label>
+              <textarea id="m4ask" placeholder="Ex : “J’ai un stage potentiel mais la mobilité bloque. J’ai besoin d’un plan transport. Est-ce qu’on peut…”"></textarea>
+            </div>
+
+            <div class="actions">
+              <button class="btn primary" onclick="saveM4()"><i data-lucide="save"></i> Enregistrer</button>
+              <button class="btn ghost" onclick="suggestM4()"><i data-lucide="wand-2"></i> Suggestion</button>
+              <button class="btn warn" onclick="finishHabiter()"><i data-lucide="trophy"></i> Terminer le pilier</button>
+            </div>
+
+            <div class="mini" style="margin-top:8px;">À la fin : badge <strong>Ancré</strong> + la synthèse se remplit (Sécurités).</div>
+          </div>
+        </div>
+
+      </section>
+
+      <div class="frieze" aria-hidden="true">
+        <div class="capsule" style="background: var(--yellow);"></div>
+        <div class="capsule" style="background: var(--turq);"></div>
+        <div class="capsule" style="background: var(--red);"></div>
+        <div class="capsule" style="background: var(--mint);"></div>
+      </div>
+
+      <footer class="eu" aria-label="Mentions UE">
+        <div class="eu-top">
+          <img src="https://www.immigration.interieur.gouv.fr/var/miomcti/storage/images/media/mi/images/logos-pictos/cofinance-par-l-union-europeenne-v/1060317-1-fre-FR/Cofinance-par-l-Union-europeenne-V.png" alt="Cofinancé par l'Union européenne" class="eu-logo" loading="lazy">
+        </div>
+        <div class="copyright">© 2026 LS4YOU Project Nr. 2023-2-FR02-KA220-YOU-000175417</div>
+        <p>Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the Agence Erasmus+ France Jeunesse &amp; Sport (Agence du Service Civique). Neither the European Union nor the granting authority can be held responsible for them.</p>
+        <a class="link" href="#" onclick="return false;">Data Privacy Statement &amp; Imprint</a>
+      </footer>
+
+    </section>
+  </main>
+
+  <script>
+    const KEY="mls4you_territoire_v1";
+    function readState(){ try{return JSON.parse(localStorage.getItem(KEY))||{} }catch{return{}} }
+    function writeState(s){ localStorage.setItem(KEY, JSON.stringify(s)); }
+    function ensure(){
+      const s=readState();
+      s.badges=s.badges||{relieur:false,createur:false,ancre:false,robuste:false};
+      s.done=s.done||{accueillir:false,creer:false,habiter:false,soin:false};
+      s.profile=s.profile||{};
+      s.habiter=s.habiter||{};
+      writeState(s); return s;
+    }
+    const S=ensure();
+
+    function setProgress(){
+      const done=[!!S.habiter.m1?.res, !!S.habiter.m2?.now, !!S.habiter.m3?.text, !!S.habiter.m4?.ask].filter(Boolean).length;
+      const pct=Math.round((done/4)*100);
+      document.getElementById("progress").style.width=pct+"%";
+      document.getElementById("pct").textContent=pct+"%";
+      document.getElementById("b-ancre").dataset.on=(S.badges.ancre||S.done.habiter)?"1":"0";
+    }
+
+    function wireSingle(groupId){
+      const box=document.getElementById(groupId);
+      if(!box) return;
+      box.addEventListener("click",(e)=>{
+        const el=e.target.closest(".opt"); if(!el) return;
+        const k=el.getAttribute("data-k"); if(!k) return;
+        [...box.querySelectorAll(`.opt[data-k="${k}"]`)].forEach(x=>x.dataset.on="0");
+        el.dataset.on="1";
+        S.habiter[k]=el.getAttribute("data-v");
+        writeState(S);
+        renderM2();
+      });
+    }
+
+    function renderM2(){
+      const imp=S.habiter.imp;
+      const box=document.getElementById("m2story");
+      if(!imp){ box.style.display="none"; return; }
+      const map={
+        retard:"Tu as 5 minutes de retard. Le vrai levier : prévenir + proposer une solution (marge, itinéraire).",
+        argent:"Fin de mois dur. Le levier : prioriser + demander un relais + éviter les dépenses surprises.",
+        sante:"Fatigue. Le levier : réduire la charge + prévenir + trouver un micro-plan robuste.",
+        papier:"Doc manquant. Le levier : check-list + 1 contact + regrouper au même endroit."
+      };
+      box.style.display="block";
+      box.innerHTML="<strong>Contexte :</strong> "+map[imp];
+    }
+
+    function suggestM1(){
+      document.getElementById("m1res").value="Ressource 1 : transport / appli itinéraire\nRessource 2 : Mission Locale / conseiller";
+      document.getElementById("m1obs").value="Obstacle 1 : horaires\nObstacle 2 : coût";
+      document.getElementById("m1ally").value="Conseiller Mission Locale";
+    }
+    function suggestM2(){
+      document.getElementById("m2now").value="Je préviens tout de suite + je propose un plan B.";
+      document.getElementById("m2tom").value="Je prépare l’itinéraire + je pars 15 min avant.";
+    }
+    function suggestM3(){ document.getElementById("m3text").value="1) Plan A/Plan B : si transport X bloque → transport Y.\n2) Contact secours : une personne que je peux appeler en cas de blocage."; }
+    function suggestM4(){ document.getElementById("m4ask").value="Contexte : j’ai une opportunité mais la mobilité bloque.\nBesoin : un plan de transport viable.\nAction attendue : qu’on le construise ensemble (A/B) et que je reparte avec une solution."; }
+
+    function saveM1(){
+      S.habiter.m1=S.habiter.m1||{};
+      S.habiter.m1.res=document.getElementById("m1res").value.trim();
+      S.habiter.m1.obs=document.getElementById("m1obs").value.trim();
+      S.habiter.m1.ally=document.getElementById("m1ally").value.trim();
+      writeState(S); setProgress(); alert("Micro 1 enregistré.");
+    }
+    function saveM2(){
+      S.habiter.m2=S.habiter.m2||{};
+      S.habiter.m2.now=document.getElementById("m2now").value.trim();
+      S.habiter.m2.tom=document.getElementById("m2tom").value.trim();
+      writeState(S); setProgress(); alert("Micro 2 enregistré.");
+    }
+    function saveM3(){
+      const selected=[...document.querySelectorAll('#m3sec .opt[data-on="1"]')].map(x=>x.getAttribute("data-v"));
+      S.habiter.m3=S.habiter.m3||{};
+      S.habiter.m3.sel=selected;
+      S.habiter.m3.text=document.getElementById("m3text").value.trim();
+      writeState(S); setProgress(); alert("Micro 3 enregistré.");
+    }
+    function saveM4(){
+      S.habiter.m4=S.habiter.m4||{};
+      S.habiter.m4.ask=document.getElementById("m4ask").value.trim();
+      writeState(S); setProgress(); alert("Micro 4 enregistré.");
+    }
+
+    function finishHabiter(){
+      const ok=!!S.habiter.m1?.res && !!S.habiter.m2?.now && !!S.habiter.m3?.text && !!S.habiter.m4?.ask;
+      if(!ok){ alert("Il te manque au moins une production (Micro 1 à 4)."); return; }
+      S.done.habiter=true;
+      S.badges.ancre=true;
+
+      // Push synthèse
+      const sec=S.habiter.m3?.text || "";
+      const ask=S.habiter.m4?.ask || "";
+      S.profile.securites = (sec ? `Sécurités : ${sec}` : "—") + (ask ? ` / Demande : ${ask}` : "");
+      writeState(S);
+      setProgress();
+      alert("✅ Pilier HABITER terminé — badge Ancré débloqué !");
+      window.location.href="./synthese.html";
+    }
+
+    function wireMulti(groupId,maxPick){
+      const box=document.getElementById(groupId);
+      box.addEventListener("click",(e)=>{
+        const el=e.target.closest(".opt"); if(!el) return;
+        const selected=[...box.querySelectorAll('.opt[data-on="1"]')];
+        if(el.dataset.on==="1") el.dataset.on="0";
+        else{
+          if(selected.length>=maxPick) selected[0].dataset.on="0";
+          el.dataset.on="1";
+        }
+      });
+    }
+
+    function restore(){
+      if(S.habiter.m1?.res) document.getElementById("m1res").value=S.habiter.m1.res;
+      if(S.habiter.m1?.obs) document.getElementById("m1obs").value=S.habiter.m1.obs;
+      if(S.habiter.m1?.ally) document.getElementById("m1ally").value=S.habiter.m1.ally;
+
+      if(S.habiter.imp){
+        [...document.querySelectorAll('#m2imp .opt')].forEach(x=>{
+          if(x.getAttribute("data-v")===S.habiter.imp) x.dataset.on="1";
+        });
+      }
+      renderM2();
+      if(S.habiter.m2?.now) document.getElementById("m2now").value=S.habiter.m2.now;
+      if(S.habiter.m2?.tom) document.getElementById("m2tom").value=S.habiter.m2.tom;
+
+      const sel=S.habiter.m3?.sel||[];
+      [...document.querySelectorAll('#m3sec .opt')].forEach(x=>{
+        if(sel.includes(x.getAttribute("data-v"))) x.dataset.on="1";
+      });
+      if(S.habiter.m3?.text) document.getElementById("m3text").value=S.habiter.m3.text;
+
+      if(S.habiter.m4?.ask) document.getElementById("m4ask").value=S.habiter.m4.ask;
+
+      setProgress();
+    }
+
+    window.addEventListener("load", ()=>{
+      if(typeof lucide!=="undefined") lucide.createIcons();
+      wireSingle("m2imp");
+      wireMulti("m3sec",2);
+      restore();
+    });
+  </script>
+</body>
+</html>
