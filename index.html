@@ -13,7 +13,6 @@
 
   <style>
     :root {
-      /* PALETTE STRICTE LS4YOU */
       --red: #C62828;
       --yellow: #FFC928;
       --turq: #20B8AE;
@@ -24,7 +23,6 @@
       --ink: #101114;
       --muted: rgba(16, 17, 20, 0.7);
 
-      --shadow: 0 16px 30px rgba(16, 17, 20, 0.08);
       --max: 980px;
     }
 
@@ -43,7 +41,7 @@
       font-weight: 800;
     }
 
-    /* --- ARRIÈRE-PLAN VECTORIEL GLOBAL --- */
+    /* BACKGROUND */
     .bg-shapes {
       position: fixed;
       inset: 0;
@@ -80,12 +78,14 @@
       box-shadow: 0 20px 40px rgba(0,0,0,0.1);
       overflow: hidden;
       border: 5px solid transparent;
-      background-image: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), linear-gradient(135deg, var(--red), var(--yellow), var(--turq));
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
+        linear-gradient(135deg, var(--red), var(--yellow), var(--turq));
       background-origin: border-box;
       background-clip: padding-box, border-box;
     }
 
-    /* --- HEADER --- */
+    /* HEADER */
     .hero {
       position: relative;
       border-bottom: 4px solid var(--turq);
@@ -109,21 +109,6 @@
     .hs-3 { background: var(--turq); width: 120px; height: 120px; top: 20px; right: 40%; }
     .hs-4 { background: var(--mint); width: 90px; height: 90px; bottom: 10px; left: 30%; }
     .hs-5 { background: var(--orange); width: 70px; height: 70px; top: 60px; left: 45%; }
-
-    .hs-outline { position: absolute; border-radius: 50%; background: transparent; }
-    .ho-1 { border: 6px solid var(--red); width: 100px; height: 100px; top: 15px; right: 15%; opacity: 0.7; }
-    .ho-2 { border: 4px solid var(--turq); width: 60px; height: 60px; bottom: 20px; left: 15%; opacity: 0.8; }
-    .ho-3 { border: 8px solid var(--yellow); width: 150px; height: 150px; top: -30px; left: 35%; opacity: 0.6; }
-    .ho-4 { border: 3px solid var(--orange); width: 40px; height: 40px; top: 40px; right: 5%; opacity: 0.9; }
-    .ho-5 { border: 5px solid var(--mint); width: 110px; height: 110px; bottom: -20px; left: 50%; opacity: 0.7; }
-    .ho-6 { border: 4px solid var(--red); width: 50px; height: 50px; bottom: 40px; right: 35%; opacity: 0.5; }
-    .ho-7 { border: 7px solid var(--turq); width: 130px; height: 130px; top: 50px; left: 5%; opacity: 0.4; }
-
-    .hp { position: absolute; opacity: 0.85; filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.1)); }
-    .hp-1 { fill: var(--turq); width: 90px; top: 10px; left: 25%; transform: rotate(15deg); }
-    .hp-2 { fill: var(--red); width: 110px; bottom: 5px; right: 10%; transform: rotate(-20deg); }
-    .hp-3 { fill: var(--yellow); width: 80px; top: 15px; right: 25%; transform: rotate(45deg); }
-    .hp-4 { fill: var(--orange); width: 70px; bottom: 20px; left: 40%; transform: rotate(-45deg); }
 
     .header-content {
       position: relative;
@@ -163,7 +148,6 @@
       line-height: 1;
       text-shadow:
         -3px -3px 0 #fff, 3px -3px 0 #fff, -3px 3px 0 #fff, 3px 3px 0 #fff,
-        -4px 0 0 #fff, 4px 0 0 #fff, 0 -4px 0 #fff, 0 4px 0 #fff,
         0 8px 16px rgba(0,0,0,0.15);
     }
     .hero-title small {
@@ -174,11 +158,10 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-top: 8px;
-      text-shadow:
-        -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff;
+      text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff;
     }
 
-    /* --- GRID CARDS --- */
+    /* CARDS */
     .cards {
       padding: 20px 16px;
       display: grid;
@@ -242,7 +225,7 @@
       line-height: 1.4;
       font-weight: 600;
       color: var(--muted);
-      max-width: 40ch;
+      max-width: 45ch;
     }
 
     .pill {
@@ -266,14 +249,17 @@
     .dot.m { background: var(--mint); }
     .dot.o { background: var(--orange); }
 
+    /* WIDE INTRO */
     .card.wide {
       grid-column: 1 / -1;
       align-items: center;
       border: 4px solid transparent;
-      background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
         conic-gradient(from 10deg, var(--turq), var(--yellow), var(--red), var(--turq));
       background-origin: border-box;
       background-clip: padding-box, border-box;
+      min-height: 110px;
     }
     .badge-iki {
       width: 42px; height: 42px;
@@ -292,90 +278,6 @@
       margin-bottom: 24px;
     }
     .capsule { height: 16px; border-radius: 999px; flex: 1; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); }
-
-    /* --- MODALE --- */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(16, 17, 20, 0.6);
-      backdrop-filter: blur(5px);
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
-    .modal-overlay.active { opacity: 1; visibility: visible; }
-    .modal-content {
-      background: white;
-      width: 100%;
-      max-width: 650px;
-      border-radius: 24px;
-      padding: 28px;
-      position: relative;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-      transform: translateY(20px);
-      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      border: 4px solid var(--turq);
-      max-height: 90vh;
-      display: flex;
-      flex-direction: column;
-    }
-    .modal-overlay.active .modal-content { transform: translateY(0); }
-    .modal-close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: #f1f5f9;
-      border: none;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      color: var(--ink);
-      transition: all 0.2s;
-    }
-    .modal-close:hover { background: var(--red); color: white; }
-    .modal-header { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; flex-shrink: 0; }
-    .modal-header .n { font-size: 20px; width: 50px; height: 50px; }
-    .modal-header h2 { font-size: 22px; margin: 0; line-height: 1.1; color: var(--ink); text-transform: uppercase; }
-    .modal-body {
-      font-size: 15px;
-      line-height: 1.6;
-      color: var(--muted);
-      margin-bottom: 18px;
-      overflow-y: auto;
-      padding-right: 8px;
-    }
-    .modal-body strong { color: var(--ink); font-weight: 800; }
-    .modal-footer { flex-shrink: 0; display: flex; flex-direction: column; gap: 10px; }
-    .modal-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      padding: 16px;
-      background: var(--ink);
-      color: white;
-      text-decoration: none;
-      font-weight: 800;
-      border-radius: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      transition: all 0.2s;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .modal-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
-
-    .modal-body::-webkit-scrollbar { width: 6px; }
-    .modal-body::-webkit-scrollbar-track { background: transparent; }
-    .modal-body::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 4px; }
 
     /* EU footer */
     .eu {
@@ -413,7 +315,7 @@
       .header-content { flex-wrap: wrap; align-items: center; }
       .logo-left, .logo-right { margin: 0; }
       .header-logo { height: 42px; }
-      .title-center { position: relative; top: auto; left: auto; transform: none; order: 3; width: 100%; margin-top: 15px; }
+      .title-center { position: relative; top: auto; left: auto; transform: none; width: 100%; margin-top: 15px; }
       .hero-title { font-size: 28px; }
       .cards { grid-template-columns: 1fr; }
       .card.wide { grid-column: auto; }
@@ -422,7 +324,7 @@
 </head>
 
 <body>
-  <!-- BACKGROUND DECORATIONS -->
+  <!-- BACKGROUND -->
   <div class="bg-shapes" aria-hidden="true">
     <div class="bg-circle c-mint"></div>
     <div class="bg-circle c-yellow"></div>
@@ -441,11 +343,6 @@
         <div class="hero-inner">
           <div class="header-pattern" aria-hidden="true">
             <div class="hs hs-1"></div><div class="hs hs-2"></div><div class="hs hs-3"></div><div class="hs hs-4"></div><div class="hs hs-5"></div>
-            <div class="hs-outline ho-1"></div><div class="hs-outline ho-2"></div><div class="hs-outline ho-3"></div><div class="hs-outline ho-4"></div><div class="hs-outline ho-5"></div><div class="hs-outline ho-6"></div><div class="hs-outline ho-7"></div>
-            <svg class="hp hp-1" viewBox="0 0 24 24"><path d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5C13 2.12 11.88 1 10.5 1S8 2.12 8 3.5V5H4c-1.1 0-1.99.9-1.99 2v3.8H3.5c1.49 0 2.7 1.21 2.7 2.7s-1.21 2.7-2.7 2.7H2V20c0 1.1.9 2 2 2h3.8v-1.5c0-1.49 1.21-2.7 2.7-2.7 1.49 0 2.7 1.21 2.7 2.7V22H17c1.1 0 2-.9 2-2v-4h1.5c1.38 0 2.5-1.12 2.5-2.5S21.88 11 20.5 11z"/></svg>
-            <svg class="hp hp-2" viewBox="0 0 24 24"><path d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5C13 2.12 11.88 1 10.5 1S8 2.12 8 3.5V5H4c-1.1 0-1.99.9-1.99 2v3.8H3.5c1.49 0 2.7 1.21 2.7 2.7s-1.21 2.7-2.7 2.7H2V20c0 1.1.9 2 2 2h3.8v-1.5c0-1.49 1.21-2.7 2.7-2.7 1.49 0 2.7 1.21 2.7 2.7V22H17c1.1 0 2-.9 2-2v-4h1.5c1.38 0 2.5-1.12 2.5-2.5S21.88 11 20.5 11z"/></svg>
-            <svg class="hp hp-3" viewBox="0 0 24 24"><path d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5C13 2.12 11.88 1 10.5 1S8 2.12 8 3.5V5H4c-1.1 0-1.99.9-1.99 2v3.8H3.5c1.49 0 2.7 1.21 2.7 2.7s-1.21 2.7-2.7 2.7H2V20c0 1.1.9 2 2 2h3.8v-1.5c0-1.49 1.21-2.7 2.7-2.7 1.49 0 2.7 1.21 2.7 2.7V22H17c1.1 0 2-.9 2-2v-4h1.5c1.38 0 2.5-1.12 2.5-2.5S21.88 11 20.5 11z"/></svg>
-            <svg class="hp hp-4" viewBox="0 0 24 24"><path d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5C13 2.12 11.88 1 10.5 1S8 2.12 8 3.5V5H4c-1.1 0-1.99.9-1.99 2v3.8H3.5c1.49 0 2.7 1.21 2.7 2.7s-1.21 2.7-2.7 2.7H2V20c0 1.1.9 2 2 2h3.8v-1.5c0-1.49 1.21-2.7 2.7-2.7 1.49 0 2.7 1.21 2.7 2.7V22H17c1.1 0 2-.9 2-2v-4h1.5c1.38 0 2.5-1.12 2.5-2.5S21.88 11 20.5 11z"/></svg>
           </div>
 
           <div class="header-content">
@@ -466,73 +363,67 @@
 
       <section class="cards" aria-label="Parcours MLS4YOU — Territoire">
 
-        <div class="card card-1" onclick="openModal('intro')">
-          <div class="n" style="background: var(--mint); color: var(--ink);">1</div>
-          <div class="ct">
-            <h3>INTRODUCTION</h3>
-            <p>Le territoire devient ton support d’insertion : relation, contribution, réalité, robustesse.</p>
-            <span class="pill"><span class="dot t"></span>Démarrer ici</span>
-          </div>
-        </div>
-            
-    </span>
-
-    <i data-lucide="map" class="w-7 h-7"></i>
-  </div>
-
-        <div class="card card-2" onclick="openModal('accueillir')">
-          <div class="n" style="background: var(--red); color: white;">2</div>
-          <div class="ct">
-            <h3>ACCUEILLIR</h3>
-            <p>Créer du lien, ajuster sa posture, recevoir un feedback sans se fermer.</p>
-            <span class="pill"><span class="dot r"></span>Micro-scènes</span>
-          </div>
-        </div>
-
-        <div class="card card-3" onclick="openModal('creer')">
-          <div class="n" style="background: var(--yellow); color: var(--ink);">3</div>
-          <div class="ct">
-            <h3>CRÉER</h3>
-            <p>Passer de “demandeur” à “contributeur” : formuler une valeur utile localement.</p>
-            <span class="pill"><span class="dot y"></span>Story → action</span>
-          </div>
-        </div>
-
-        <div class="card card-4" onclick="openModal('habiter')">
-          <div class="n" style="background: var(--turq); color: white;">4</div>
-          <div class="ct">
-            <h3>HABITER</h3>
-            <p>Ressources, budget, mobilité, imprévus : rendre ton projet viable sur ton territoire.</p>
-            <span class="pill"><span class="dot m"></span>Simulation réelle</span>
-          </div>
-        </div>
-
-        <div class="card card-5" onclick="openModal('soin')">
-          <div class="n" style="background: var(--orange); color: white;">5</div>
-          <div class="ct">
-            <h3>PRENDRE SOIN</h3>
-            <p>Robustesse : énergie, stress, réseau de soutien, plan anti-rupture.</p>
-            <span class="pill"><span class="dot o"></span>Robustesse</span>
-          </div>
-        </div>
-
-        <div class="card card-6" onclick="openModal('passeport')">
-          <div class="n" style="background: var(--turq); color: white;">6</div>
-          <div class="ct">
-            <h3>PASSEPORT TERRITOIRE</h3>
-            <p>Ta synthèse exploitable en entretien : signature relationnelle, contribution, sécurités, plan soin.</p>
-            <span class="pill"><span class="dot t"></span>Bilan</span>
-          </div>
-        </div>
-
-        <div class="card wide" onclick="openModal('synthese')">
+        <!-- INTRO (plein largeur) -> page introduction.html -->
+        <a class="card wide" href="./introduction.html">
           <div class="badge-iki" aria-hidden="true"></div>
           <div class="ct">
-            <h3 style="font-size: 18px;">PASSEPORT TERRITOIRE — SYNTHÈSE</h3>
-            <p style="font-size: 14px;">Le document final (auto-rempli) pour ton entretien Mission Locale.</p>
-            <span class="pill"><span class="dot r"></span>Conclusion</span>
+            <h3 style="font-size:18px;">INTRO — TON TERRITOIRE = UN ATOUT PRO</h3>
+            <p style="font-size:14px;">
+              Comprendre le jeu local pour viser juste : opportunités, réseaux, réalité du quotidien.
+            </p>
+            <span class="pill"><span class="dot t"></span>Ouvrir la fiche</span>
           </div>
-        </div>
+        </a>
+
+        <!-- 1 ACCUEILLIR -->
+        <a class="card card-2" href="./accueillir.html">
+          <div class="n" style="background: var(--red); color: white;">1</div>
+          <div class="ct">
+            <h3>ACCUEILLIR = INTERAGIR</h3>
+            <p>Comprendre les codes, créer du lien, être à l’aise avec les gens.</p>
+            <span class="pill"><span class="dot r"></span>Ouvrir</span>
+          </div>
+        </a>
+
+        <!-- 2 CREER -->
+        <a class="card card-3" href="./creer.html">
+          <div class="n" style="background: var(--yellow); color: var(--ink);">2</div>
+          <div class="ct">
+            <h3>CRÉER = PROPOSER DE LA VALEUR</h3>
+            <p>Repérer un besoin local et répondre concrètement (posture “offreur de solutions”).</p>
+            <span class="pill"><span class="dot y"></span>Ouvrir</span>
+          </div>
+        </a>
+
+        <!-- 3 HABITER -->
+        <a class="card card-4" href="./habiter.html">
+          <div class="n" style="background: var(--turq); color: white;">3</div>
+          <div class="ct">
+            <h3>HABITER = GÉRER LE RÉEL</h3>
+            <p>Anticiper logement, transport, budget, contraintes du Pays Basque.</p>
+            <span class="pill"><span class="dot m"></span>Ouvrir</span>
+          </div>
+        </a>
+
+        <!-- 4 PRENDRE SOIN -->
+        <a class="card card-5" href="./soin.html">
+          <div class="n" style="background: var(--orange); color: white;">4</div>
+          <div class="ct">
+            <h3>PRENDRE SOIN = DURER</h3>
+            <p>Être solide dans la durée : soutien, équilibre, réseaux, entraide locale.</p>
+            <span class="pill"><span class="dot o"></span>Ouvrir</span>
+          </div>
+        </a>
+
+        <!-- PASSEPORT -->
+        <a class="card card-6" href="./synthese.html">
+          <div class="n" style="background: var(--turq); color: white;">5</div>
+          <div class="ct">
+            <h3>PASSEPORT TERRITOIRE</h3>
+            <p>Ta synthèse exploitable (auto-remplie) : lien, valeur, réalité, robustesse.</p>
+            <span class="pill"><span class="dot t"></span>Voir mon passeport</span>
+          </div>
+        </a>
 
       </section>
 
@@ -545,13 +436,10 @@
 
       <footer class="eu" aria-label="Mentions UE">
         <div class="eu-top">
-          <div class="eu-logo-container">
-            <img src="https://www.immigration.interieur.gouv.fr/var/miomcti/storage/images/media/mi/images/logos-pictos/cofinance-par-l-union-europeenne-v/1060317-1-fre-FR/Cofinance-par-l-Union-europeenne-V.png" alt="Cofinancé par l'Union européenne" class="eu-logo" loading="lazy">
-          </div>
+          <img src="https://www.immigration.interieur.gouv.fr/var/miomcti/storage/images/media/mi/images/logos-pictos/cofinance-par-l-union-europeenne-v/1060317-1-fre-FR/Cofinance-par-l-Union-europeenne-V.png"
+               alt="Cofinancé par l'Union européenne" class="eu-logo" loading="lazy">
         </div>
-        <div class="copyright">
-          © 2026 LS4YOU Project Nr. 2023-2-FR02-KA220-YOU-000175417
-        </div>
+        <div class="copyright">© 2026 LS4YOU Project Nr. 2023-2-FR02-KA220-YOU-000175417</div>
         <p>
           Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily
           reflect those of the European Union or the Agence Erasmus+ France Jeunesse &amp; Sport (Agence du Service Civique).
@@ -563,172 +451,10 @@
     </section>
   </main>
 
-  <!-- MODAL -->
-  <div id="modal-overlay" class="modal-overlay" aria-hidden="true" onclick="closeModal()">
-    <div class="modal-content" onclick="event.stopPropagation()">
-      <button class="modal-close" onclick="closeModal()"><i data-lucide="x"></i></button>
-      <div class="modal-header">
-        <div class="n" id="modal-number"></div>
-        <h2 id="modal-title"></h2>
-      </div>
-      <div class="modal-body" id="modal-desc"></div>
-      <div class="modal-footer"></div>
-    </div>
-  </div>
-
   <script>
-    // Etat module (gamification douce)
-    const KEY = "mls4you_territoire_v1";
-    function readState(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; } }
-    function writeState(s){ localStorage.setItem(KEY, JSON.stringify(s)); }
-    function ensureState(){
-      const s = readState();
-      s.badges = s.badges || { relieur:false, createur:false, ancre:false, robuste:false };
-      s.done = s.done || { accueillir:false, creer:false, habiter:false, soin:false };
-      s.profile = s.profile || {};
-      writeState(s);
-      return s;
-    }
-    const STATE = ensureState();
-
-    // Données cartes
-    const CARDS_DATA = {
-      intro: {
-        number: 1,
-        title: "INTRODUCTION",
-        color: "var(--mint)",
-        desc: `<strong>Compétence Territoire = s’ancrer dans un écosystème</strong><br><br>
-        Ici, le territoire n’est pas un décor : c’est ton support d’insertion.<br><br>
-        <strong>4 piliers</strong> :<br>
-        • <strong>Accueillir</strong> (créer du lien)<br>
-        • <strong>Créer</strong> (proposer une contribution)<br>
-        • <strong>Habiter</strong> (rendre le projet viable)<br>
-        • <strong>Prendre soin</strong> (durer avec robustesse)<br><br>
-        <div style="background:rgba(0,0,0,0.05); padding:10px; border-radius:10px; border-left:4px solid var(--turq);">
-          <strong>Microlearning :</strong> chaque pilier = micro-activités courtes (5–12 min), interactives, sans quiz.
-        </div>`,
-        multiLinks: [
-          { text: "Démarrer → ACCUEILLIR", url: "./accueillir.html" },
-          { text: "Voir mon PASSEPORT", url: "./synthese.html" }
-        ]
-      },
-      accueillir: {
-        number: 2,
-        title: "ACCUEILLIR",
-        color: "var(--red)",
-        desc: `<strong>Objectif :</strong> entrer en relation + ajuster ton image pro.<br><br>
-        Tu vas faire des micro-scènes (choix narratifs), puis écrire 2 phrases utiles pour la vraie vie (feedback + ajustement).<br><br>
-        <em>Durée : ~1h (microlearning)</em>`,
-        link: "./accueillir.html",
-        btnText: "Lancer ACCUEILLIR"
-      },
-      creer: {
-        number: 3,
-        title: "CRÉER",
-        color: "var(--yellow)",
-        desc: `<strong>Objectif :</strong> passer de “demandeur” à “contributeur”.<br><br>
-        Tu pars d’un vécu réel → tu extrais des verbes d’action → tu formules une contribution utile localement.<br><br>
-        <em>Durée : ~1h</em>`,
-        link: "./creer.html",
-        btnText: "Lancer CRÉER"
-      },
-      habiter: {
-        number: 4,
-        title: "HABITER",
-        color: "var(--turq)",
-        desc: `<strong>Objectif :</strong> rendre ton projet viable sur ton territoire.<br><br>
-        Cartographie ressources/obstacles/alliés + simulation imprévus + 2 sécurités anti-galère.<br><br>
-        <em>Durée : ~1h</em>`,
-        link: "./habiter.html",
-        btnText: "Lancer HABITER"
-      },
-      soin: {
-        number: 5,
-        title: "PRENDRE SOIN",
-        color: "var(--orange)",
-        desc: `<strong>Objectif :</strong> robustesse (durer sans s’épuiser).<br><br>
-        Arbre de trajectoire + stressomètre narratif + réseau activable + protocole anti-rupture.<br><br>
-        <em>Durée : ~1h</em>`,
-        link: "./soin.html",
-        btnText: "Lancer PRENDRE SOIN"
-      },
-      passeport: {
-        number: 6,
-        title: "PASSEPORT TERRITOIRE",
-        color: "var(--turq)",
-        desc: `<strong>Ce que tu obtiens :</strong><br>
-        • Ta <strong>signature relationnelle</strong><br>
-        • Ta <strong>contribution</strong><br>
-        • Tes <strong>sécurités anti-galère</strong><br>
-        • Ton <strong>plan robustesse</strong><br><br>
-        Tout est auto-rempli à partir des activités.`,
-        link: "./synthese.html",
-        btnText: "Voir mon passeport"
-      },
-      synthese: {
-        number: "★",
-        title: "SYNTHÈSE FINALE",
-        color: "var(--red)",
-        desc: `Tu peux ouvrir ton passeport à tout moment.<br><br>
-        <strong>Badges</strong> : Relieur, Créateur, Ancré, Robuste.<br>
-        Ils se débloquent quand tu complètes les micro-activités (sans note, sans quiz).`,
-        link: "./synthese.html",
-        btnText: "Ouvrir la synthèse"
-      }
-    };
-
-    function openModal(cardId) {
-      const data = CARDS_DATA[cardId];
-      if (!data) return;
-
-      const modal = document.getElementById('modal-overlay');
-      const content = modal.querySelector('.modal-content');
-      const footer = modal.querySelector('.modal-footer');
-
-      document.getElementById('modal-number').innerText = data.number;
-      document.getElementById('modal-number').style.background = data.color;
-      document.getElementById('modal-number').style.color =
-        (data.color === 'var(--red)' || data.color === 'var(--turq)' || data.color === 'var(--orange)') ? 'white' : 'var(--ink)';
-
-      document.getElementById('modal-title').innerText = data.title;
-      document.getElementById('modal-desc').innerHTML = data.desc;
-
-      footer.innerHTML = '';
-
-      if (data.multiLinks) {
-        data.multiLinks.forEach(link => {
-          const btn = document.createElement('a');
-          btn.className = 'modal-btn';
-          btn.href = link.url;
-          btn.target = '_self';
-          btn.innerText = link.text;
-          btn.style.background = data.color;
-          btn.style.color = (data.color === 'var(--yellow)' || data.color === 'var(--mint)') ? 'var(--ink)' : 'white';
-          footer.appendChild(btn);
-        });
-      } else if (data.link) {
-        const btn = document.createElement('a');
-        btn.className = 'modal-btn';
-        btn.href = data.link;
-        btn.target = '_self';
-        btn.innerText = data.btnText || "Ouvrir";
-        btn.style.background = data.color;
-        btn.style.color = (data.color === 'var(--yellow)' || data.color === 'var(--mint)') ? 'var(--ink)' : 'white';
-        footer.appendChild(btn);
-      }
-
-      content.style.borderColor = data.color;
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-      document.getElementById('modal-overlay').classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-    window.addEventListener('load', function() { if (typeof lucide !== 'undefined') lucide.createIcons(); });
+    window.addEventListener('load', function() {
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    });
   </script>
 </body>
 </html>
