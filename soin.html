@@ -1,457 +1,271 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MLS4YOU #2 — Prendre soin</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fiche 4 : Prendre Soin - LS4YOU</title>
 
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@0.263.1/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-    :root { --red:#C62828; --yellow:#FFC928; --turq:#20B8AE; --mint:#BFEFE8; --orange:#FFB067; --bg:#FFF9F0; --ink:#101114; --muted:rgba(16,17,20,.7); --max:980px; }
-    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:'Montserrat',system-ui,-apple-system,sans-serif;overflow-x:hidden}
-    h1,h2,h3{font-family:'Baloo 2',cursive;font-weight:800;margin:0}
-    .wrap{position:relative;z-index:1;max-width:var(--max);margin:22px auto 28px;padding:0 16px 26px}
-    .frame{border-radius:24px;box-shadow:0 20px 40px rgba(0,0,0,.1);overflow:hidden;border:5px solid transparent;background-image:linear-gradient(rgba(255,255,255,.95),rgba(255,255,255,.95)),linear-gradient(135deg,var(--red),var(--yellow),var(--turq));background-origin:border-box;background-clip:padding-box,border-box}
-    .hero{position:relative;border-bottom:4px solid var(--turq);padding:16px;background:#fff}
-    .hero-inner{position:relative;border-radius:18px;overflow:hidden;min-height:clamp(120px,22vw,170px);display:flex;align-items:center;padding:22px 28px}
-    .header-pattern{position:absolute;inset:0;background:#fdfdfd;z-index:0}
-    .hs{position:absolute;border-radius:50%;opacity:.65;mix-blend-mode:multiply}
-    .hs-1{background:var(--red);width:140px;height:140px;top:-40px;left:10%}
-    .hs-2{background:var(--yellow);width:180px;height:180px;bottom:-60px;right:20%}
-    .hs-3{background:var(--turq);width:120px;height:120px;top:20px;right:40%}
-    .hs-4{background:var(--mint);width:90px;height:90px;bottom:10px;left:30%}
-    .hs-5{background:var(--orange);width:70px;height:70px;top:60px;left:45%}
-    .header-content{position:relative;z-index:10;display:flex;width:100%;justify-content:space-between;align-items:flex-start}
-    .logo-left,.logo-right{display:flex;z-index:20}
-    .logo-left{margin-top:-12px;margin-left:-16px}
-    .logo-right{margin-top:-12px;margin-right:-16px}
-    .header-logo{height:58px;object-fit:contain;mix-blend-mode:multiply;filter:drop-shadow(0 4px 6px rgba(0,0,0,.05))}
-    .title-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;z-index:15}
-    .hero-title{font-size:clamp(28px,3.6vw,38px);color:var(--red);line-height:1;text-shadow:-3px -3px 0 #fff,3px -3px 0 #fff,-3px 3px 0 #fff,3px 3px 0 #fff,0 8px 16px rgba(0,0,0,.12)}
-    .hero-title small{display:block;font-family:'Montserrat',sans-serif;font-size:clamp(12px,1.8vw,16px);color:var(--ink);text-transform:uppercase;letter-spacing:.05em;margin-top:8px;text-shadow:-2px -2px 0 #fff,2px -2px 0 #fff,-2px 2px 0 #fff,2px 2px 0 #fff}
+    :root{
+      --c-red:#C62828;
+      --c-green:#43A047;
+      --c-green-light:#C8E6C9;
+      --c-green-dark:#2E7D32;
+      --c-yellow:#FFD54F;
+      --c-turq:#4DD0E1;
+      --c-white:#ffffff;
+      --c-black:#1a1a1a;
+    }
 
-    .content{background:#fff;padding:18px 16px 14px}
-    .toprow{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-    .back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:900;padding:10px 12px;border-radius:999px;background:#fff;border:2px solid rgba(16,17,20,.08);box-shadow:0 2px 4px rgba(0,0,0,.05)}
-    .progress-wrap{flex:1;min-width:240px;max-width:420px;background:rgba(0,0,0,.06);border-radius:999px;overflow:hidden;height:12px}
-    .progress{height:100%;width:0%;background:var(--orange);transition:width .3s ease}
-    .progress-meta{font-weight:800;font-size:12px;color:var(--muted)}
+    body{
+      font-family:'Montserrat',sans-serif;
+      background-color:#f8f9fa;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+      color:var(--c-black);
+      overflow-x:hidden;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:20px;
+    }
 
-    .badgebox{margin-top:14px;padding:12px;border-radius:18px;background:linear-gradient(90deg,rgba(255,176,103,.18),rgba(255,201,40,.10));border:2px solid rgba(16,17,20,.10)}
-    .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
-    .badge{display:inline-flex;align-items:center;gap:10px;padding:10px 12px;border-radius:16px;background:#fff;border:2px solid rgba(16,17,20,.10);font-weight:900}
-    .dot{width:14px;height:14px;border-radius:999px;background:rgba(0,0,0,.08)}
-    .badge[data-on="1"] .dot{background:var(--turq)}
-    .badge small{display:block;color:var(--muted);font-weight:700}
+    h1,h2,h3,.font-title{
+      font-family:'Poppins',sans-serif;
+      letter-spacing:-0.02em;
+    }
 
-    .panel{margin-top:14px;border-radius:18px;border:3px solid rgba(16,17,20,.08);box-shadow:0 8px 16px rgba(16,17,20,.06);overflow:hidden}
-    .panel-h{padding:14px;background:rgba(255,176,103,.16);display:flex;align-items:center;justify-content:space-between;gap:10px}
-    .panel-h h2{font-size:18px}
-    .chip{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:#fff;border:2px solid rgba(16,17,20,.08);font-weight:900;font-size:11px}
-    .panel-b{padding:14px}
-    .hint{color:var(--muted);font-weight:600;font-size:13px;line-height:1.4}
+    .pop-card{
+      background:white;
+      border:3px solid var(--c-black);
+      box-shadow:8px 8px 0px var(--c-black);
+      border-radius:20px;
+      position:relative;
+      z-index:10;
+      transition:transform 0.2s ease;
+    }
+    .pop-card:hover{
+      transform:translate(-2px,-2px);
+      box-shadow:10px 10px 0px var(--c-black);
+    }
 
-    .cardset{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
-    .opt{border-radius:16px;border:2px solid rgba(16,17,20,.10);background:#fff;padding:12px;cursor:pointer;transition:.15s;min-height:78px}
-    .opt:hover{transform:translateY(-2px);box-shadow:0 10px 18px rgba(0,0,0,.08)}
-    .opt strong{display:block}
-    .opt small{display:block;margin-top:6px;color:var(--muted);font-weight:600}
-    .opt[data-on="1"]{border-color:var(--turq);box-shadow:0 0 0 4px rgba(32,184,174,.15)}
+    @keyframes popIn{
+      0%{opacity:0;transform:scale(0.95);}
+      100%{opacity:1;transform:scale(1);}
+    }
+    @keyframes float{
+      0%,100%{transform:translateY(0px);}
+      50%{transform:translateY(-8px);}
+    }
 
-    textarea,input{width:100%;padding:12px;border-radius:14px;border:2px solid rgba(16,17,20,.12);font:inherit;font-weight:600}
-    textarea{min-height:86px;resize:vertical}
-    .field{margin-top:12px}
-    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 14px;border-radius:14px;border:none;font-weight:900;cursor:pointer;text-transform:uppercase;letter-spacing:.05em;box-shadow:0 4px 12px rgba(0,0,0,.10)}
-    .btn.primary{background:var(--turq);color:#fff}
-    .btn.ghost{background:#fff;border:2px solid rgba(16,17,20,.12);color:var(--ink);box-shadow:0 2px 4px rgba(0,0,0,.05)}
-    .btn.warn{background:var(--red);color:#fff}
-    .mini{font-size:12px;color:var(--muted);font-weight:700}
-    .story{margin-top:12px;padding:12px;border-radius:16px;background:rgba(0,0,0,.05);border-left:5px solid var(--turq);color:var(--muted);font-weight:600;line-height:1.5}
+    .animate-pop{animation:popIn 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards;}
+    .delay-100{animation-delay:0.1s;}
+    .delay-200{animation-delay:0.2s;}
+    .delay-300{animation-delay:0.3s;}
+    .delay-400{animation-delay:0.4s;}
+    .floating{animation:float 4s ease-in-out infinite;}
 
-    .frieze{display:flex;gap:12px;padding:0 20px;margin-top:10px;margin-bottom:24px;background:#fff}
-    .capsule{height:16px;border-radius:999px;flex:1;box-shadow:inset 0 2px 4px rgba(0,0,0,.1)}
-    .eu{margin:0 20px 20px;border-radius:20px;background:#fff;border:3px solid rgba(16,17,20,.08);box-shadow:0 10px 20px rgba(16,17,20,.05);padding:20px;text-align:center}
-    .eu-logo{height:65px;mix-blend-mode:multiply;filter:drop-shadow(0 4px 6px rgba(0,0,0,.05))}
-    .eu p{margin:8px auto 0;max-width:90ch;font-size:12px;line-height:1.6;color:var(--muted);font-weight:500}
-    .eu .copyright{color:var(--ink);font-weight:800;font-size:12px;margin-top:4px}
-    .eu .link{display:inline-block;margin-top:12px;color:var(--turq);font-weight:900;text-decoration:none;font-size:13px}
-    .eu .link:hover{text-decoration:underline;color:var(--red)}
-    @media(max-width:760px){ .title-center{position:relative;top:auto;left:auto;transform:none;width:100%;margin-top:10px} .cardset{grid-template-columns:1fr} }
+    .decoration-circle{
+      position:absolute;
+      border-radius:50%;
+      border:2px solid var(--c-black);
+      z-index:-1;
+    }
+
+    .shine{position:relative;overflow:hidden;}
+    .shine::after{
+      content:'';
+      position:absolute;
+      top:0;left:-100%;
+      width:50%;height:100%;
+      background:linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+      transform:skewX(-25deg);
+      animation:shine 3s infinite;
+    }
+    @keyframes shine{100%{left:125%;}}
+
+    /* bouton retour simple */
+    .back-btn{
+      position:fixed;
+      left:16px;
+      bottom:16px;
+      z-index:50;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 14px;
+      background:#fff;
+      border:2px solid #000;
+      border-radius:14px;
+      font-weight:800;
+      text-decoration:none;
+      color:#111;
+      box-shadow:4px 4px 0 #000;
+      transition:transform .15s ease;
+    }
+    .back-btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #000;}
   </style>
 </head>
 
-<body>
-  <main class="wrap">
-    <section class="frame">
+<body class="bg-gray-50">
 
-      <header class="hero">
-        <div class="hero-inner">
-          <div class="header-pattern" aria-hidden="true">
-            <div class="hs hs-1"></div><div class="hs hs-2"></div><div class="hs hs-3"></div><div class="hs hs-4"></div><div class="hs hs-5"></div>
-          </div>
+  <!-- Bouton retour vers l'accueil du site -->
+  <a class="back-btn" href="./index.html" aria-label="Retour au parcours">
+    ← Retour
+  </a>
 
-          <div class="header-content">
-            <div class="logo-left">
-              <img src="https://static.wixstatic.com/media/dd5dab_47743b1c86024865ba19e623a3db327f~mv2.avif/v1/fill/w_224,h_60,al_c,q_80,enc_avif,quality_auto/dd5dab_47743b1c86024865ba19e623a3db327f~mv2.avif" alt="Logo Mission Locale Pays Basque" class="header-logo" loading="lazy" />
-            </div>
-            <div class="title-center">
-              <h1 class="hero-title">PRENDRE SOIN<small>Microlearning — ~1h</small></h1>
-            </div>
-            <div class="logo-right">
-              <img src="https://www.lifeskills4youth.eu/wp-content/uploads/2024/07/LS4YOU_Logo.png" alt="Logo LS4YOU" class="header-logo" loading="lazy" />
-            </div>
-          </div>
-        </div>
-      </header>
+  <!-- DECORATIVE BACKGROUND ELEMENTS (Fixed) -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="decoration-circle bg-[#43A047] w-40 h-40 bottom-10 right-10 opacity-50 floating" style="animation-delay:0.2s;"></div>
+    <div class="decoration-circle bg-[#C62828] w-24 h-24 top-20 left-10 opacity-60 floating" style="animation-delay:1.2s;"></div>
 
-      <section class="content">
-        <div class="toprow">
-          <a class="back" href="./index.html"><i data-lucide="arrow-left"></i> Retour</a>
-          <div class="progress-wrap"><div id="progress" class="progress"></div></div>
-          <div class="progress-meta"><span id="pct">0%</span> complété</div>
-        </div>
+    <svg class="absolute top-10 right-10 w-32 h-32 text-[#C8E6C9] -z-10" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
+      <rect x="35" y="10" width="30" height="80" rx="5" />
+      <rect x="10" y="35" width="80" height="30" rx="5" />
+    </svg>
+  </div>
 
-        <div class="badgebox">
-          <div style="font-weight:900;">Objectif du pilier</div>
-          <div class="hint">Robustesse : tenir dans la durée (énergie, stress, réseau, plan anti-rupture). Badge <strong>Robuste</strong> quand tu termines les 4 micro-activités.</div>
-          <div class="badges">
-            <div class="badge" id="b-robuste"><span class="dot"></span>Robuste <small>Prendre soin validé</small></div>
-          </div>
-        </div>
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-3xl w-full mx-auto relative z-10 my-10">
 
-        <!-- MICRO 1 -->
-        <div class="panel">
-          <div class="panel-h">
-            <h2>Micro 1 — Mon “thermomètre” (10–12 min)</h2>
-            <span class="chip"><i data-lucide="activity"></i>Énergie</span>
-          </div>
-          <div class="panel-b">
-            <div class="hint">Choisis 2 signaux “ça va” + 2 signaux “ça craque”.</div>
-            <div class="cardset" id="m1ok">
-              <div class="opt" data-v="sommeil"><strong>Sommeil OK</strong><small>Je récupère.</small></div>
-              <div class="opt" data-v="appetit"><strong>Appétit OK</strong><small>Je tiens le rythme.</small></div>
-              <div class="opt" data-v="calme"><strong>Calme</strong><small>Je respire.</small></div>
-              <div class="opt" data-v="motivation"><strong>Motivation</strong><small>J’avance.</small></div>
-            </div>
+    <!-- FICHE HEADER -->
+    <div class="pop-card p-6 md:p-10 mb-6 animate-pop bg-white shine">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-4">
+        <span class="bg-[#43A047] text-white font-black px-4 py-1 rounded-full border-2 border-black shadow-[3px_3px_0px_#000] text-sm uppercase tracking-wider mb-2 md:mb-0">
+          Fiche 4 : Prendre Soin
+        </span>
 
-            <div class="cardset" id="m1ko" style="margin-top:10px;">
-              <div class="opt" data-v="insomnie"><strong>Sommeil KO</strong><small>Je décroche.</small></div>
-              <div class="opt" data-v="irrit"><strong>Irritabilité</strong><small>Tout m’énerve.</small></div>
-              <div class="opt" data-v="iso"><strong>Isolement</strong><small>Je coupe.</small></div>
-              <div class="opt" data-v="procr"><strong>Procrastination</strong><small>Je n’y arrive plus.</small></div>
-            </div>
-
-            <div class="field">
-              <label class="mini" for="m1note">Mon repère personnel (1 phrase) :</label>
-              <input id="m1note" placeholder="Ex : “Si je dors mal 2 nuits + je m’isole, j’active mon plan.”" />
-            </div>
-
-            <div class="actions">
-              <button class="btn primary" onclick="saveM1()"><i data-lucide="save"></i> Enregistrer</button>
-              <button class="btn ghost" onclick="suggestM1()"><i data-lucide="wand-2"></i> Suggestion</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- MICRO 2 -->
-        <div class="panel">
-          <div class="panel-h" style="background: rgba(32,184,174,.12);">
-            <h2>Micro 2 — Mon réseau activable (12–15 min)</h2>
-            <span class="chip"><i data-lucide="users"></i>Réseau</span>
-          </div>
-          <div class="panel-b">
-            <div class="hint">Liste 3 personnes/lieux : “aide pratique”, “aide morale”, “aide pro”.</div>
-            <div class="field">
-              <label class="mini" for="m2p">Aide pratique :</label>
-              <input id="m2p" placeholder="Ex : parent / ami / voisin / asso…" />
-            </div>
-            <div class="field">
-              <label class="mini" for="m2m">Aide morale :</label>
-              <input id="m2m" placeholder="Ex : proche / médiateur / référent…" />
-            </div>
-            <div class="field">
-              <label class="mini" for="m2pro">Aide pro :</label>
-              <input id="m2pro" placeholder="Ex : conseiller ML / employeur / organisme…" />
-            </div>
-
-            <div class="actions">
-              <button class="btn primary" onclick="saveM2()"><i data-lucide="save"></i> Enregistrer</button>
-              <button class="btn ghost" onclick="suggestM2()"><i data-lucide="wand-2"></i> Suggestion</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- MICRO 3 -->
-        <div class="panel">
-          <div class="panel-h" style="background: rgba(255,201,40,.18);">
-            <h2>Micro 3 — Anti-rupture (10–12 min)</h2>
-            <span class="chip"><i data-lucide="alert-triangle"></i>Plan</span>
-          </div>
-          <div class="panel-b">
-            <div class="hint">Choisis 1 situation à risque, puis écris ton protocole en 3 étapes : prévenir / réduire / relancer.</div>
-            <div class="cardset" id="m3risk">
-              <div class="opt" data-k="risk" data-v="stress"><strong>Stress trop fort</strong><small>Je bloque.</small></div>
-              <div class="opt" data-k="risk" data-v="conflit"><strong>Conflit</strong><small>Je m’énerve.</small></div>
-              <div class="opt" data-k="risk" data-v="fatigue"><strong>Fatigue</strong><small>Je lâche.</small></div>
-              <div class="opt" data-k="risk" data-v="iso"><strong>Isolement</strong><small>Je disparais.</small></div>
-            </div>
-            <div id="m3story" class="story" style="display:none;"></div>
-
-            <div class="field">
-              <label class="mini" for="m3prot">Mon protocole (3 étapes) :</label>
-              <textarea id="m3prot" placeholder="1) Je préviens…\n2) Je réduis…\n3) Je relance…"></textarea>
-            </div>
-
-            <div class="actions">
-              <button class="btn primary" onclick="saveM3()"><i data-lucide="save"></i> Enregistrer</button>
-              <button class="btn ghost" onclick="suggestM3()"><i data-lucide="wand-2"></i> Suggestion</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- MICRO 4 -->
-        <div class="panel">
-          <div class="panel-h" style="background: rgba(198,40,40,.08);">
-            <h2>Micro 4 — Mon micro-rituel (12–15 min)</h2>
-            <span class="chip"><i data-lucide="repeat"></i>Rituel</span>
-          </div>
-          <div class="panel-b">
-            <div class="hint">Choisis 1 rituel simple + écris quand tu le fais (et comment tu t’y tiens).</div>
-            <div class="cardset" id="m4rit">
-              <div class="opt" data-k="rit" data-v="marche"><strong>10 min marche</strong><small>Après déjeuner</small></div>
-              <div class="opt" data-k="rit" data-v="eau"><strong>Hydratation</strong><small>2 rappels/jour</small></div>
-              <div class="opt" data-k="rit" data-v="to-do"><strong>Liste 3 choses</strong><small>Matin</small></div>
-              <div class="opt" data-k="rit" data-v="coucher"><strong>Heure de coucher</strong><small>Régularité</small></div>
-            </div>
-
-            <div class="field">
-              <label class="mini" for="m4plan">Mon rituel personnalisé :</label>
-              <textarea id="m4plan" placeholder="Ex : “Chaque jour 17h : 10 min marche + eau. Si j’oublie, je le fais après le repas.”"></textarea>
-            </div>
-
-            <div class="actions">
-              <button class="btn primary" onclick="saveM4()"><i data-lucide="save"></i> Enregistrer</button>
-              <button class="btn ghost" onclick="suggestM4()"><i data-lucide="wand-2"></i> Suggestion</button>
-              <button class="btn warn" onclick="finishSoin()"><i data-lucide="trophy"></i> Terminer le pilier</button>
-            </div>
-
-            <div class="mini" style="margin-top:8px;">À la fin : badge <strong>Robuste</strong> + la synthèse se remplit (Plan soin).</div>
-          </div>
-        </div>
-
-      </section>
-
-      <div class="frieze" aria-hidden="true">
-        <div class="capsule" style="background: var(--yellow);"></div>
-        <div class="capsule" style="background: var(--turq);"></div>
-        <div class="capsule" style="background: var(--red);"></div>
-        <div class="capsule" style="background: var(--mint);"></div>
+        <svg class="w-10 h-10 text-[#C62828]" fill="currentColor" viewBox="0 0 24 24" stroke="black" stroke-width="2" aria-hidden="true">
+          <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+        </svg>
       </div>
 
-      <footer class="eu" aria-label="Mentions UE">
-        <div class="eu-top">
-          <img src="https://www.immigration.interieur.gouv.fr/var/miomcti/storage/images/media/mi/images/logos-pictos/cofinance-par-l-union-europeenne-v/1060317-1-fre-FR/Cofinance-par-l-Union-europeenne-V.png" alt="Cofinancé par l'Union européenne" class="eu-logo" loading="lazy">
+      <h1 class="text-4xl md:text-5xl font-black text-[#1a1a1a] mb-2 leading-tight">
+        S'ARMER
+      </h1>
+      <h2 class="text-lg md:text-xl font-bold text-[#43A047] font-title drop-shadow-[1px_1px_0px_#000]">
+        De la performance épuisante à la robustesse durable
+      </h2>
+    </div>
+
+    <!-- CONTENT BLOCKS -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+
+      <!-- POURQUOI -->
+      <div class="md:col-span-12 pop-card p-6 bg-[#C8E6C9] animate-pop delay-100 border-l-8 border-l-[#2E7D32]">
+        <h3 class="font-black text-2xl mb-3 text-[#1B5E20] flex items-center gap-2">
+          <span class="text-3xl">?</span> POURQUOI CETTE FICHE
+        </h3>
+        <p class="mb-4 font-medium leading-relaxed">
+          Pour tenir le coup, il faut être solide. Le concept basque de
+          <strong class="bg-white px-1 border border-black rounded">Zaintza</strong>
+          (le soin, la vigilance) nous rappelle que la santé mentale n'est pas taboue : c'est une condition de ta réussite.
+        </p>
+        <div class="bg-white p-4 rounded-xl border-2 border-black shadow-[4px_4px_0px_#43A047]">
+          <p class="text-sm">
+            <span class="font-bold text-[#C62828]">L'ENJEU :</span> Reconnaître sa vulnérabilité n'est pas une faiblesse.
+            C'est une compétence de gestionnaire : savoir <strong>recharger ses batteries</strong> pour encaisser les chocs et durer dans l'emploi.
+          </p>
         </div>
-        <div class="copyright">© 2026 LS4YOU Project Nr. 2023-2-FR02-KA220-YOU-000175417</div>
-        <p>Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the Agence Erasmus+ France Jeunesse &amp; Sport (Agence du Service Civique). Neither the European Union nor the granting authority can be held responsible for them.</p>
-        <a class="link" href="#" onclick="return false;">Data Privacy Statement &amp; Imprint</a>
-      </footer>
+      </div>
 
-    </section>
+      <!-- ACTION -->
+      <div class="md:col-span-12 pop-card p-0 overflow-hidden animate-pop delay-200">
+        <div class="bg-gradient-to-r from-[#43A047] to-[#C62828] p-4 border-b-3 border-black flex items-center justify-between">
+          <h3 class="font-black text-xl md:text-2xl text-white drop-shadow-[2px_2px_0px_#000]">
+            🗺️ ACTION : CALQUE « RESSOURCES »
+          </h3>
+          <span class="bg-black text-white text-xs font-bold px-2 py-1 rounded border border-white">CODE : VERT/ROUGE</span>
+        </div>
+
+        <div class="p-6 bg-white">
+
+          <!-- Step 1 -->
+          <div class="mb-6 relative">
+            <div class="absolute -left-3 -top-3 bg-black text-white w-8 h-8 rounded-full border-2 border-gray-500 flex items-center justify-center font-black shadow-[2px_2px_0px_#000]">1</div>
+            <div class="border-2 border-dashed border-gray-300 rounded-xl p-4 ml-2">
+              <h4 class="font-black text-lg text-black mb-2">Tes Batteries</h4>
+              <p class="text-sm mb-2">Comme un athlète, tu as besoin de récupération.</p>
+              <ul class="text-sm font-medium space-y-2">
+                <li class="flex items-start gap-2">
+                  <span class="text-[#43A047] font-bold">🔋 Recharge :</span>
+                  Où vas-tu pour souffler gratuitement ? (Nature, Océan, Montagne).
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-[#C62828] font-bold">🆘 Secours :</span>
+                  Qui peut t'aider si tu craques ? (Pros de santé).
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="relative">
+            <div class="absolute -left-3 -top-3 bg-black text-white w-8 h-8 rounded-full border-2 border-gray-500 flex items-center justify-center font-black shadow-[2px_2px_0px_#000]">2</div>
+            <div class="bg-gray-50 border-2 border-black rounded-xl p-4 ml-2 shadow-[4px_4px_0px_#9E9E9E]">
+              <h4 class="font-black text-lg text-black mb-2">La Cartographie Digitale (My Maps)</h4>
+              <p class="text-sm mb-3">Localise ton <strong>filet de sécurité</strong>.</p>
+
+              <div class="space-y-3">
+                <div class="flex items-start gap-3 bg-[#E8F5E9] p-3 rounded-lg border border-[#43A047]">
+                  <div class="text-2xl">🟢</div>
+                  <div>
+                    <strong class="text-[#2E7D32] text-sm block">Repères VERTS (Récupération Gratuite)</strong>
+                    <p class="text-xs text-gray-700 mt-1">"Promenade de la Barre", "Forêt d'Iraty".</p>
+                    <div class="text-[10px] font-bold mt-1 bg-white inline-block px-1 border border-gray-300">Note : Zone de décompression</div>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3 bg-[#FFEBEE] p-3 rounded-lg border border-[#C62828]">
+                  <div class="text-2xl">🔴</div>
+                  <div>
+                    <strong class="text-[#C62828] text-sm block">Repères ROUGES (Soutien Pro)</strong>
+                    <p class="text-xs text-gray-700 mt-1">"Maison des Ados", "Atherbea", "Hôpital".</p>
+                    <div class="text-[10px] font-bold mt-1 bg-white inline-block px-1 border border-gray-300">Note : En cas d'urgence</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- DECLIC PRO -->
+      <div class="md:col-span-12 pop-card bg-[#2E7D32] p-5 animate-pop delay-300 border-2 border-black flex flex-col md:flex-row gap-4 items-center">
+        <div class="bg-white p-3 rounded-full border-2 border-black shadow-[3px_3px_0px_#000]">
+          <svg class="w-8 h-8 text-[#2E7D32]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+        </div>
+        <div>
+          <h4 class="font-black text-lg uppercase tracking-wide text-white drop-shadow-[1px_1px_0px_#000]">💡 LE DÉCLIC PRO</h4>
+          <p class="text-sm font-bold text-white leading-snug">
+            Tu gères ta propre <strong>« Robustesse »</strong>. Tu montres que tu es responsable de ton équilibre.
+            Ta carte est ton outil pour <strong>ne pas t'effondrer</strong> à la première difficulté.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FOOTER CAPSULES -->
+    <div class="mt-8 flex justify-center gap-3 animate-pop delay-400">
+      <div class="h-3 w-12 bg-[#43A047] rounded-full border border-black shadow-[2px_2px_0px_rgba(0,0,0,0.1)]"></div>
+      <div class="h-3 w-12 bg-[#C62828] rounded-full border border-black shadow-[2px_2px_0px_rgba(0,0,0,0.1)]"></div>
+      <div class="h-3 w-12 bg-[#FFD54F] rounded-full border border-black shadow-[2px_2px_0px_rgba(0,0,0,0.1)]"></div>
+      <div class="h-3 w-12 bg-[#4DD0E1] rounded-full border border-black shadow-[2px_2px_0px_rgba(0,0,0,0.1)]"></div>
+    </div>
+
   </main>
-
-  <script>
-    const KEY="mls4you_territoire_v1";
-    function readState(){ try{return JSON.parse(localStorage.getItem(KEY))||{} }catch{return{}} }
-    function writeState(s){ localStorage.setItem(KEY, JSON.stringify(s)); }
-    function ensure(){
-      const s=readState();
-      s.badges=s.badges||{relieur:false,createur:false,ancre:false,robuste:false};
-      s.done=s.done||{accueillir:false,creer:false,habiter:false,soin:false};
-      s.profile=s.profile||{};
-      s.soin=s.soin||{};
-      writeState(s); return s;
-    }
-    const S=ensure();
-
-    function setProgress(){
-      const done=[!!S.soin.m1?.note, !!S.soin.m2?.pro, !!S.soin.m3?.prot, !!S.soin.m4?.plan].filter(Boolean).length;
-      const pct=Math.round((done/4)*100);
-      document.getElementById("progress").style.width=pct+"%";
-      document.getElementById("pct").textContent=pct+"%";
-      document.getElementById("b-robuste").dataset.on=(S.badges.robuste||S.done.soin)?"1":"0";
-    }
-
-    function wireMulti(groupId,maxPick,storeKey){
-      const box=document.getElementById(groupId);
-      box.addEventListener("click",(e)=>{
-        const el=e.target.closest(".opt"); if(!el) return;
-        const selected=[...box.querySelectorAll('.opt[data-on="1"]')];
-        if(el.dataset.on==="1") el.dataset.on="0";
-        else{
-          if(selected.length>=maxPick) selected[0].dataset.on="0";
-          el.dataset.on="1";
-        }
-        const vals=[...box.querySelectorAll('.opt[data-on="1"]')].map(x=>x.getAttribute("data-v"));
-        S.soin.m1=S.soin.m1||{};
-        S.soin.m1[storeKey]=vals;
-        writeState(S);
-      });
-    }
-
-    function wireSingle(groupId){
-      const box=document.getElementById(groupId);
-      box.addEventListener("click",(e)=>{
-        const el=e.target.closest(".opt"); if(!el) return;
-        const k=el.getAttribute("data-k"); if(!k) return;
-        [...box.querySelectorAll(`.opt[data-k="${k}"]`)].forEach(x=>x.dataset.on="0");
-        el.dataset.on="1";
-        S.soin[k]=el.getAttribute("data-v");
-        writeState(S);
-      });
-    }
-
-    function wireRisk(groupId){
-      const box=document.getElementById(groupId);
-      box.addEventListener("click",(e)=>{
-        const el=e.target.closest(".opt"); if(!el) return;
-        const k=el.getAttribute("data-k"); if(!k) return;
-        [...box.querySelectorAll(`.opt[data-k="${k}"]`)].forEach(x=>x.dataset.on="0");
-        el.dataset.on="1";
-        S.soin[k]=el.getAttribute("data-v");
-        writeState(S);
-        renderM3();
-      });
-    }
-
-    function renderM3(){
-      const r=S.soin.risk;
-      const box=document.getElementById("m3story");
-      if(!r){ box.style.display="none"; return; }
-      const map={
-        stress:"Quand le stress monte, le levier : prévenir tôt + réduire la charge + relancer petit.",
-        conflit:"Conflit : le levier : pause + phrase neutre + demander une solution concrète.",
-        fatigue:"Fatigue : le levier : priorité santé + adapter + éviter de disparaître.",
-        iso:"Isolement : le levier : 1 message simple + 1 RDV + 1 micro-action."
-      };
-      box.style.display="block";
-      box.innerHTML="<strong>Repère :</strong> "+map[r];
-    }
-
-    function suggestM1(){ document.getElementById("m1note").value="Si je dors mal 2 nuits + je m’isole, j’active mon plan (je préviens + je réduis + je relance)."; }
-    function suggestM2(){
-      document.getElementById("m2p").value="Un proche (aide pratique)";
-      document.getElementById("m2m").value="Une personne de confiance (aide morale)";
-      document.getElementById("m2pro").value="Conseiller Mission Locale (aide pro)";
-    }
-    function suggestM3(){ document.getElementById("m3prot").value="1) Je préviens (message court)\n2) Je réduis (1 priorité)\n3) Je relance (1 micro-action demain)"; }
-    function suggestM4(){ document.getElementById("m4plan").value="Chaque jour : 10 minutes marche + eau. Si j’oublie, je le fais après le repas."; }
-
-    function saveM1(){
-      S.soin.m1=S.soin.m1||{};
-      S.soin.m1.note=document.getElementById("m1note").value.trim();
-      writeState(S); setProgress(); alert("Micro 1 enregistré.");
-    }
-    function saveM2(){
-      S.soin.m2=S.soin.m2||{};
-      S.soin.m2.p=document.getElementById("m2p").value.trim();
-      S.soin.m2.m=document.getElementById("m2m").value.trim();
-      S.soin.m2.pro=document.getElementById("m2pro").value.trim();
-      writeState(S); setProgress(); alert("Micro 2 enregistré.");
-    }
-    function saveM3(){
-      S.soin.m3=S.soin.m3||{};
-      S.soin.m3.prot=document.getElementById("m3prot").value.trim();
-      writeState(S); setProgress(); alert("Micro 3 enregistré.");
-    }
-    function saveM4(){
-      S.soin.m4=S.soin.m4||{};
-      S.soin.m4.plan=document.getElementById("m4plan").value.trim();
-      writeState(S); setProgress(); alert("Micro 4 enregistré.");
-    }
-
-    function finishSoin(){
-      const ok=!!S.soin.m1?.note && !!S.soin.m2?.pro && !!S.soin.m3?.prot && !!S.soin.m4?.plan;
-      if(!ok){ alert("Il te manque au moins une production (Micro 1 à 4)."); return; }
-      S.done.soin=true;
-      S.badges.robuste=true;
-
-      // Push synthèse
-      const rep=S.soin.m1?.note || "";
-      const réseau=`Pratique: ${S.soin.m2?.p||"—"} | Morale: ${S.soin.m2?.m||"—"} | Pro: ${S.soin.m2?.pro||"—"}`;
-      const prot=S.soin.m3?.prot || "";
-      const rit=S.soin.m4?.plan || "";
-      S.profile.planSoin = `Repère: ${rep} / Réseau: ${réseau} / Protocole: ${prot} / Rituel: ${rit}`;
-
-      writeState(S);
-      setProgress();
-      alert("✅ Pilier PRENDRE SOIN terminé — badge Robuste débloqué !");
-      window.location.href="./synthese.html";
-    }
-
-    function restore(){
-      const okSel=S.soin.m1?.ok||[];
-      const koSel=S.soin.m1?.ko||[];
-      [...document.querySelectorAll('#m1ok .opt')].forEach(x=>{
-        if(okSel.includes(x.getAttribute("data-v"))) x.dataset.on="1";
-      });
-      [...document.querySelectorAll('#m1ko .opt')].forEach(x=>{
-        if(koSel.includes(x.getAttribute("data-v"))) x.dataset.on="1";
-      });
-      if(S.soin.m1?.note) document.getElementById("m1note").value=S.soin.m1.note;
-
-      if(S.soin.m2?.p) document.getElementById("m2p").value=S.soin.m2.p;
-      if(S.soin.m2?.m) document.getElementById("m2m").value=S.soin.m2.m;
-      if(S.soin.m2?.pro) document.getElementById("m2pro").value=S.soin.m2.pro;
-
-      if(S.soin.risk){
-        [...document.querySelectorAll('#m3risk .opt')].forEach(x=>{
-          if(x.getAttribute("data-v")===S.soin.risk) x.dataset.on="1";
-        });
-      }
-      renderM3();
-      if(S.soin.m3?.prot) document.getElementById("m3prot").value=S.soin.m3.prot;
-
-      if(S.soin.rit){
-        [...document.querySelectorAll('#m4rit .opt')].forEach(x=>{
-          if(x.getAttribute("data-v")===S.soin.rit) x.dataset.on="1";
-        });
-      }
-      if(S.soin.m4?.plan) document.getElementById("m4plan").value=S.soin.m4.plan;
-
-      setProgress();
-    }
-
-    window.addEventListener("load", ()=>{
-      if(typeof lucide!=="undefined") lucide.createIcons();
-      wireMulti("m1ok",2,"ok");
-      wireMulti("m1ko",2,"ko");
-      wireRisk("m3risk");
-      wireSingle("m4rit");
-      restore();
-    });
-  </script>
-  <div style="margin-top:40px; text-align:center;">
-  <a href="./index.html"
-     style="
-       display:inline-block;
-       padding:14px 22px;
-       background:#C62828;
-       color:white;
-       text-decoration:none;
-       border-radius:12px;
-       font-weight:700;
-       font-family:Montserrat, Arial;
-       box-shadow:0 6px 14px rgba(0,0,0,0.15);
-     ">
-     ← Retour au parcours MLS4YOU
-  </a>
-</div>
-
 </body>
 </html>
