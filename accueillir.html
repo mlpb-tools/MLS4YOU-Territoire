@@ -1,158 +1,100 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MLS4YOU — Accueillir</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MLS4YOU — Accueillir (Fiche intégrée)</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@0.263.1/dist/umd/lucide.min.js"></script>
 
-<style>
-:root{
---red:#C62828;
---yellow:#FFC928;
---turq:#20B8AE;
---mint:#BFEFE8;
---bg:#FFF9F0;
---ink:#101114;
---max:960px;
-}
+  <style>
+    :root { --red:#C62828; --yellow:#FFC928; --turq:#20B8AE; --mint:#BFEFE8; --orange:#FFB067; --bg:#FFF9F0; --ink:#101114; --muted:rgba(16,17,20,.7); --max:980px; }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:'Montserrat',system-ui,-apple-system,sans-serif;overflow-x:hidden}
+    h1,h2,h3{font-family:'Baloo 2',cursive;font-weight:800;margin:0}
+    .bg-shapes{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+    .bg-circle{position:absolute;border-radius:999px;filter:blur(2px);opacity:.8}
+    .c-mint{width:400px;height:400px;left:-100px;top:-100px;background:var(--mint);opacity:.9}
+    .c-yellow{width:350px;height:350px;right:-100px;top:15%;background:rgba(255,201,40,.5)}
+    .c-orange{width:450px;height:450px;left:-150px;bottom:0;background:rgba(255,176,103,.4)}
+    .c-red{width:300px;height:300px;right:-50px;bottom:-50px;background:rgba(198,40,40,.25)}
+    .wrap{position:relative;z-index:1;max-width:var(--max);margin:22px auto 28px;padding:0 16px 26px}
+    .frame{border-radius:24px;box-shadow:0 20px 40px rgba(0,0,0,.1);overflow:hidden;border:5px solid transparent;background-image:linear-gradient(rgba(255,255,255,.95),rgba(255,255,255,.95)),linear-gradient(135deg,var(--red),var(--yellow),var(--turq));background-origin:border-box;background-clip:padding-box,border-box}
+    .content{background:#fff;padding:18px 16px 14px}
 
-body{
-margin:0;
-background:var(--bg);
-font-family:Montserrat, sans-serif;
-color:var(--ink);
-}
+    .panel{margin-top:14px;border-radius:18px;border:3px solid rgba(16,17,20,.08);box-shadow:0 8px 16px rgba(16,17,20,.06);overflow:hidden}
+    .panel-h{padding:14px 14px;background:rgba(191,239,232,.25);display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .panel-h h2{font-size:18px}
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:#fff;border:2px solid rgba(16,17,20,.08);font-weight:900;font-size:11px}
+    .panel-b{padding:14px}
+    .hint{color:var(--muted);font-weight:600;font-size:13px;line-height:1.4}
 
-.wrap{
-max-width:var(--max);
-margin:40px auto;
-padding:20px;
-}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 14px;border-radius:14px;border:none;font-weight:900;cursor:pointer;text-transform:uppercase;letter-spacing:.05em;box-shadow:0 4px 12px rgba(0,0,0,.10);text-decoration:none}
+    .btn.ghost{background:#fff;border:2px solid rgba(16,17,20,.12);color:var(--ink);box-shadow:0 2px 4px rgba(0,0,0,.05)}
 
-.card{
-background:white;
-border-radius:22px;
-padding:30px;
-box-shadow:0 18px 40px rgba(0,0,0,.1);
-border:4px solid transparent;
-background-image:
-linear-gradient(white,white),
-linear-gradient(135deg,var(--red),var(--yellow),var(--turq));
-background-origin:border-box;
-background-clip:padding-box,border-box;
-}
+    .embed-frame{margin-top:12px;border-radius:16px;overflow:hidden;border:2px solid rgba(16,17,20,.10);background:#fff}
+    .embed-frame iframe{width:100%;height:900px;border:0;display:block}
 
-h1{
-font-family:"Baloo 2", cursive;
-font-size:36px;
-color:var(--red);
-margin-bottom:10px;
-}
-
-.subtitle{
-font-weight:700;
-opacity:.8;
-margin-bottom:25px;
-}
-
-.section{
-margin-top:25px;
-}
-
-.section h2{
-font-family:"Baloo 2";
-font-size:22px;
-margin-bottom:8px;
-color:var(--turq);
-}
-
-.tip{
-background:#f4f4f4;
-padding:14px;
-border-radius:14px;
-border-left:6px solid var(--yellow);
-margin-top:12px;
-font-weight:600;
-}
-
-.footer{
-margin-top:40px;
-text-align:center;
-}
-
-.btn{
-display:inline-block;
-padding:14px 24px;
-background:var(--red);
-color:white;
-text-decoration:none;
-border-radius:12px;
-font-weight:700;
-box-shadow:0 6px 14px rgba(0,0,0,.15);
-}
-</style>
+    @media(max-width:760px){
+      .embed-frame iframe{height:760px}
+    }
+  </style>
 </head>
 
 <body>
+  <div class="bg-shapes" aria-hidden="true">
+    <div class="bg-circle c-mint"></div>
+    <div class="bg-circle c-yellow"></div>
+    <div class="bg-circle c-orange"></div>
+    <div class="bg-circle c-red"></div>
+  </div>
 
-<div class="wrap">
+  <main class="wrap">
+    <section class="frame">
+      <section class="content">
 
-<div class="card">
+        <!-- ✅ FICHE UNIQUE : INTÉGRATION DU SITE TEST -->
+        <div class="panel">
+          <div class="panel-h">
+            <h2>Fiche — Accueillir (intégrée)</h2>
+            <span class="chip"><i data-lucide="external-link"></i>TEST</span>
+          </div>
 
-<h1>ACCUEILLIR</h1>
-<div class="subtitle">
-Créer du lien • Comprendre les codes • Trouver sa place dans un collectif
-</div>
+          <div class="panel-b">
+            <div class="hint">
+              Parcours intégré ici. Si besoin, ouvre en plein écran.
+            </div>
 
-<div class="section">
-<h2>Pourquoi cette compétence est clé</h2>
-<p>
-Savoir accueillir, ce n’est pas être extraverti.  
-C’est savoir créer un premier lien professionnel simple, respectueux et efficace.
-</p>
+            <div class="embed-frame">
+              <iframe
+                src="https://mlpb-tools.github.io/TEST/"
+                title="MLS4YOU TEST"
+                loading="lazy"
+                sandbox="allow-scripts allow-forms allow-same-origin allow-popups"
+              ></iframe>
+            </div>
 
-<div class="tip">
-💡 En entreprise, la confiance commence souvent par un bon premier contact.
-</div>
-</div>
+            <div class="actions">
+              <a class="btn ghost" href="https://mlpb-tools.github.io/TEST/" target="_blank" rel="noopener noreferrer">
+                Ouvrir en plein écran
+              </a>
+            </div>
+          </div>
+        </div>
 
-<div class="section">
-<h2>Ce que tu développes</h2>
-<ul>
-<li>Créer un premier contact professionnel</li>
-<li>Lire l’ambiance d’un lieu ou d’une équipe</li>
-<li>Recevoir un retour sans se fermer</li>
-<li>Montrer qui tu es sans te suradapter</li>
-</ul>
-</div>
+      </section>
+    </section>
+  </main>
 
-<div class="section">
-<h2>Mini méthode Mission Locale</h2>
-<ul>
-<li>👉 1 phrase pour te présenter</li>
-<li>👉 1 question pour comprendre</li>
-<li>👉 1 action claire</li>
-</ul>
-
-<div class="tip">
-Exemple :  
-Bonjour, je suis …  
-Je commence par quoi ?
-</div>
-</div>
-
-<div class="footer">
-<a class="btn" href="./index.html">← Retour MLS4YOU</a>
-</div>
-
-</div>
-
-</div>
-
+  <script>
+    window.addEventListener('load', function() {
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    });
+  </script>
 </body>
 </html>
 
