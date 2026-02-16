@@ -1,611 +1,158 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MLS4YOU #2 — Accueillir</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MLS4YOU — Accueillir</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@0.263.1/dist/umd/lucide.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root { --red:#C62828; --yellow:#FFC928; --turq:#20B8AE; --mint:#BFEFE8; --orange:#FFB067; --bg:#FFF9F0; --ink:#101114; --muted:rgba(16,17,20,.7); --max:980px; }
-    *{box-sizing:border-box} html,body{height:100%}
-    body{margin:0;background:var(--bg);color:var(--ink);font-family:'Montserrat',system-ui,-apple-system,sans-serif;overflow-x:hidden}
-    h1,h2,h3{font-family:'Baloo 2',cursive;font-weight:800;margin:0}
-    .bg-shapes{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
-    .bg-circle{position:absolute;border-radius:999px;filter:blur(2px);opacity:.8}
-    .c-mint{width:400px;height:400px;left:-100px;top:-100px;background:var(--mint);opacity:.9}
-    .c-yellow{width:350px;height:350px;right:-100px;top:15%;background:rgba(255,201,40,.5)}
-    .c-orange{width:450px;height:450px;left:-150px;bottom:0;background:rgba(255,176,103,.4)}
-    .c-red{width:300px;height:300px;right:-50px;bottom:-50px;background:rgba(198,40,40,.25)}
-    .wrap{position:relative;z-index:1;max-width:var(--max);margin:22px auto 28px;padding:0 16px 26px}
-    .frame{border-radius:24px;box-shadow:0 20px 40px rgba(0,0,0,.1);overflow:hidden;border:5px solid transparent;background-image:linear-gradient(rgba(255,255,255,.95),rgba(255,255,255,.95)),linear-gradient(135deg,var(--red),var(--yellow),var(--turq));background-origin:border-box;background-clip:padding-box,border-box}
-    .hero{position:relative;border-bottom:4px solid var(--turq);padding:16px;background:#fff}
-    .hero-inner{position:relative;border-radius:18px;overflow:hidden;min-height:clamp(120px,22vw,170px);display:flex;align-items:center;padding:22px 28px}
-    .header-pattern{position:absolute;inset:0;background:#fdfdfd;z-index:0}
-    .hs{position:absolute;border-radius:50%;opacity:.65;mix-blend-mode:multiply}
-    .hs-1{background:var(--red);width:140px;height:140px;top:-40px;left:10%}
-    .hs-2{background:var(--yellow);width:180px;height:180px;bottom:-60px;right:20%}
-    .hs-3{background:var(--turq);width:120px;height:120px;top:20px;right:40%}
-    .hs-4{background:var(--mint);width:90px;height:90px;bottom:10px;left:30%}
-    .hs-5{background:var(--orange);width:70px;height:70px;top:60px;left:45%}
-    .header-content{position:relative;z-index:10;display:flex;width:100%;justify-content:space-between;align-items:flex-start}
-    .logo-left,.logo-right{display:flex;z-index:20}
-    .logo-left{margin-top:-12px;margin-left:-16px}
-    .logo-right{margin-top:-12px;margin-right:-16px}
-    .header-logo{height:58px;object-fit:contain;mix-blend-mode:multiply;filter:drop-shadow(0 4px 6px rgba(0,0,0,.05))}
-    .title-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;z-index:15}
-    .hero-title{font-size:clamp(28px,3.6vw,38px);color:var(--red);line-height:1;text-shadow:-3px -3px 0 #fff,3px -3px 0 #fff,-3px 3px 0 #fff,3px 3px 0 #fff,0 8px 16px rgba(0,0,0,.12)}
-    .hero-title small{display:block;font-family:'Montserrat',sans-serif;font-size:clamp(12px,1.8vw,16px);color:var(--ink);text-transform:uppercase;letter-spacing:.05em;margin-top:8px;text-shadow:-2px -2px 0 #fff,2px -2px 0 #fff,-2px 2px 0 #fff,2px 2px 0 #fff}
+<style>
+:root{
+--red:#C62828;
+--yellow:#FFC928;
+--turq:#20B8AE;
+--mint:#BFEFE8;
+--bg:#FFF9F0;
+--ink:#101114;
+--max:960px;
+}
 
-    .content{background:#fff;padding:18px 16px 14px}
-    .toprow{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-    .back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:800;padding:10px 12px;border-radius:999px;background:#fff;border:2px solid rgba(16,17,20,.08);box-shadow:0 2px 4px rgba(0,0,0,.05)}
-    .back:hover{transform:translateY(-1px)}
-    .progress-wrap{flex:1;min-width:240px;max-width:420px;background:rgba(0,0,0,.06);border-radius:999px;overflow:hidden;height:12px}
-    .progress{height:100%;width:0%;background:var(--turq);transition:width .3s ease}
-    .progress-meta{font-weight:800;font-size:12px;color:var(--muted)}
+body{
+margin:0;
+background:var(--bg);
+font-family:Montserrat, sans-serif;
+color:var(--ink);
+}
 
-    .badgebox{margin-top:14px;padding:12px;border-radius:18px;background:linear-gradient(90deg,rgba(32,184,174,.12),rgba(255,201,40,.12));border:2px solid rgba(16,17,20,.10)}
-    .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
-    .badge{display:inline-flex;align-items:center;gap:10px;padding:10px 12px;border-radius:16px;background:#fff;border:2px solid rgba(16,17,20,.10);font-weight:900}
-    .dot{width:14px;height:14px;border-radius:999px;background:rgba(0,0,0,.08)}
-    .badge[data-on="1"] .dot{background:var(--turq)}
-    .badge small{display:block;color:var(--muted);font-weight:700}
+.wrap{
+max-width:var(--max);
+margin:40px auto;
+padding:20px;
+}
 
-    .panel{margin-top:14px;border-radius:18px;border:3px solid rgba(16,17,20,.08);box-shadow:0 8px 16px rgba(16,17,20,.06);overflow:hidden}
-    .panel-h{padding:14px 14px;background:rgba(191,239,232,.25);display:flex;align-items:center;justify-content:space-between;gap:10px}
-    .panel-h h2{font-size:18px}
-    .chip{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:#fff;border:2px solid rgba(16,17,20,.08);font-weight:900;font-size:11px}
-    .panel-b{padding:14px}
-    .hint{color:var(--muted);font-weight:600;font-size:13px;line-height:1.4}
+.card{
+background:white;
+border-radius:22px;
+padding:30px;
+box-shadow:0 18px 40px rgba(0,0,0,.1);
+border:4px solid transparent;
+background-image:
+linear-gradient(white,white),
+linear-gradient(135deg,var(--red),var(--yellow),var(--turq));
+background-origin:border-box;
+background-clip:padding-box,border-box;
+}
 
-    .ml-tip{margin-top:10px;padding:10px 12px;border-radius:16px;background:rgba(0,0,0,.04);border-left:5px solid var(--yellow);color:var(--muted);font-weight:700;line-height:1.45}
-    .ml-tip strong{color:var(--ink)}
-    .ml-steps{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-    .step{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:999px;background:#fff;border:2px solid rgba(16,17,20,.10);font-weight:900;font-size:12px}
-    .step .b{width:18px;height:18px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font-family:'Baloo 2',cursive;font-weight:900;background:rgba(0,0,0,.06)}
+h1{
+font-family:"Baloo 2", cursive;
+font-size:36px;
+color:var(--red);
+margin-bottom:10px;
+}
 
-    .cardset{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
-    .opt{border-radius:16px;border:2px solid rgba(16,17,20,.10);background:#fff;padding:12px;cursor:pointer;transition:.15s;min-height:78px}
-    .opt:hover{transform:translateY(-2px);box-shadow:0 10px 18px rgba(0,0,0,.08)}
-    .opt strong{display:block}
-    .opt small{display:block;margin-top:6px;color:var(--muted);font-weight:600}
-    .opt[data-on="1"]{border-color:var(--turq);box-shadow:0 0 0 4px rgba(32,184,174,.15)}
-    .story{margin-top:12px;padding:12px;border-radius:16px;background:rgba(0,0,0,.05);border-left:5px solid var(--turq);color:var(--muted);font-weight:600;line-height:1.5}
+.subtitle{
+font-weight:700;
+opacity:.8;
+margin-bottom:25px;
+}
 
-    .field{margin-top:12px}
-    textarea,input{width:100%;padding:12px;border-radius:14px;border:2px solid rgba(16,17,20,.12);font:inherit;font-weight:600}
-    textarea{min-height:86px;resize:vertical}
-    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 14px;border-radius:14px;border:none;font-weight:900;cursor:pointer;text-transform:uppercase;letter-spacing:.05em;box-shadow:0 4px 12px rgba(0,0,0,.10)}
-    .btn.primary{background:var(--turq);color:#fff}
-    .btn.ghost{background:#fff;border:2px solid rgba(16,17,20,.12);color:var(--ink);box-shadow:0 2px 4px rgba(0,0,0,.05)}
-    .btn.warn{background:var(--red);color:#fff}
-    .mini{font-size:12px;color:var(--muted);font-weight:700}
+.section{
+margin-top:25px;
+}
 
-    .frieze{display:flex;gap:12px;padding:0 20px;margin-top:10px;margin-bottom:24px;background:#fff}
-    .capsule{height:16px;border-radius:999px;flex:1;box-shadow:inset 0 2px 4px rgba(0,0,0,.1)}
-    .eu{margin:0 20px 20px;border-radius:20px;background:#fff;border:3px solid rgba(16,17,20,.08);box-shadow:0 10px 20px rgba(16,17,20,.05);padding:20px;text-align:center}
-    .eu-logo{height:65px;mix-blend-mode:multiply;filter:drop-shadow(0 4px 6px rgba(0,0,0,.05))}
-    .eu p{margin:8px auto 0;max-width:90ch;font-size:12px;line-height:1.6;color:var(--muted);font-weight:500}
-    .eu .copyright{color:var(--ink);font-weight:800;font-size:12px;margin-top:4px}
-    .eu .link{display:inline-block;margin-top:12px;color:var(--turq);font-weight:900;text-decoration:none;font-size:13px}
-    .eu .link:hover{text-decoration:underline;color:var(--red)}
+.section h2{
+font-family:"Baloo 2";
+font-size:22px;
+margin-bottom:8px;
+color:var(--turq);
+}
 
-    /* ✅ IFRAME container */
-    .embed-frame{margin-top:12px;border-radius:16px;overflow:hidden;border:2px solid rgba(16,17,20,.10);background:#fff}
-    .embed-frame iframe{width:100%;height:900px;border:0;display:block}
+.tip{
+background:#f4f4f4;
+padding:14px;
+border-radius:14px;
+border-left:6px solid var(--yellow);
+margin-top:12px;
+font-weight:600;
+}
 
-    @media(max-width:760px){
-      .title-center{position:relative;top:auto;left:auto;transform:none;width:100%;margin-top:10px}
-      .cardset{grid-template-columns:1fr}
-      .embed-frame iframe{height:760px}
-    }
-  </style>
+.footer{
+margin-top:40px;
+text-align:center;
+}
+
+.btn{
+display:inline-block;
+padding:14px 24px;
+background:var(--red);
+color:white;
+text-decoration:none;
+border-radius:12px;
+font-weight:700;
+box-shadow:0 6px 14px rgba(0,0,0,.15);
+}
+</style>
 </head>
 
 <body>
-  <div class="bg-shapes" aria-hidden="true">
-    <div class="bg-circle c-mint"></div>
-    <div class="bg-circle c-yellow"></div>
-    <div class="bg-circle c-orange"></div>
-    <div class="bg-circle c-red"></div>
-  </div>
 
-  <main class="wrap">
-    <section class="frame">
+<div class="wrap">
+
+<div class="card">
+
+<h1>ACCUEILLIR</h1>
+<div class="subtitle">
+Créer du lien • Comprendre les codes • Trouver sa place dans un collectif
+</div>
+
+<div class="section">
+<h2>Pourquoi cette compétence est clé</h2>
+<p>
+Savoir accueillir, ce n’est pas être extraverti.  
+C’est savoir créer un premier lien professionnel simple, respectueux et efficace.
+</p>
+
+<div class="tip">
+💡 En entreprise, la confiance commence souvent par un bon premier contact.
+</div>
+</div>
+
+<div class="section">
+<h2>Ce que tu développes</h2>
+<ul>
+<li>Créer un premier contact professionnel</li>
+<li>Lire l’ambiance d’un lieu ou d’une équipe</li>
+<li>Recevoir un retour sans se fermer</li>
+<li>Montrer qui tu es sans te suradapter</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Mini méthode Mission Locale</h2>
+<ul>
+<li>👉 1 phrase pour te présenter</li>
+<li>👉 1 question pour comprendre</li>
+<li>👉 1 action claire</li>
+</ul>
+
+<div class="tip">
+Exemple :  
+Bonjour, je suis …  
+Je commence par quoi ?
+</div>
+</div>
+
+<div class="footer">
+<a class="btn" href="./index.html">← Retour MLS4YOU</a>
+</div>
+
+</div>
+
+</div>
 
-      <header class="hero">
-        <div class="hero-inner">
-          <div class="header-pattern" aria-hidden="true">
-            <div class="hs hs-1"></div><div class="hs hs-2"></div><div class="hs hs-3"></div><div class="hs hs-4"></div><div class="hs hs-5"></div>
-          </div>
-
-          <div class="header-content">
-            <div class="logo-left">
-              <img src="https://static.wixstatic.com/media/dd5dab_47743b1c86024865ba19e623a3db327f~mv2.avif/v1/fill/w_224,h_60,al_c,q_80,enc_avif,quality_auto/dd5dab_47743b1c86024865ba19e623a3db327f~mv2.avif" alt="Logo Mission Locale Pays Basque" class="header-logo" loading="lazy" />
-            </div>
-
-            <div class="title-center">
-              <h1 class="hero-title">ACCUEILLIR<small>Mode Mission Locale — ludique & utile (~1h)</small></h1>
-            </div>
-
-            <div class="logo-right">
-              <img src="https://www.lifeskills4youth.eu/wp-content/uploads/2024/07/LS4YOU_Logo.png" alt="Logo LS4YOU" class="header-logo" loading="lazy" />
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <section class="content">
-        <div class="toprow">
-          <a class="back" href="./index.html"><i data-lucide="arrow-left"></i> Retour</a>
-
-          <div class="progress-wrap" aria-label="progression">
-            <div id="progress" class="progress"></div>
-          </div>
-          <div class="progress-meta"><span id="pct">0%</span> complété</div>
-        </div>
-
-        <div class="badgebox">
-          <div style="font-weight:900;">Pourquoi ce pilier ?</div>
-          <div class="hint">
-            À la Mission Locale, “accueillir” c’est simple : <strong>je crée un lien</strong>, je montre que je suis <strong>pro</strong>,
-            et je peux avancer avec les autres (atelier, entreprise, asso, équipe).
-            <br><br>
-            Ici, tu fais 4 micro-activités (sans quiz) → tu récupères des phrases prêtes à réutiliser en vrai.
-          </div>
-
-          <div class="ml-steps" aria-label="micro-objectif">
-            <div class="step"><span class="b">1</span> J’arrive</div>
-            <div class="step"><span class="b">2</span> Je lis l’ambiance</div>
-            <div class="step"><span class="b">3</span> Je reçois un retour</div>
-            <div class="step"><span class="b">4</span> Je garde ma “signature”</div>
-          </div>
-
-          <div class="ml-tip">
-            <strong>Petit secret :</strong> ce n’est pas “être extraverti”. C’est savoir faire <strong>un mini geste pro</strong> au bon moment.
-            Exemple : <em>bonjour + une question simple</em>.
-          </div>
-
-          <div class="hint" style="margin-top:10px;">
-            Tu débloques le badge <strong>Relieur</strong> quand tu termines les 4 micro-activités.
-          </div>
-
-          <div class="badges">
-            <div class="badge" id="b-relieur"><span class="dot"></span>Relieur <small>Accueillir validé</small></div>
-          </div>
-        </div>
-
-        <!-- MICRO 1 -->
-        <div class="panel" data-step="1">
-          <div class="panel-h">
-            <h2>Micro 1 — Mon arrivée (8–10 min)</h2>
-            <span class="chip"><i data-lucide="sparkles"></i>Scène</span>
-          </div>
-          <div class="panel-b">
-            <div class="hint">
-              <strong>Mission :</strong> choisir une “entrée” simple (pas de bonne réponse).
-              <br>Tu veux juste éviter le piège : <em>arriver, se fermer, disparaître</em>.
-            </div>
-
-            <div class="ml-tip">
-              <strong>Astuce Mission Locale :</strong> si tu stresses, utilise la règle <strong>1 phrase + 1 question</strong>.
-              <br>Ex : “Bonjour, je m’appelle …” + “Je commence par quoi ?”
-            </div>
-
-            <div class="cardset" id="m1">
-              <div class="opt" data-k="posture" data-v="observer"><strong>Je regarde 30 sec</strong><small>Je capte le lieu et les gens.</small></div>
-              <div class="opt" data-k="posture" data-v="saluer"><strong>Bonjour direct</strong><small>Simple + sourire = pro.</small></div>
-              <div class="opt" data-k="posture" data-v="discret"><strong>Je me pose calmement</strong><small>OK si je fais un signe d’ouverture.</small></div>
-              <div class="opt" data-k="posture" data-v="initiative"><strong>Je me présente</strong><small>1 phrase + 1 question.</small></div>
-            </div>
-
-            <div id="m1story" class="story" style="display:none;"></div>
-
-            <div class="field">
-              <label class="mini" for="m1action">Mon micro-ajustement (1 phrase utile en vrai) :</label>
-              <textarea id="m1action" placeholder='Ex : “Bonjour, je suis … Je peux m’installer où ?”'></textarea>
-            </div>
-
-            <div class="actions">
-              <button class="btn primary" onclick="saveMicro1()"><i data-lucide="save"></i> Enregistrer</button>
-              <button class="btn ghost" onclick="autoSuggest1()"><i data-lucide="wand-2"></i> Suggestion</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- MICRO 2 -->
-        <div class="panel" data-step="2">
-          <div class="panel-h" style="background: rgba(255,201,40,.18);">
-            <h2>Micro 2 — Je lis l’ambiance (10–12 min)</h2>
-            <span class="chip"><i data-lucide="eye"></i>Observation</span>
-          </div>
-          <div class="panel-b">
-            <div class="hint">
-              <strong>Mission :</strong> mettre des mots sur ce qui se passe.
-              <br>Plus tu “lis” bien, plus tu te sens à l’aise.
-            </div>
-
-            <div class="ml-tip">
-              <strong>Mini technique :</strong> tu choisis <strong>un signal</strong> à repérer (rythme / règles / attente / émotion).
-              C’est comme un “radar”.
-            </div>
-
-            <div class="cardset" id="m2scene">
-              <div class="opt" data-k="scene" data-v="entretien"><strong>Entretien</strong><small>Silences, questions, regard.</small></div>
-              <div class="opt" data-k="scene" data-v="atelier"><strong>Atelier ML</strong><small>Groupe déjà lancé.</small></div>
-              <div class="opt" data-k="scene" data-v="client"><strong>Client</strong><small>Pressé / impatient.</small></div>
-              <div class="opt" data-k="scene" data-v="equipe"><strong>Équipe</strong><small>Ils se connaissent.</small></div>
-            </div>
-
-            <div class="cardset" id="m2signal" style="margin-top:10px;">
-              <div class="opt" data-k="signal" data-v="rythme"><strong>Rythme</strong><small>Vitesse, silences, ton.</small></div>
-              <div class="opt" data-k="signal" data-v="regles"><strong>Règles</strong><small>Les codes du lieu.</small></div>
-              <div class="opt" data-k="signal" data-v="attente"><strong>Attente</strong><small>Ce qu’on veut de moi.</small></div>
-              <div class="opt" data-k="signal" data-v="emotion"><strong>Émotion</strong><small>Stress, tension, écoute.</small></div>
-            </div>
-
-            <div id="m2story" class="story" style="display:none;"></div>
-
-            <div class="field">
-              <label class="mini" for="m2learn">Ma phrase “je gère mieux” :</label>
-              <input id="m2learn" placeholder="Ex : “Si c’est tendu, je parle plus calmement et je reformule.”" />
-            </div>
-
-            <div class="actions">
-              <button class="btn primary" onclick="saveMicro2()"><i data-lucide="save"></i> Enregistrer</button>
-              <button class="btn ghost" onclick="autoSuggest2()"><i data-lucide="wand-2"></i> Suggestion</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- MICRO 3 -->
-        <div class="panel" data-step="3">
-          <div class="panel-h" style="background: rgba(32,184,174,.12);">
-            <h2>Micro 3 — Je reçois un retour (10–12 min)</h2>
-            <span class="chip"><i data-lucide="message-circle"></i>Dialogue</span>
-          </div>
-          <div class="panel-b">
-            <div class="hint">
-              <strong>Mission :</strong> transformer un feedback en “prochaine action”.
-              <br>À la Mission Locale, c’est ça qui fait la différence : <em>je comprends + je change un truc</em>.
-            </div>
-
-            <div class="ml-tip">
-              <strong>La règle en 3 mouvements :</strong>
-              écouter → reformuler → dire l’action.
-              (Même si tu n’es pas d’accord, tu peux rester pro.)
-            </div>
-
-            <div class="story" id="chatBox">
-              <div><strong>Conseiller :</strong> “Aujourd’hui tu es arrivé en retard. Ça bloque le groupe.”</div>
-              <div style="margin-top:6px;"><strong>Toi :</strong> …</div>
-            </div>
-
-            <div class="cardset" id="m3choices" style="margin-top:10px;">
-              <div class="opt" data-v="def"><strong>Je me défends</strong><small>“Oui mais…”</small></div>
-              <div class="opt" data-v="neutre"><strong>Je ferme</strong><small>“Ok.”</small></div>
-              <div class="opt" data-v="ouvert"><strong>Je reste ouvert</strong><small>“Je comprends, tu attends quoi ?”</small></div>
-              <div class="opt" data-v="reform"><strong>Je reformule</strong><small>“Donc ça impacte tout le monde.”</small></div>
-            </div>
-
-            <div id="m3story" class="story" style="display:none;"></div>
-
-            <div class="field">
-              <label class="mini" for="m3phrase">Ma phrase “prochaine action” :</label>
-              <input id="m3phrase" placeholder='Ex : “Ok, je note. Je viens 10 min avant demain.”' />
-            </div>
-
-            <div class="actions">
-              <button class="btn primary" onclick="saveMicro3()"><i data-lucide="save"></i> Enregistrer</button>
-              <button class="btn ghost" onclick="autoSuggest3()"><i data-lucide="wand-2"></i> Suggestion</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- MICRO 4 -->
-        <div class="panel" data-step="4">
-          <div class="panel-h" style="background: rgba(255,176,103,.16);">
-            <h2>Micro 4 — Ma “signature relationnelle” (12–15 min)</h2>
-            <span class="chip"><i data-lucide="badge-check"></i>Badge</span>
-          </div>
-          <div class="panel-b">
-            <div class="hint">
-              <strong>Mission :</strong> choisir 2 qualités que tu veux montrer <em>en vrai</em>.
-              Puis écrire une phrase courte que tu peux sortir en entretien, en stage, en atelier.
-            </div>
-
-            <div class="ml-tip">
-              <strong>Astuce :</strong> choisis des mots “observables”.
-              Exemple : “fiable” = <em>je fais ce que je dis</em>.
-            </div>
-
-            <div class="cardset" id="m4tags">
-              <div class="opt" data-v="fiable"><strong>Fiable</strong><small>Je fais ce que je dis.</small></div>
-              <div class="opt" data-v="calme"><strong>Calme</strong><small>Je ne m’emballe pas.</small></div>
-              <div class="opt" data-v="soutenant"><strong>Soutenant</strong><small>J’aide le collectif.</small></div>
-              <div class="opt" data-v="curieux"><strong>Curieux</strong><small>Je pose des questions.</small></div>
-              <div class="opt" data-v="proactif"><strong>Proactif</strong><small>Je propose une solution.</small></div>
-              <div class="opt" data-v="respect"><strong>Respectueux</strong><small>Je fais attention aux autres.</small></div>
-            </div>
-
-            <div class="field">
-              <label class="mini" for="m4sign">Ma phrase (signature pro) :</label>
-              <textarea id="m4sign" placeholder='Ex : “Je suis fiable : j’écoute, je reformule, puis je fais une action claire.”'></textarea>
-            </div>
-
-            <div class="actions">
-              <button class="btn primary" onclick="saveMicro4()"><i data-lucide="save"></i> Enregistrer</button>
-              <button class="btn ghost" onclick="autoSuggest4()"><i data-lucide="wand-2"></i> Suggestion</button>
-              <button class="btn warn" onclick="finishAccueillir()"><i data-lucide="trophy"></i> Terminer le pilier</button>
-            </div>
-            <div class="mini" style="margin-top:8px;">
-              Quand tu termines : badge <strong>Relieur</strong> activé → ton Passeport se remplit automatiquement.
-            </div>
-          </div>
-        </div>
-
-        <!-- ✅ INTÉGRATION DU SITE TEST (mlpb-tools.github.io/TEST/) -->
-        <div class="panel" data-step="5">
-          <div class="panel-h" style="background: rgba(191,239,232,.25);">
-            <h2>Ressource — MLS4YOU #1 (Emploi)</h2>
-            <span class="chip"><i data-lucide="external-link"></i>Intégré</span>
-          </div>
-          <div class="panel-b">
-            <div class="hint">
-              Parcours complet intégré ici. Si besoin, ouvre en plein écran.
-            </div>
-
-            <div class="embed-frame">
-              <iframe
-                src="https://mlpb-tools.github.io/TEST/"
-                title="MLS4YOU TEST"
-                loading="lazy"
-                sandbox="allow-scripts allow-forms allow-same-origin allow-popups"
-              ></iframe>
-            </div>
-
-            <div class="actions" style="margin-top:12px;">
-              <a class="btn ghost" href="https://mlpb-tools.github.io/TEST/" target="_blank" rel="noopener noreferrer">
-                Ouvrir en plein écran
-              </a>
-            </div>
-          </div>
-        </div>
-
-      </section>
-
-      <div class="frieze" aria-hidden="true">
-        <div class="capsule" style="background: var(--yellow);"></div>
-        <div class="capsule" style="background: var(--turq);"></div>
-        <div class="capsule" style="background: var(--red);"></div>
-        <div class="capsule" style="background: var(--mint);"></div>
-      </div>
-
-      <footer class="eu" aria-label="Mentions UE">
-        <div class="eu-top">
-          <img src="https://www.immigration.interieur.gouv.fr/var/miomcti/storage/images/media/mi/images/logos-pictos/cofinance-par-l-union-europeenne-v/1060317-1-fre-FR/Cofinance-par-l-Union-europeenne-V.png" alt="Cofinancé par l'Union européenne" class="eu-logo" loading="lazy">
-        </div>
-        <div class="copyright">© 2026 LS4YOU Project Nr. 2023-2-FR02-KA220-YOU-000175417</div>
-        <p>Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the Agence Erasmus+ France Jeunesse &amp; Sport (Agence du Service Civique). Neither the European Union nor the granting authority can be held responsible for them.</p>
-        <a class="link" href="#" onclick="return false;">Data Privacy Statement &amp; Imprint</a>
-      </footer>
-
-    </section>
-  </main>
-
-  <script>
-    const KEY="mls4you_territoire_v1";
-    function readState(){ try{return JSON.parse(localStorage.getItem(KEY))||{} }catch{return{}} }
-    function writeState(s){ localStorage.setItem(KEY, JSON.stringify(s)); }
-    function ensure(){
-      const s=readState();
-      s.badges=s.badges||{relieur:false,createur:false,ancre:false,robuste:false};
-      s.done=s.done||{accueillir:false,creer:false,habiter:false,soin:false};
-      s.profile=s.profile||{};
-      s.accueillir=s.accueillir||{};
-      writeState(s); return s;
-    }
-    const S=ensure();
-
-    function setProgress(){
-      const done = [
-        !!S.accueillir.m1?.action,
-        !!S.accueillir.m2?.learn,
-        !!S.accueillir.m3?.phrase,
-        !!S.accueillir.m4?.sign
-      ].filter(Boolean).length;
-
-      const pct = Math.round((done/4)*100);
-      document.getElementById("progress").style.width = pct + "%";
-      document.getElementById("pct").textContent = pct + "%";
-
-      const b=document.getElementById("b-relieur");
-      b.dataset.on = (S.badges.relieur || S.done.accueillir) ? "1" : "0";
-    }
-
-    function wireOptions(groupId, maxPick=1){
-      const box=document.getElementById(groupId);
-      if(!box) return;
-      box.addEventListener("click",(e)=>{
-        const el=e.target.closest(".opt"); if(!el) return;
-        const k=el.getAttribute("data-k");
-        const v=el.getAttribute("data-v") || el.getAttribute("data-v");
-        if(k){
-          [...box.querySelectorAll(`.opt[data-k="${k}"]`)].forEach(x=>x.dataset.on="0");
-          el.dataset.on="1";
-          S.accueillir = S.accueillir || {};
-          S.accueillir[k]=v;
-          writeState(S);
-          if(groupId==="m1") renderM1();
-          if(groupId==="m2scene"||groupId==="m2signal") renderM2();
-        } else {
-          const selected=[...box.querySelectorAll('.opt[data-on="1"]')];
-          if(el.dataset.on==="1"){ el.dataset.on="0"; }
-          else{
-            if(selected.length>=maxPick){ selected[0].dataset.on="0"; }
-            el.dataset.on="1";
-          }
-          const tags=[...box.querySelectorAll('.opt[data-on="1"]')].map(x=>x.getAttribute("data-v"));
-          S.accueillir.m4 = S.accueillir.m4 || {};
-          S.accueillir.m4.tags = tags;
-          writeState(S);
-        }
-      });
-    }
-
-    function renderM1(){
-      const pick = S.accueillir.posture;
-      const box=document.getElementById("m1story");
-      if(!pick){ box.style.display="none"; return; }
-      const map={
-        observer:"Tu parais posé. Astuce : ajoute un “bonjour” rapide pour ouvrir le lien.",
-        saluer:"Tu poses un climat positif. Astuce : ajoute une question simple (crédible).",
-        discret:"Tu te protèges. Astuce : fais un micro-signe (bonjour / sourire / regard).",
-        initiative:"Tu parais engagé. Astuce : reste simple : 1 phrase + 1 question."
-      };
-      box.style.display="block";
-      box.innerHTML = "<strong>Ce que ça peut donner :</strong> " + map[pick];
-    }
-
-    function renderM2(){
-      const scene = S.accueillir.scene;
-      const signal = S.accueillir.signal;
-      const box=document.getElementById("m2story");
-      if(!scene || !signal){ box.style.display="none"; return; }
-
-      const sceneTxt={
-        entretien:"En entretien, un silence peut être normal : tu peux reformuler calmement.",
-        atelier:"Dans un groupe déjà lancé : une question utile te fait entrer.",
-        client:"Avec quelqu’un de pressé : va au but et propose une solution courte.",
-        equipe:"Dans une équipe qui se connaît : observe 30 sec puis connecte-toi à une tâche."
-      };
-      const sigTxt={
-        rythme:"Je m’aligne sur le débit + je respire.",
-        regles:"Je cherche les codes : “comment ça se passe ici ?”",
-        attente:"Je clarifie : “tu attends quoi de moi maintenant ?”",
-        emotion:"Je repère l’émotion et je reste calme / clair."
-      };
-      box.style.display="block";
-      box.innerHTML = "<strong>Lecture utile :</strong> " + sceneTxt[scene] + "<br><strong>Mon radar :</strong> " + sigTxt[signal];
-    }
-
-    function autoSuggest1(){ document.getElementById("m1action").value="Bonjour, je suis … Je commence par quoi / je m’installe où ?"; }
-    function autoSuggest2(){ document.getElementById("m2learn").value="Quand je ne comprends pas l’ambiance, je pose une question courte au lieu de me fermer."; }
-    function autoSuggest3(){ document.getElementById("m3phrase").value="Je comprends. Je m’organise pour arriver 10 minutes avant la prochaine fois."; }
-    function autoSuggest4(){ document.getElementById("m4sign").value="Je suis fiable : j’écoute, je reformule, puis je fais une action claire."; }
-
-    function saveMicro1(){
-      const action=document.getElementById("m1action").value.trim();
-      S.accueillir.m1 = S.accueillir.m1 || {};
-      S.accueillir.m1.action = action;
-      writeState(S); setProgress();
-      alert("Micro 1 enregistré.");
-    }
-    function saveMicro2(){
-      const learn=document.getElementById("m2learn").value.trim();
-      S.accueillir.m2 = S.accueillir.m2 || {};
-      S.accueillir.m2.learn = learn;
-      writeState(S); setProgress();
-      alert("Micro 2 enregistré.");
-    }
-    function saveMicro3(){
-      const phrase=document.getElementById("m3phrase").value.trim();
-      S.accueillir.m3 = S.accueillir.m3 || {};
-      S.accueillir.m3.phrase = phrase;
-      writeState(S); setProgress();
-      alert("Micro 3 enregistré.");
-    }
-    function saveMicro4(){
-      const sign=document.getElementById("m4sign").value.trim();
-      S.accueillir.m4 = S.accueillir.m4 || {};
-      S.accueillir.m4.sign = sign;
-      writeState(S); setProgress();
-      alert("Micro 4 enregistré.");
-    }
-
-    document.addEventListener("click",(e)=>{
-      const el=e.target.closest("#m3choices .opt");
-      if(!el) return;
-      [...document.querySelectorAll("#m3choices .opt")].forEach(x=>x.dataset.on="0");
-      el.dataset.on="1";
-      const v=el.getAttribute("data-v");
-      const box=document.getElementById("m3story");
-      const map={
-        def:"Tu te protèges, mais l’autre entend peu ta responsabilité. Essaye “je reformule + action”.",
-        neutre:"Tu acceptes, mais sans action on ne voit pas le changement. Ajoute une action claire.",
-        ouvert:"Tu ouvres une solution. Bonus : demande la règle pour la prochaine fois.",
-        reform:"Très pro : tu montres que tu as compris. Ajoute une action et c’est parfait."
-      };
-      box.style.display="block";
-      box.innerHTML="<strong>Retour :</strong> "+map[v];
-      S.accueillir.m3 = S.accueillir.m3 || {};
-      S.accueillir.m3.choice = v;
-      writeState(S);
-    });
-
-    function finishAccueillir(){
-      const ok = !!S.accueillir.m1?.action && !!S.accueillir.m2?.learn && !!S.accueillir.m3?.phrase && !!S.accueillir.m4?.sign;
-      if(!ok){ alert("Il te manque au moins une production. Remplis les champs (Micro 1 à 4) puis réessaie."); return; }
-      S.done.accueillir=true;
-      S.badges.relieur=true;
-
-      S.profile.signatureRelationnelle = S.accueillir.m4.sign;
-      S.profile.ajustementAccueil = S.accueillir.m1.action;
-      S.profile.feedbackPhrase = S.accueillir.m3.phrase;
-
-      writeState(S);
-      setProgress();
-      alert("✅ Pilier ACCUEILLIR terminé — badge Relieur débloqué !");
-      window.location.href="./synthese.html";
-    }
-
-    function restoreUI(){
-      if(S.accueillir.posture){
-        [...document.querySelectorAll('#m1 .opt')].forEach(x=>{
-          if(x.getAttribute("data-v")===S.accueillir.posture) x.dataset.on="1";
-        });
-        renderM1();
-      }
-      if(S.accueillir.m1?.action) document.getElementById("m1action").value=S.accueillir.m1.action;
-
-      if(S.accueillir.scene){
-        [...document.querySelectorAll('#m2scene .opt')].forEach(x=>{
-          if(x.getAttribute("data-v")===S.accueillir.scene) x.dataset.on="1";
-        });
-      }
-      if(S.accueillir.signal){
-        [...document.querySelectorAll('#m2signal .opt')].forEach(x=>{
-          if(x.getAttribute("data-v")===S.accueillir.signal) x.dataset.on="1";
-        });
-      }
-      renderM2();
-      if(S.accueillir.m2?.learn) document.getElementById("m2learn").value=S.accueillir.m2.learn;
-
-      if(S.accueillir.m3?.phrase) document.getElementById("m3phrase").value=S.accueillir.m3.phrase;
-
-      const tags=S.accueillir.m4?.tags||[];
-      [...document.querySelectorAll('#m4tags .opt')].forEach(x=>{
-        if(tags.includes(x.getAttribute("data-v"))) x.dataset.on="1";
-      });
-      if(S.accueillir.m4?.sign) document.getElementById("m4sign").value=S.accueillir.m4.sign;
-
-      setProgress();
-    }
-
-    window.addEventListener('load', function() {
-      if (typeof lucide !== 'undefined') lucide.createIcons();
-      wireOptions("m1",1);
-      wireOptions("m2scene",1);
-      wireOptions("m2signal",1);
-      wireOptions("m4tags",2);
-      restoreUI();
-    });
-  </script>
 </body>
 </html>
+
