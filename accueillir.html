@@ -63,7 +63,6 @@
     .panel-b{padding:14px}
     .hint{color:var(--muted);font-weight:600;font-size:13px;line-height:1.4}
 
-    /* NEW: mission locale microlearning capsule */
     .ml-tip{margin-top:10px;padding:10px 12px;border-radius:16px;background:rgba(0,0,0,.04);border-left:5px solid var(--yellow);color:var(--muted);font-weight:700;line-height:1.45}
     .ml-tip strong{color:var(--ink)}
     .ml-steps{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
@@ -97,7 +96,15 @@
     .eu .link{display:inline-block;margin-top:12px;color:var(--turq);font-weight:900;text-decoration:none;font-size:13px}
     .eu .link:hover{text-decoration:underline;color:var(--red)}
 
-    @media(max-width:760px){ .title-center{position:relative;top:auto;left:auto;transform:none;width:100%;margin-top:10px} .cardset{grid-template-columns:1fr} }
+    /* ✅ IFRAME container */
+    .embed-frame{margin-top:12px;border-radius:16px;overflow:hidden;border:2px solid rgba(16,17,20,.10);background:#fff}
+    .embed-frame iframe{width:100%;height:900px;border:0;display:block}
+
+    @media(max-width:760px){
+      .title-center{position:relative;top:auto;left:auto;transform:none;width:100%;margin-top:10px}
+      .cardset{grid-template-columns:1fr}
+      .embed-frame iframe{height:760px}
+    }
   </style>
 </head>
 
@@ -144,7 +151,6 @@
           <div class="progress-meta"><span id="pct">0%</span> complété</div>
         </div>
 
-        <!-- NEW: Simplification / vulgarisation intro -->
         <div class="badgebox">
           <div style="font-weight:900;">Pourquoi ce pilier ?</div>
           <div class="hint">
@@ -344,6 +350,34 @@
           </div>
         </div>
 
+        <!-- ✅ INTÉGRATION DU SITE TEST (mlpb-tools.github.io/TEST/) -->
+        <div class="panel" data-step="5">
+          <div class="panel-h" style="background: rgba(191,239,232,.25);">
+            <h2>Ressource — MLS4YOU #1 (Emploi)</h2>
+            <span class="chip"><i data-lucide="external-link"></i>Intégré</span>
+          </div>
+          <div class="panel-b">
+            <div class="hint">
+              Parcours complet intégré ici. Si besoin, ouvre en plein écran.
+            </div>
+
+            <div class="embed-frame">
+              <iframe
+                src="https://mlpb-tools.github.io/TEST/"
+                title="MLS4YOU TEST"
+                loading="lazy"
+                sandbox="allow-scripts allow-forms allow-same-origin allow-popups"
+              ></iframe>
+            </div>
+
+            <div class="actions" style="margin-top:12px;">
+              <a class="btn ghost" href="https://mlpb-tools.github.io/TEST/" target="_blank" rel="noopener noreferrer">
+                Ouvrir en plein écran
+              </a>
+            </div>
+          </div>
+        </div>
+
       </section>
 
       <div class="frieze" aria-hidden="true">
@@ -461,13 +495,11 @@
       box.innerHTML = "<strong>Lecture utile :</strong> " + sceneTxt[scene] + "<br><strong>Mon radar :</strong> " + sigTxt[signal];
     }
 
-    // Suggestions (phrases génériques)
     function autoSuggest1(){ document.getElementById("m1action").value="Bonjour, je suis … Je commence par quoi / je m’installe où ?"; }
     function autoSuggest2(){ document.getElementById("m2learn").value="Quand je ne comprends pas l’ambiance, je pose une question courte au lieu de me fermer."; }
     function autoSuggest3(){ document.getElementById("m3phrase").value="Je comprends. Je m’organise pour arriver 10 minutes avant la prochaine fois."; }
     function autoSuggest4(){ document.getElementById("m4sign").value="Je suis fiable : j’écoute, je reformule, puis je fais une action claire."; }
 
-    // Micro saves
     function saveMicro1(){
       const action=document.getElementById("m1action").value.trim();
       S.accueillir.m1 = S.accueillir.m1 || {};
@@ -497,7 +529,6 @@
       alert("Micro 4 enregistré.");
     }
 
-    // Micro 3 branching
     document.addEventListener("click",(e)=>{
       const el=e.target.closest("#m3choices .opt");
       if(!el) return;
@@ -576,31 +607,6 @@
       restoreUI();
     });
   </script>
-  <h1>ACCUEILLIR</h1>
-
-<p>Contenu pédagogique ici</p>
-
-<!-- BOUTON RETOUR MLS4YOU -->
-<div style="margin-top:40px; text-align:center;">
-  <a href="./index.html"
-     style="
-       display:inline-block;
-       padding:14px 22px;
-       background:#C62828;
-       color:white;
-       text-decoration:none;
-       border-radius:12px;
-       font-weight:700;
-       font-family:Montserrat, Arial;
-       box-shadow:0 6px 14px rgba(0,0,0,0.15);
-     ">
-     ← Retour au parcours MLS4YOU
-  </a>
-</div>
-
-</body>
-</html>
-
 </body>
 </html>
 
