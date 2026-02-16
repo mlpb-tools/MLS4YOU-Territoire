@@ -1,424 +1,265 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MLS4YOU #2 — Créer</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fiche 2 : S'impliquer - LS4YOU</title>
 
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@0.263.1/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-    :root { --red:#C62828; --yellow:#FFC928; --turq:#20B8AE; --mint:#BFEFE8; --orange:#FFB067; --bg:#FFF9F0; --ink:#101114; --muted:rgba(16,17,20,.7); --max:980px; }
-    *{box-sizing:border-box} html,body{height:100%}
-    body{margin:0;background:var(--bg);color:var(--ink);font-family:'Montserrat',system-ui,-apple-system,sans-serif;overflow-x:hidden}
-    h1,h2,h3{font-family:'Baloo 2',cursive;font-weight:800;margin:0}
-    .wrap{position:relative;z-index:1;max-width:var(--max);margin:22px auto 28px;padding:0 16px 26px}
-    .frame{border-radius:24px;box-shadow:0 20px 40px rgba(0,0,0,.1);overflow:hidden;border:5px solid transparent;background-image:linear-gradient(rgba(255,255,255,.95),rgba(255,255,255,.95)),linear-gradient(135deg,var(--red),var(--yellow),var(--turq));background-origin:border-box;background-clip:padding-box,border-box}
-    .hero{position:relative;border-bottom:4px solid var(--turq);padding:16px;background:#fff}
-    .hero-inner{position:relative;border-radius:18px;overflow:hidden;min-height:clamp(120px,22vw,170px);display:flex;align-items:center;padding:22px 28px}
-    .header-pattern{position:absolute;inset:0;background:#fdfdfd;z-index:0}
-    .hs{position:absolute;border-radius:50%;opacity:.65;mix-blend-mode:multiply}
-    .hs-1{background:var(--red);width:140px;height:140px;top:-40px;left:10%}
-    .hs-2{background:var(--yellow);width:180px;height:180px;bottom:-60px;right:20%}
-    .hs-3{background:var(--turq);width:120px;height:120px;top:20px;right:40%}
-    .hs-4{background:var(--mint);width:90px;height:90px;bottom:10px;left:30%}
-    .hs-5{background:var(--orange);width:70px;height:70px;top:60px;left:45%}
-    .header-content{position:relative;z-index:10;display:flex;width:100%;justify-content:space-between;align-items:flex-start}
-    .logo-left,.logo-right{display:flex;z-index:20}
-    .logo-left{margin-top:-12px;margin-left:-16px}
-    .logo-right{margin-top:-12px;margin-right:-16px}
-    .header-logo{height:58px;object-fit:contain;mix-blend-mode:multiply;filter:drop-shadow(0 4px 6px rgba(0,0,0,.05))}
-    .title-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;z-index:15}
-    .hero-title{font-size:clamp(28px,3.6vw,38px);color:var(--red);line-height:1;text-shadow:-3px -3px 0 #fff,3px -3px 0 #fff,-3px 3px 0 #fff,3px 3px 0 #fff,0 8px 16px rgba(0,0,0,.12)}
-    .hero-title small{display:block;font-family:'Montserrat',sans-serif;font-size:clamp(12px,1.8vw,16px);color:var(--ink);text-transform:uppercase;letter-spacing:.05em;margin-top:8px;text-shadow:-2px -2px 0 #fff,2px -2px 0 #fff,-2px 2px 0 #fff,2px 2px 0 #fff}
+    :root{
+      --c-red:#C62828;
+      --c-yellow:#FFD54F;
+      --c-yellow-dark:#FFC107;
+      --c-turq:#4DD0E1;
+      --c-turq-dark:#00ACC1;
+      --c-mint:#E0F2F1;
+      --c-orange:#FFB74D;
+      --c-orange-dark:#F57C00;
+      --c-white:#ffffff;
+      --c-black:#1a1a1a;
+    }
 
-    .content{background:#fff;padding:18px 16px 14px}
-    .toprow{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-    .back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:900;padding:10px 12px;border-radius:999px;background:#fff;border:2px solid rgba(16,17,20,.08);box-shadow:0 2px 4px rgba(0,0,0,.05)}
-    .progress-wrap{flex:1;min-width:240px;max-width:420px;background:rgba(0,0,0,.06);border-radius:999px;overflow:hidden;height:12px}
-    .progress{height:100%;width:0%;background:var(--yellow);transition:width .3s ease}
-    .progress-meta{font-weight:800;font-size:12px;color:var(--muted)}
+    body{
+      font-family:'Montserrat',sans-serif;
+      background-color:#f8f9fa;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+      color:var(--c-black);
+      overflow-x:hidden;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:20px;
+    }
 
-    .badgebox{margin-top:14px;padding:12px;border-radius:18px;background:linear-gradient(90deg,rgba(255,201,40,.14),rgba(32,184,174,.12));border:2px solid rgba(16,17,20,.10)}
-    .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
-    .badge{display:inline-flex;align-items:center;gap:10px;padding:10px 12px;border-radius:16px;background:#fff;border:2px solid rgba(16,17,20,.10);font-weight:900}
-    .dot{width:14px;height:14px;border-radius:999px;background:rgba(0,0,0,.08)}
-    .badge[data-on="1"] .dot{background:var(--turq)}
-    .badge small{display:block;color:var(--muted);font-weight:700}
+    h1,h2,h3,.font-title{
+      font-family:'Poppins',sans-serif;
+      letter-spacing:-0.02em;
+    }
 
-    .panel{margin-top:14px;border-radius:18px;border:3px solid rgba(16,17,20,.08);box-shadow:0 8px 16px rgba(16,17,20,.06);overflow:hidden}
-    .panel-h{padding:14px;background:rgba(255,201,40,.18);display:flex;align-items:center;justify-content:space-between;gap:10px}
-    .panel-h h2{font-size:18px}
-    .chip{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:#fff;border:2px solid rgba(16,17,20,.08);font-weight:900;font-size:11px}
-    .panel-b{padding:14px}
-    .hint{color:var(--muted);font-weight:600;font-size:13px;line-height:1.4}
+    .pop-card{
+      background:white;
+      border:3px solid var(--c-black);
+      box-shadow:8px 8px 0px var(--c-black);
+      border-radius:20px;
+      position:relative;
+      z-index:10;
+      transition:transform .2s ease;
+    }
+    .pop-card:hover{
+      transform:translate(-2px,-2px);
+      box-shadow:10px 10px 0px var(--c-black);
+    }
 
-    .cardset{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
-    .opt{border-radius:16px;border:2px solid rgba(16,17,20,.10);background:#fff;padding:12px;cursor:pointer;transition:.15s;min-height:78px}
-    .opt:hover{transform:translateY(-2px);box-shadow:0 10px 18px rgba(0,0,0,.08)}
-    .opt strong{display:block}
-    .opt small{display:block;margin-top:6px;color:var(--muted);font-weight:600}
-    .opt[data-on="1"]{border-color:var(--turq);box-shadow:0 0 0 4px rgba(32,184,174,.15)}
+    @keyframes popIn{
+      0%{opacity:0;transform:scale(.9) rotate(2deg);}
+      100%{opacity:1;transform:scale(1) rotate(0deg);}
+    }
+    @keyframes float{
+      0%,100%{transform:translateY(0px);}
+      50%{transform:translateY(-10px);}
+    }
+    .animate-pop{animation:popIn .6s cubic-bezier(.34,1.56,.64,1) forwards;}
+    .delay-100{animation-delay:.1s;}
+    .delay-200{animation-delay:.2s;}
+    .delay-300{animation-delay:.3s;}
+    .delay-400{animation-delay:.4s;}
+    .floating{animation:float 4s ease-in-out infinite;}
 
-    textarea,input{width:100%;padding:12px;border-radius:14px;border:2px solid rgba(16,17,20,.12);font:inherit;font-weight:600}
-    textarea{min-height:86px;resize:vertical}
-    .field{margin-top:12px}
-    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 14px;border-radius:14px;border:none;font-weight:900;cursor:pointer;text-transform:uppercase;letter-spacing:.05em;box-shadow:0 4px 12px rgba(0,0,0,.10)}
-    .btn.primary{background:var(--turq);color:#fff}
-    .btn.ghost{background:#fff;border:2px solid rgba(16,17,20,.12);color:var(--ink);box-shadow:0 2px 4px rgba(0,0,0,.05)}
-    .btn.warn{background:var(--red);color:#fff}
-    .mini{font-size:12px;color:var(--muted);font-weight:700}
-    .story{margin-top:12px;padding:12px;border-radius:16px;background:rgba(0,0,0,.05);border-left:5px solid var(--turq);color:var(--muted);font-weight:600;line-height:1.5}
+    .decoration-circle{
+      position:absolute;
+      border-radius:50%;
+      border:2px solid var(--c-black);
+      z-index:-1;
+    }
 
-    .frieze{display:flex;gap:12px;padding:0 20px;margin-top:10px;margin-bottom:24px;background:#fff}
-    .capsule{height:16px;border-radius:999px;flex:1;box-shadow:inset 0 2px 4px rgba(0,0,0,.1)}
-    .eu{margin:0 20px 20px;border-radius:20px;background:#fff;border:3px solid rgba(16,17,20,.08);box-shadow:0 10px 20px rgba(16,17,20,.05);padding:20px;text-align:center}
-    .eu-logo{height:65px;mix-blend-mode:multiply;filter:drop-shadow(0 4px 6px rgba(0,0,0,.05))}
-    .eu p{margin:8px auto 0;max-width:90ch;font-size:12px;line-height:1.6;color:var(--muted);font-weight:500}
-    .eu .copyright{color:var(--ink);font-weight:800;font-size:12px;margin-top:4px}
-    .eu .link{display:inline-block;margin-top:12px;color:var(--turq);font-weight:900;text-decoration:none;font-size:13px}
-    .eu .link:hover{text-decoration:underline;color:var(--red)}
-    @media(max-width:760px){ .title-center{position:relative;top:auto;left:auto;transform:none;width:100%;margin-top:10px} .cardset{grid-template-columns:1fr} }
+    .shine{position:relative;overflow:hidden;}
+    .shine::after{
+      content:'';
+      position:absolute;top:0;left:-100%;
+      width:50%;height:100%;
+      background:linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 50%, rgba(255,255,255,0) 100%);
+      transform:skewX(-25deg);
+      animation:shine 3s infinite;
+    }
+    @keyframes shine{100%{left:125%;}}
+
+    /* bouton retour simple */
+    .back-btn{
+      position:fixed;
+      left:16px;
+      bottom:16px;
+      z-index:50;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 14px;
+      background:#fff;
+      border:2px solid #000;
+      border-radius:14px;
+      font-weight:800;
+      text-decoration:none;
+      color:#111;
+      box-shadow:4px 4px 0 #000;
+      transition:transform .15s ease;
+    }
+    .back-btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #000;}
   </style>
 </head>
 
-<body>
-  <main class="wrap">
-    <section class="frame">
+<body class="bg-gray-50">
 
-      <header class="hero">
-        <div class="hero-inner">
-          <div class="header-pattern" aria-hidden="true">
-            <div class="hs hs-1"></div><div class="hs hs-2"></div><div class="hs hs-3"></div><div class="hs hs-4"></div><div class="hs hs-5"></div>
-          </div>
+  <!-- Bouton retour vers l'accueil du site -->
+  <a class="back-btn" href="./index.html" aria-label="Retour au parcours">
+    ← Retour
+  </a>
 
-          <div class="header-content">
-            <div class="logo-left">
-              <img src="https://static.wixstatic.com/media/dd5dab_47743b1c86024865ba19e623a3db327f~mv2.avif/v1/fill/w_224,h_60,al_c,q_80,enc_avif,quality_auto/dd5dab_47743b1c86024865ba19e623a3db327f~mv2.avif" alt="Logo Mission Locale Pays Basque" class="header-logo" loading="lazy" />
-            </div>
-            <div class="title-center">
-              <h1 class="hero-title">CRÉER<small>Microlearning — ~1h</small></h1>
-            </div>
-            <div class="logo-right">
-              <img src="https://www.lifeskills4youth.eu/wp-content/uploads/2024/07/LS4YOU_Logo.png" alt="Logo LS4YOU" class="header-logo" loading="lazy" />
-            </div>
-          </div>
-        </div>
-      </header>
+  <!-- DECORATIVE BACKGROUND ELEMENTS -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="decoration-circle bg-[#FFB74D] w-40 h-40 top-20 right-20 opacity-60 floating" style="animation-delay:0.5s;"></div>
+    <div class="decoration-circle bg-[#C62828] w-20 h-20 bottom-10 left-10 opacity-50 floating" style="animation-delay:1.5s;"></div>
+    <div class="decoration-circle bg-[#4DD0E1] w-12 h-12 top-10 left-1/3 opacity-70 floating" style="animation-delay:2.5s;"></div>
 
-      <section class="content">
-        <div class="toprow">
-          <a class="back" href="./index.html"><i data-lucide="arrow-left"></i> Retour</a>
-          <div class="progress-wrap"><div id="progress" class="progress"></div></div>
-          <div class="progress-meta"><span id="pct">0%</span> complété</div>
-        </div>
+    <svg class="absolute bottom-0 right-0 w-64 h-64 text-[#FFF8E1] -z-10" viewBox="0 0 100 100" fill="currentColor">
+      <circle cx="80" cy="80" r="40" />
+    </svg>
+  </div>
 
-        <div class="badgebox">
-          <div style="font-weight:900;">Objectif du pilier</div>
-          <div class="hint">Passer de “je demande” à “je contribue”. Tu débloques le badge <strong>Créateur</strong> quand tu termines les 4 micro-activités.</div>
-          <div class="badges">
-            <div class="badge" id="b-createur"><span class="dot"></span>Créateur <small>Créer validé</small></div>
-          </div>
-        </div>
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-3xl w-full mx-auto relative z-10 my-10">
 
-        <!-- MICRO 1 -->
-        <div class="panel">
-          <div class="panel-h">
-            <h2>Micro 1 — Transformer un vécu en verbes d’action (10–12 min)</h2>
-            <span class="chip"><i data-lucide="scan-text"></i>Extraction</span>
-          </div>
-          <div class="panel-b">
-            <div class="hint">Choisis un vécu récent (atelier, job, stage, galère, bénévolat). Puis sélectionne 2 verbes d’action qui te ressemblent.</div>
+    <!-- FICHE HEADER -->
+    <div class="pop-card p-6 md:p-10 mb-6 animate-pop bg-white shine">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-4">
+        <span class="bg-[#FFB74D] text-black font-black px-4 py-1 rounded-full border-2 border-black shadow-[3px_3px_0px_#000] text-sm uppercase tracking-wider mb-2 md:mb-0">
+          Fiche 2 : Créer
+        </span>
 
-            <div class="cardset" id="m1v">
-              <div class="opt" data-k="vecu" data-v="atelier"><strong>Atelier / collectif</strong><small>Groupe, consignes, rythme.</small></div>
-              <div class="opt" data-k="vecu" data-v="job"><strong>Job / mission</strong><small>Client, timing, qualité.</small></div>
-              <div class="opt" data-k="vecu" data-v="benev"><strong>Bénévolat</strong><small>Aider, organiser, soutenir.</small></div>
-              <div class="opt" data-k="vecu" data-v="galere"><strong>Galère / imprévu</strong><small>Se débrouiller, trouver, tenir.</small></div>
-            </div>
-
-            <div class="cardset" id="m1verbs" style="margin-top:10px;">
-              <div class="opt" data-v="organiser"><strong>Organiser</strong><small>Planifier / prioriser</small></div>
-              <div class="opt" data-v="aider"><strong>Aider</strong><small>Soutenir / expliquer</small></div>
-              <div class="opt" data-v="resoudre"><strong>Résoudre</strong><small>Trouver une solution</small></div>
-              <div class="opt" data-v="adapter"><strong>S’adapter</strong><small>Changer de plan</small></div>
-              <div class="opt" data-v="communiquer"><strong>Communiquer</strong><small>Clarifier / écouter</small></div>
-              <div class="opt" data-v="tenir"><strong>Tenir</strong><small>Endurance / fiabilité</small></div>
-            </div>
-
-            <div class="field">
-              <label class="mini" for="m1phrase">Mon vécu en 1 phrase :</label>
-              <input id="m1phrase" placeholder="Ex : “J’ai aidé sur un atelier et j’ai remis de l’ordre dans le groupe.”" />
-            </div>
-
-            <div class="actions">
-              <button class="btn primary" onclick="saveM1()"><i data-lucide="save"></i> Enregistrer</button>
-              <button class="btn ghost" onclick="suggestM1()"><i data-lucide="wand-2"></i> Suggestion</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- MICRO 2 -->
-        <div class="panel">
-          <div class="panel-h" style="background: rgba(32,184,174,.12);">
-            <h2>Micro 2 — “Ce que ça apporte” (12–15 min)</h2>
-            <span class="chip"><i data-lucide="sparkles"></i>Impact</span>
-          </div>
-          <div class="panel-b">
-            <div class="hint">Tu vas formuler une contribution utile au territoire (entreprise/asso/collectif). Pas besoin d’être “grand”. Juste utile.</div>
-
-            <div class="cardset" id="m2who">
-              <div class="opt" data-k="cible" data-v="entreprise"><strong>Entreprise</strong><small>Qualité / rythme / client</small></div>
-              <div class="opt" data-k="cible" data-v="asso"><strong>Association</strong><small>Solidarité / aide / organisation</small></div>
-              <div class="opt" data-k="cible" data-v="collectif"><strong>Collectif</strong><small>Groupe / ambiance / entraide</small></div>
-              <div class="opt" data-k="cible" data-v="service"><strong>Service public</strong><small>Accueil / suivi / rigueur</small></div>
-            </div>
-
-            <div class="field">
-              <label class="mini" for="m2value">Ma contribution (formule simple) :</label>
-              <textarea id="m2value" placeholder="Ex : “J’apporte de la fiabilité : je respecte le timing et je garde une bonne relation client.”"></textarea>
-            </div>
-
-            <div class="actions">
-              <button class="btn primary" onclick="saveM2()"><i data-lucide="save"></i> Enregistrer</button>
-              <button class="btn ghost" onclick="suggestM2()"><i data-lucide="wand-2"></i> Suggestion</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- MICRO 3 -->
-        <div class="panel">
-          <div class="panel-h" style="background: rgba(255,176,103,.16);">
-            <h2>Micro 3 — Mini pitch contribution (10–12 min)</h2>
-            <span class="chip"><i data-lucide="mic"></i>Pitch</span>
-          </div>
-          <div class="panel-b">
-            <div class="hint">Tu écris une version “réseau / entretien” en 3 lignes : qui je suis → ce que je fais → ce que ça apporte.</div>
-
-            <div class="field">
-              <label class="mini" for="m3pitch">Mon pitch 3 lignes :</label>
-              <textarea id="m3pitch" placeholder="1) Je suis…  2) Je sais…  3) Ça apporte…"></textarea>
-            </div>
-
-            <div class="actions">
-              <button class="btn primary" onclick="saveM3()"><i data-lucide="save"></i> Enregistrer</button>
-              <button class="btn ghost" onclick="suggestM3()"><i data-lucide="wand-2"></i> Suggestion</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- MICRO 4 -->
-        <div class="panel">
-          <div class="panel-h" style="background: rgba(198,40,40,.08);">
-            <h2>Micro 4 — Engagement concret (12–15 min)</h2>
-            <span class="chip"><i data-lucide="check-circle-2"></i>Action</span>
-          </div>
-          <div class="panel-b">
-            <div class="hint">Tu choisis une action “petite mais réelle” à faire cette semaine. C’est ça la gamification : passer à l’action.</div>
-
-            <div class="cardset" id="m4act">
-              <div class="opt" data-k="action" data-v="message"><strong>Envoyer 1 message</strong><small>Relance / candidature / réseau</small></div>
-              <div class="opt" data-k="action" data-v="rdv"><strong>Prendre 1 RDV</strong><small>Accueil / visite / info</small></div>
-              <div class="opt" data-k="action" data-v="preuve"><strong>Créer 1 preuve</strong><small>Mini CV / portfolio / photo</small></div>
-              <div class="opt" data-k="action" data-v="aide"><strong>Aider 1 personne</strong><small>Relais / entraide</small></div>
-            </div>
-
-            <div class="field">
-              <label class="mini" for="m4plan">Mon plan (quoi / quand / avec qui) :</label>
-              <textarea id="m4plan" placeholder="Ex : “Jeudi 16h : j’envoie une candidature + 1 phrase sur ma contribution.”"></textarea>
-            </div>
-
-            <div class="actions">
-              <button class="btn primary" onclick="saveM4()"><i data-lucide="save"></i> Enregistrer</button>
-              <button class="btn ghost" onclick="suggestM4()"><i data-lucide="wand-2"></i> Suggestion</button>
-              <button class="btn warn" onclick="finishCreer()"><i data-lucide="trophy"></i> Terminer le pilier</button>
-            </div>
-
-            <div class="mini" style="margin-top:8px;">À la fin : badge <strong>Créateur</strong> + la synthèse se remplit (Contribution).</div>
-          </div>
-        </div>
-      </section>
-
-      <div class="frieze" aria-hidden="true">
-        <div class="capsule" style="background: var(--yellow);"></div>
-        <div class="capsule" style="background: var(--turq);"></div>
-        <div class="capsule" style="background: var(--red);"></div>
-        <div class="capsule" style="background: var(--mint);"></div>
+        <svg class="w-10 h-10 text-[#C62828]" fill="currentColor" viewBox="0 0 24 24" stroke="black" stroke-width="2" aria-hidden="true">
+          <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/>
+        </svg>
       </div>
 
-      <footer class="eu" aria-label="Mentions UE">
-        <div class="eu-top">
-          <img src="https://www.immigration.interieur.gouv.fr/var/miomcti/storage/images/media/mi/images/logos-pictos/cofinance-par-l-union-europeenne-v/1060317-1-fre-FR/Cofinance-par-l-Union-europeenne-V.png" alt="Cofinancé par l'Union européenne" class="eu-logo" loading="lazy">
+      <h1 class="text-4xl md:text-5xl font-black text-[#1a1a1a] mb-2 leading-tight">
+        S'IMPLIQUER
+      </h1>
+      <h2 class="text-lg md:text-xl font-bold text-[#FFB74D] font-title drop-shadow-[1px_1px_0px_#000]">
+        De demandeur passif à offreur de valeur
+      </h2>
+    </div>
+
+    <!-- CONTENT BLOCKS -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+
+      <!-- POURQUOI -->
+      <div class="md:col-span-12 pop-card p-6 bg-[#FFF3E0] animate-pop delay-100 border-l-8 border-l-[#FFB74D]">
+        <h3 class="font-black text-2xl mb-3 text-[#E65100] flex items-center gap-2">
+          <span class="text-3xl">?</span> POURQUOI CETTE FICHE
+        </h3>
+        <p class="mb-4 font-medium leading-relaxed">
+          Tu n'as pas encore de "vrai" job ? Alors <strong>crée ton expérience</strong>. Aujourd'hui, travailler c'est avant tout résoudre des problèmes.
+          Les associations locales, en crise de financement, sont le meilleur laboratoire pour toi : elles ont besoin de bras et d'idées.
+        </p>
+        <div class="bg-white p-4 rounded-xl border-2 border-black shadow-[4px_4px_0px_#FFB74D]">
+          <p class="text-sm">
+            <span class="font-bold text-[#C62828]">L'ENJEU :</span> Une heure de bénévolat où tu organises un événement ou gères un stock, c'est une
+            <strong>compétence professionnelle réelle</strong> (organisation, gestion, aide).
+            <br><br>
+            👉 C'est la preuve de ta capacité à passer à l'action.
+          </p>
         </div>
-        <div class="copyright">© 2026 LS4YOU Project Nr. 2023-2-FR02-KA220-YOU-000175417</div>
-        <p>Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the Agence Erasmus+ France Jeunesse &amp; Sport (Agence du Service Civique). Neither the European Union nor the granting authority can be held responsible for them.</p>
-        <a class="link" href="#" onclick="return false;">Data Privacy Statement &amp; Imprint</a>
-      </footer>
+      </div>
 
-    </section>
+      <!-- ACTION -->
+      <div class="md:col-span-12 pop-card p-0 overflow-hidden animate-pop delay-200">
+        <div class="bg-[#FFB74D] p-4 border-b-3 border-black flex items-center justify-between">
+          <h3 class="font-black text-xl md:text-2xl text-black drop-shadow-[1px_1px_0px_#FFF]">
+            🗺️ ACTION : CALQUE « TALENTS »
+          </h3>
+          <span class="bg-black text-[#FFB74D] text-xs font-bold px-2 py-1 rounded border border-white">CODE : ORANGE</span>
+        </div>
+
+        <div class="p-6 bg-white">
+
+          <!-- Step 1 -->
+          <div class="mb-6 relative">
+            <div class="absolute -left-3 -top-3 bg-[#4DD0E1] w-8 h-8 rounded-full border-2 border-black flex items-center justify-center font-black shadow-[2px_2px_0px_#000]">1</div>
+            <div class="border-2 border-dashed border-gray-300 rounded-xl p-4 ml-2">
+              <h4 class="font-black text-lg text-[#C62828] mb-2">L'Inventaire du Don/Contre-don</h4>
+              <p class="text-sm mb-2">Le territoire a des besoins, tu as des savoir-faire (même informels).</p>
+              <ul class="text-sm font-medium space-y-2">
+                <li class="flex items-start gap-2">
+                  <span class="text-[#FFB74D] font-bold">Q1 :</span>
+                  Où as-tu déjà donné un coup de main ? (Déménagement, réparation, fête locale).
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-[#FFB74D] font-bold">Q2 :</span>
+                  Quelle qualité as-tu utilisée ? (Force, patience, technique, cuisine).
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="relative">
+            <div class="absolute -left-3 -top-3 bg-[#4DD0E1] w-8 h-8 rounded-full border-2 border-black flex items-center justify-center font-black shadow-[2px_2px_0px_#000]">2</div>
+            <div class="bg-[#E0F2F1] border-2 border-black rounded-xl p-4 ml-2 shadow-[4px_4px_0px_#4DD0E1]">
+              <h4 class="font-black text-lg text-[#C62828] mb-2">La Cartographie Digitale (My Maps)</h4>
+              <p class="text-sm mb-3">Sur ton calque <strong>« Mes Talents »</strong>, fais le lien entre toi et l'économie locale.</p>
+
+              <ol class="list-decimal list-inside text-sm space-y-2 font-medium">
+                <li>Place un repère sur une <strong>Zone d'Activité</strong> ou entreprise phare <span class="text-gray-500 text-xs">(ex: Zone Technocité)</span>.</li>
+                <li>Trace une ligne entre <strong>Ton Domicile</strong> (ou lieu de bénévolat) et cette Zone.</li>
+                <li class="bg-white p-2 border border-black rounded mt-2">
+                  <span class="font-bold text-[#00ACC1]">Nomme la ligne :</span> Traduis ton aide en compétence CV.
+                  <div class="mt-2 text-xs text-gray-600 border-l-2 border-[#C62828] pl-2 space-y-1">
+                    <div class="line-through opacity-50">"J'ai aidé à la Banque Alimentaire"</div>
+                    <div class="font-bold text-black">"Logistique & Rigueur → Utile pour les entreprises de cette zone"</div>
+                  </div>
+                </li>
+              </ol>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- DÉCLIC PRO -->
+      <div class="md:col-span-12 pop-card bg-[#4DD0E1] p-5 animate-pop delay-300 border-2 border-black flex flex-col md:flex-row gap-4 items-center">
+        <div class="bg-white p-3 rounded-full border-2 border-black shadow-[3px_3px_0px_#000]">
+          <svg class="w-8 h-8 text-[#00ACC1]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+        </div>
+        <div>
+          <h4 class="font-black text-lg uppercase tracking-wide text-white drop-shadow-[1px_1px_0px_#000]">💡 LE DÉCLIC PRO</h4>
+          <p class="text-sm font-bold text-black leading-snug">
+            Tu prouves ta <strong>« Capacité d'agir »</strong>. Un employeur verra sur ta carte que tu n'attends pas, mais que tu es déjà un
+            <strong>« Offreur de solutions »</strong> sur ton territoire.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FOOTER CAPSULES -->
+    <div class="mt-8 flex justify-center gap-3 animate-pop delay-400">
+      <div class="h-3 w-12 bg-[#FFB74D] rounded-full border border-black shadow-[2px_2px_0px_rgba(0,0,0,0.1)]"></div>
+      <div class="h-3 w-12 bg-[#FFD54F] rounded-full border border-black shadow-[2px_2px_0px_rgba(0,0,0,0.1)]"></div>
+      <div class="h-3 w-12 bg-[#4DD0E1] rounded-full border border-black shadow-[2px_2px_0px_rgba(0,0,0,0.1)]"></div>
+      <div class="h-3 w-12 bg-[#C62828] rounded-full border border-black shadow-[2px_2px_0px_rgba(0,0,0,0.1)]"></div>
+    </div>
+
   </main>
-
-  <script>
-    const KEY="mls4you_territoire_v1";
-    function readState(){ try{return JSON.parse(localStorage.getItem(KEY))||{} }catch{return{}} }
-    function writeState(s){ localStorage.setItem(KEY, JSON.stringify(s)); }
-    function ensure(){
-      const s=readState();
-      s.badges=s.badges||{relieur:false,createur:false,ancre:false,robuste:false};
-      s.done=s.done||{accueillir:false,creer:false,habiter:false,soin:false};
-      s.profile=s.profile||{};
-      s.creer=s.creer||{};
-      writeState(s); return s;
-    }
-    const S=ensure();
-
-    function setProgress(){
-      const done=[!!S.creer.m1?.phrase, !!S.creer.m2?.value, !!S.creer.m3?.pitch, !!S.creer.m4?.plan].filter(Boolean).length;
-      const pct=Math.round((done/4)*100);
-      document.getElementById("progress").style.width=pct+"%";
-      document.getElementById("pct").textContent=pct+"%";
-      document.getElementById("b-createur").dataset.on=(S.badges.createur||S.done.creer)?"1":"0";
-    }
-
-    function wireSingle(groupId){
-      const box=document.getElementById(groupId);
-      if(!box) return;
-      box.addEventListener("click",(e)=>{
-        const el=e.target.closest(".opt"); if(!el) return;
-        const k=el.getAttribute("data-k");
-        if(!k) return;
-        [...box.querySelectorAll(`.opt[data-k="${k}"]`)].forEach(x=>x.dataset.on="0");
-        el.dataset.on="1";
-        S.creer[k]=el.getAttribute("data-v");
-        writeState(S);
-      });
-    }
-
-    function wireMulti(groupId, maxPick){
-      const box=document.getElementById(groupId);
-      if(!box) return;
-      box.addEventListener("click",(e)=>{
-        const el=e.target.closest(".opt"); if(!el) return;
-        const selected=[...box.querySelectorAll('.opt[data-on="1"]')];
-        if(el.dataset.on==="1") el.dataset.on="0";
-        else{
-          if(selected.length>=maxPick) selected[0].dataset.on="0";
-          el.dataset.on="1";
-        }
-        const verbs=[...box.querySelectorAll('.opt[data-on="1"]')].map(x=>x.getAttribute("data-v"));
-        S.creer.m1 = S.creer.m1 || {};
-        S.creer.m1.verbs = verbs;
-        writeState(S);
-      });
-    }
-
-    function suggestM1(){ document.getElementById("m1phrase").value="J’ai vécu une situation où j’ai dû m’adapter et organiser pour que ça avance."; }
-    function suggestM2(){ document.getElementById("m2value").value="J’apporte de la fiabilité : je m’adapte vite et je garde une bonne relation avec les autres."; }
-    function suggestM3(){ document.getElementById("m3pitch").value="Je suis quelqu’un de fiable.\nJe sais m’adapter et organiser.\nÇa apporte du calme et de l’efficacité dans une équipe."; }
-    function suggestM4(){ document.getElementById("m4plan").value="Cette semaine : j’envoie 1 message pro + 1 phrase sur ce que j’apporte (ma contribution)."; }
-
-    function saveM1(){
-      S.creer.m1=S.creer.m1||{};
-      S.creer.m1.phrase=document.getElementById("m1phrase").value.trim();
-      writeState(S); setProgress(); alert("Micro 1 enregistré.");
-    }
-    function saveM2(){
-      S.creer.m2=S.creer.m2||{};
-      S.creer.m2.value=document.getElementById("m2value").value.trim();
-      writeState(S); setProgress(); alert("Micro 2 enregistré.");
-    }
-    function saveM3(){
-      S.creer.m3=S.creer.m3||{};
-      S.creer.m3.pitch=document.getElementById("m3pitch").value.trim();
-      writeState(S); setProgress(); alert("Micro 3 enregistré.");
-    }
-    function saveM4(){
-      S.creer.m4=S.creer.m4||{};
-      S.creer.m4.plan=document.getElementById("m4plan").value.trim();
-      writeState(S); setProgress(); alert("Micro 4 enregistré.");
-    }
-
-    function finishCreer(){
-      const ok=!!S.creer.m1?.phrase && !!S.creer.m2?.value && !!S.creer.m3?.pitch && !!S.creer.m4?.plan;
-      if(!ok){ alert("Il te manque au moins une production (Micro 1 à 4)."); return; }
-      S.done.creer=true;
-      S.badges.createur=true;
-
-      // Push synthèse
-      const verbs=(S.creer.m1?.verbs||[]).slice(0,2).join(" + ");
-      const contrib=S.creer.m2?.value || "";
-      const plan=S.creer.m4?.plan || "";
-      S.profile.contribution = (verbs ? `Verbes d’action : ${verbs}. ` : "") + contrib + (plan ? ` / Action : ${plan}` : "");
-      writeState(S);
-      setProgress();
-      alert("✅ Pilier CRÉER terminé — badge Créateur débloqué !");
-      window.location.href="./synthese.html";
-    }
-
-    function restore(){
-      // m1 vécu
-      if(S.creer.vecu){
-        [...document.querySelectorAll('#m1v .opt')].forEach(x=>{
-          if(x.getAttribute("data-v")===S.creer.vecu) x.dataset.on="1";
-        });
-      }
-      // m1 verbs
-      const verbs=S.creer.m1?.verbs||[];
-      [...document.querySelectorAll('#m1verbs .opt')].forEach(x=>{
-        if(verbs.includes(x.getAttribute("data-v"))) x.dataset.on="1";
-      });
-      if(S.creer.m1?.phrase) document.getElementById("m1phrase").value=S.creer.m1.phrase;
-
-      // m2 cible
-      if(S.creer.cible){
-        [...document.querySelectorAll('#m2who .opt')].forEach(x=>{
-          if(x.getAttribute("data-v")===S.creer.cible) x.dataset.on="1";
-        });
-      }
-      if(S.creer.m2?.value) document.getElementById("m2value").value=S.creer.m2.value;
-
-      if(S.creer.m3?.pitch) document.getElementById("m3pitch").value=S.creer.m3.pitch;
-
-      if(S.creer.action){
-        [...document.querySelectorAll('#m4act .opt')].forEach(x=>{
-          if(x.getAttribute("data-v")===S.creer.action) x.dataset.on="1";
-        });
-      }
-      if(S.creer.m4?.plan) document.getElementById("m4plan").value=S.creer.m4.plan;
-
-      setProgress();
-    }
-
-    window.addEventListener("load", ()=>{
-      if(typeof lucide!=="undefined") lucide.createIcons();
-      wireSingle("m1v");
-      wireSingle("m2who");
-      wireSingle("m4act");
-      wireMulti("m1verbs",2);
-      restore();
-    });
-  </script>
-  <div style="margin-top:40px; text-align:center;">
-  <a href="./index.html"
-     style="
-       display:inline-block;
-       padding:14px 22px;
-       background:#C62828;
-       color:white;
-       text-decoration:none;
-       border-radius:12px;
-       font-weight:700;
-       font-family:Montserrat, Arial;
-       box-shadow:0 6px 14px rgba(0,0,0,0.15);
-     ">
-     ← Retour au parcours MLS4YOU
-  </a>
-</div>
-
 </body>
 </html>
+
 
