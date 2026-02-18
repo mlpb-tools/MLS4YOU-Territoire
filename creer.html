@@ -1,264 +1,760 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fiche 2 : S'impliquer - LS4YOU</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Créer — Ce que je sais déjà faire | MLS4YOU Territoire</title>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
-
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@0.263.1/dist/umd/lucide.min.js"></script>
 
   <style>
     :root{
-      --c-red:#C62828;
-      --c-yellow:#FFD54F;
-      --c-yellow-dark:#FFC107;
-      --c-turq:#4DD0E1;
-      --c-turq-dark:#00ACC1;
-      --c-mint:#E0F2F1;
-      --c-orange:#FFB74D;
-      --c-orange-dark:#F57C00;
-      --c-white:#ffffff;
-      --c-black:#1a1a1a;
+      --red:#C62828;
+      --yellow:#FFC928;
+      --turq:#20B8AE;
+      --mint:#BFEFE8;
+      --orange:#FFB067;
+
+      --ink:#101114;
+      --muted: rgba(16,17,20,.72);
+      --bg:#FFF9F0;
+      --paper:#ffffff;
+
+      --shadow: 0 18px 36px rgba(16,17,20,.10);
+      --stroke: 3px;
+      --radius: 18px;
+      --max: 980px;
     }
 
+    *{box-sizing:border-box}
+    html,body{height:100%}
     body{
-      font-family:'Montserrat',sans-serif;
-      background-color:#f8f9fa;
-      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-      color:var(--c-black);
+      margin:0;
+      font-family:'Montserrat',system-ui,-apple-system,sans-serif;
+      background: var(--bg);
+      color: var(--ink);
       overflow-x:hidden;
-      min-height:100vh;
+    }
+    h1,h2,h3,.baloo{font-family:'Baloo 2',cursive; font-weight:800; letter-spacing:-.02em;}
+    a{color:inherit}
+
+    /* background */
+    .bg{
+      position: fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden;
+    }
+    .blob{position:absolute; border-radius:999px; filter: blur(2px); opacity:.65;}
+    .b1{width:420px;height:420px; left:-140px; top:-140px; background:rgba(255,201,40,.35);}
+    .b2{width:360px;height:360px; right:-140px; top:18%; background:rgba(198,40,40,.16);}
+    .b3{width:480px;height:480px; left:-200px; bottom:-150px; background:rgba(255,176,103,.30);}
+    .b4{width:320px;height:320px; right:-80px; bottom:-100px; background:rgba(32,184,174,.12);}
+
+    .wrap{
+      position: relative;
+      z-index: 1;
+      max-width: var(--max);
+      margin: 18px auto 28px;
+      padding: 0 16px 28px;
+    }
+
+    .frame{
+      border-radius: 24px;
+      overflow:hidden;
+      border: 5px solid transparent;
+      background-image:
+        linear-gradient(rgba(255,255,255,.95), rgba(255,255,255,.95)),
+        linear-gradient(135deg, var(--red), var(--yellow), var(--turq));
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      box-shadow: 0 22px 44px rgba(0,0,0,.10);
+    }
+
+    /* topbar */
+    .topbar{
+      padding: 14px 16px;
+      background: #fff;
+      border-bottom: 4px solid var(--yellow);
       display:flex;
-      justify-content:center;
       align-items:center;
-      padding:20px;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .back{
+      display:inline-flex; align-items:center; gap:10px;
+      text-decoration:none;
+      font-weight:800;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+      color: var(--muted);
+      padding:10px 12px;
+      border-radius:999px;
+      border:2px solid rgba(16,17,20,.10);
+      background: #fff;
+      transition:.18s ease;
+      white-space:nowrap;
+    }
+    .back:hover{transform: translateY(-1px); border-color: var(--yellow); color: var(--ink); box-shadow: 0 8px 18px rgba(16,17,20,.08);}
+    .crumb{
+      display:inline-flex; align-items:center; gap:8px;
+      font-weight:800; font-size:12px; color: var(--muted);
+      text-transform:uppercase; letter-spacing:.06em;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      font-weight:900;
+      padding:10px 12px;
+      border-radius:999px;
+      border: 3px solid var(--ink);
+      background: rgba(255,201,40,.22);
+      box-shadow: 6px 6px 0 rgba(16,17,20,.08);
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      font-size:12px;
+      white-space:nowrap;
     }
 
-    h1,h2,h3,.font-title{
-      font-family:'Poppins',sans-serif;
-      letter-spacing:-0.02em;
-    }
-
-    .pop-card{
-      background:white;
-      border:3px solid var(--c-black);
-      box-shadow:8px 8px 0px var(--c-black);
-      border-radius:20px;
+    /* hero */
+    .hero{ padding: 18px 16px 0; background:#fff; }
+    .heroCard{
       position:relative;
-      z-index:10;
-      transition:transform .2s ease;
+      border-radius: 22px;
+      padding: 18px 18px;
+      border: 4px solid var(--ink);
+      background: linear-gradient(180deg, rgba(255,201,40,.28), rgba(255,255,255,.92));
+      box-shadow: 10px 10px 0 rgba(16,17,20,.08);
+      overflow:hidden;
     }
-    .pop-card:hover{
-      transform:translate(-2px,-2px);
-      box-shadow:10px 10px 0px var(--c-black);
+    .grain{
+      position:absolute; inset:0; opacity:.07; pointer-events:none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .heroTop{ display:flex; align-items:flex-start; justify-content:space-between; gap:14px; }
+    .kicker{
+      display:inline-flex; align-items:center; gap:8px;
+      background: var(--yellow);
+      color: var(--ink);
+      font-weight:900;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 3px solid var(--ink);
+      box-shadow: 6px 6px 0 rgba(16,17,20,.10);
+      text-transform:uppercase;
+      letter-spacing:.05em;
+      font-size:12px;
+    }
+    .heroIcon{
+      width: 44px; height:44px;
+      border-radius: 14px;
+      border: 3px solid var(--ink);
+      background: #fff;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow: 6px 6px 0 rgba(16,17,20,.08);
+      flex:0 0 auto;
+    }
+    .heroIcon i{color: var(--red)}
+    .title{
+      margin: 14px 0 6px;
+      font-size: clamp(26px, 4vw, 38px);
+      line-height:1.0;
+      text-transform:uppercase;
+    }
+    .subtitle{
+      margin: 0;
+      font-weight:800;
+      color: var(--muted);
+      max-width: 85ch;
+      line-height:1.4;
+    }
+    .callout{
+      margin-top: 14px;
+      padding: 14px 14px;
+      border-radius: 16px;
+      border: 3px dashed rgba(16,17,20,.25);
+      background: rgba(255,255,255,.92);
+      font-weight:800;
+      color: var(--ink);
+    }
+    .callout strong{font-weight:900}
+
+    /* content */
+    .board{ padding: 16px; background:#fff; }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items:start;
     }
 
-    @keyframes popIn{
-      0%{opacity:0;transform:scale(.9) rotate(2deg);}
-      100%{opacity:1;transform:scale(1) rotate(0deg);}
+    .card{
+      border-radius: var(--radius);
+      border: 3px solid var(--ink);
+      background: var(--paper);
+      box-shadow: 10px 10px 0 rgba(16,17,20,.08);
+      overflow:hidden;
     }
-    @keyframes float{
-      0%,100%{transform:translateY(0px);}
-      50%{transform:translateY(-10px);}
+    .cardHead{
+      padding: 12px 14px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      border-bottom: 3px solid rgba(16,17,20,.12);
+      background: rgba(255,201,40,.22);
     }
-    .animate-pop{animation:popIn .6s cubic-bezier(.34,1.56,.64,1) forwards;}
-    .delay-100{animation-delay:.1s;}
-    .delay-200{animation-delay:.2s;}
-    .delay-300{animation-delay:.3s;}
-    .delay-400{animation-delay:.4s;}
-    .floating{animation:float 4s ease-in-out infinite;}
+    .cardHead h3{
+      margin:0;
+      font-size: 16px;
+      text-transform:uppercase;
+      letter-spacing:.03em;
+      line-height:1.1;
+    }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background:#fff;
+      border:2px solid rgba(16,17,20,.10);
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+      font-size: 11px;
+      white-space:nowrap;
+    }
+    .dot{width:12px;height:12px;border-radius:999px;}
+    .dot.y{background:var(--yellow)}
+    .dot.r{background:var(--red)}
+    .dot.t{background:var(--turq)}
 
-    .decoration-circle{
-      position:absolute;
-      border-radius:50%;
-      border:2px solid var(--c-black);
-      z-index:-1;
+    .cardBody{ padding: 14px; }
+
+    /* postits */
+    .postits{ display:flex; flex-wrap:wrap; gap:10px; margin-top:8px; }
+    .postit{
+      padding: 10px 10px;
+      border-radius: 14px;
+      border: 2px solid rgba(16,17,20,.20);
+      font-weight:900;
+      font-size: 12px;
+      box-shadow: 6px 6px 0 rgba(16,17,20,.06);
+      transform: rotate(-1deg);
+      background: rgba(255,201,40,.28);
+      display:inline-flex; align-items:center; gap:8px;
+    }
+    .postit:nth-child(2n){ transform: rotate(1.5deg); }
+    .postit:nth-child(3n){ transform: rotate(-2deg); }
+    .postit i{ width:16px; height:16px; color: rgba(16,17,20,.75); }
+
+    .smallHint{ margin-top: 10px; font-size: 12px; color: var(--muted); font-weight:800; }
+
+    /* inputs */
+    label{
+      display:block;
+      font-weight:900;
+      font-size: 12px;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      margin: 10px 0 6px;
+      color: rgba(16,17,20,.85);
+    }
+    textarea, input[type="text"]{
+      width:100%;
+      border: 3px solid rgba(16,17,20,.14);
+      border-radius: 14px;
+      padding: 12px 12px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight:700;
+      background: rgba(255,255,255,.92);
+      outline:none;
+      transition: .15s ease;
+    }
+    textarea{ min-height: 92px; resize: vertical; }
+    textarea:focus, input[type="text"]:focus{
+      border-color: var(--yellow);
+      box-shadow: 0 0 0 6px rgba(255,201,40,.22);
     }
 
-    .shine{position:relative;overflow:hidden;}
-    .shine::after{
-      content:'';
-      position:absolute;top:0;left:-100%;
-      width:50%;height:100%;
-      background:linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 50%, rgba(255,255,255,0) 100%);
-      transform:skewX(-25deg);
-      animation:shine 3s infinite;
-    }
-    @keyframes shine{100%{left:125%;}}
+    .row2{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
-    /* bouton retour simple */
-    .back-btn{
-      position:fixed;
-      left:16px;
-      bottom:16px;
-      z-index:50;
+    /* skills chips */
+    .skills{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 10px;
+    }
+    .skill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 10px 10px;
+      border-radius: 999px;
+      border: 2px solid rgba(16,17,20,.14);
+      background:#fff;
+      font-weight:900;
+      font-size: 12px;
+      color: rgba(16,17,20,.80);
+      box-shadow: 0 8px 16px rgba(16,17,20,.06);
+      cursor:pointer;
+      user-select:none;
+      transition:.12s ease;
+    }
+    .skill:hover{ transform: translateY(-1px); border-color: rgba(198,40,40,.35); }
+    .skill.active{
+      border-color: var(--red);
+      box-shadow: 0 12px 20px rgba(198,40,40,.12);
+    }
+    .skill .tag{
+      width:10px; height:10px; border-radius:999px; background: rgba(198,40,40,.20);
+    }
+    .skill.active .tag{ background: var(--red); }
+
+    /* sectors */
+    .sectors{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px 12px;
+      margin-top: 10px;
+    }
+    .sector{
+      display:flex; align-items:flex-start; gap:10px;
+      border-radius: 14px;
+      border: 2px solid rgba(16,17,20,.10);
+      background: rgba(255,255,255,.92);
+      padding: 10px 10px;
+      font-weight:900;
+      color: rgba(16,17,20,.80);
+    }
+    .sector input{ margin-top:2px; width:18px; height:18px; accent-color: var(--yellow); }
+
+    /* sentence builder */
+    .sentence{
+      border-radius: 18px;
+      border: 3px solid rgba(16,17,20,.16);
+      background: rgba(255,201,40,.18);
+      padding: 14px 14px;
+      box-shadow: 10px 10px 0 rgba(16,17,20,.06);
+    }
+    .sentence p{ margin:0; font-weight:900; }
+    .sentence .line{
+      margin-top:10px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    .sentence input{
+      border-color: rgba(16,17,20,.16);
+    }
+    .preview{
+      margin-top: 10px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 2px dashed rgba(16,17,20,.22);
+      background: #fff;
+      font-weight:900;
+      color: rgba(16,17,20,.85);
+      line-height:1.35;
+    }
+
+    /* actions */
+    .actions{
+      padding: 14px 16px 18px;
+      background:#fff;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      border-top: 3px solid rgba(16,17,20,.10);
+    }
+    .note{
+      font-size: 12px;
+      font-weight:900;
+      color: var(--muted);
+      max-width: 80ch;
+      line-height:1.4;
+    }
+    .btns{display:flex; gap:10px; flex-wrap:wrap;}
+    .btn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.06em;
       display:inline-flex;
       align-items:center;
       gap:10px;
-      padding:12px 14px;
-      background:#fff;
-      border:2px solid #000;
-      border-radius:14px;
-      font-weight:800;
-      text-decoration:none;
-      color:#111;
-      box-shadow:4px 4px 0 #000;
-      transition:transform .15s ease;
+      box-shadow: 0 10px 20px rgba(16,17,20,.10);
+      transition:.18s ease;
     }
-    .back-btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #000;}
+    .btn:hover{ transform: translateY(-2px); box-shadow: 0 16px 28px rgba(16,17,20,.14); }
+    .btn-primary{ background: var(--ink); color:#fff; }
+    .btn-yellow{ background: var(--yellow); color: var(--ink); }
+    .btn-ghost{ background:#fff; color: var(--ink); border: 3px solid rgba(16,17,20,.14); }
+
+    @media (max-width: 860px){
+      .grid{ grid-template-columns: 1fr; }
+      .sectors{ grid-template-columns: 1fr; }
+      .row2{ grid-template-columns: 1fr; }
+      .sentence .line{ grid-template-columns: 1fr; }
+      .badge{ display:none; }
+    }
   </style>
 </head>
 
-<body class="bg-gray-50">
-
-  <!-- Bouton retour vers l'accueil du site -->
-  <a class="back-btn" href="./index.html" aria-label="Retour au parcours">
-    ← Retour
-  </a>
-
-  <!-- DECORATIVE BACKGROUND ELEMENTS -->
-  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
-    <div class="decoration-circle bg-[#FFB74D] w-40 h-40 top-20 right-20 opacity-60 floating" style="animation-delay:0.5s;"></div>
-    <div class="decoration-circle bg-[#C62828] w-20 h-20 bottom-10 left-10 opacity-50 floating" style="animation-delay:1.5s;"></div>
-    <div class="decoration-circle bg-[#4DD0E1] w-12 h-12 top-10 left-1/3 opacity-70 floating" style="animation-delay:2.5s;"></div>
-
-    <svg class="absolute bottom-0 right-0 w-64 h-64 text-[#FFF8E1] -z-10" viewBox="0 0 100 100" fill="currentColor">
-      <circle cx="80" cy="80" r="40" />
-    </svg>
+<body>
+  <div class="bg" aria-hidden="true">
+    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div>
   </div>
 
-  <!-- MAIN CONTAINER -->
-  <main class="max-w-3xl w-full mx-auto relative z-10 my-10">
+  <main class="wrap">
+    <section class="frame">
 
-    <!-- FICHE HEADER -->
-    <div class="pop-card p-6 md:p-10 mb-6 animate-pop bg-white shine">
-      <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-4">
-        <span class="bg-[#FFB74D] text-black font-black px-4 py-1 rounded-full border-2 border-black shadow-[3px_3px_0px_#000] text-sm uppercase tracking-wider mb-2 md:mb-0">
-          Fiche 2 : Créer
-        </span>
-
-        <svg class="w-10 h-10 text-[#C62828]" fill="currentColor" viewBox="0 0 24 24" stroke="black" stroke-width="2" aria-hidden="true">
-          <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/>
-        </svg>
-      </div>
-
-      <h1 class="text-4xl md:text-5xl font-black text-[#1a1a1a] mb-2 leading-tight">
-        S'IMPLIQUER
-      </h1>
-      <h2 class="text-lg md:text-xl font-bold text-[#FFB74D] font-title drop-shadow-[1px_1px_0px_#000]">
-        De demandeur passif à offreur de valeur
-      </h2>
-    </div>
-
-    <!-- CONTENT BLOCKS -->
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-
-      <!-- POURQUOI -->
-      <div class="md:col-span-12 pop-card p-6 bg-[#FFF3E0] animate-pop delay-100 border-l-8 border-l-[#FFB74D]">
-        <h3 class="font-black text-2xl mb-3 text-[#E65100] flex items-center gap-2">
-          <span class="text-3xl">?</span> POURQUOI CETTE FICHE
-        </h3>
-        <p class="mb-4 font-medium leading-relaxed">
-          Tu n'as pas encore de "vrai" job ? Alors <strong>crée ton expérience</strong>. Aujourd'hui, travailler c'est avant tout résoudre des problèmes.
-          Les associations locales, en crise de financement, sont le meilleur laboratoire pour toi : elles ont besoin de bras et d'idées.
-        </p>
-        <div class="bg-white p-4 rounded-xl border-2 border-black shadow-[4px_4px_0px_#FFB74D]">
-          <p class="text-sm">
-            <span class="font-bold text-[#C62828]">L'ENJEU :</span> Une heure de bénévolat où tu organises un événement ou gères un stock, c'est une
-            <strong>compétence professionnelle réelle</strong> (organisation, gestion, aide).
-            <br><br>
-            👉 C'est la preuve de ta capacité à passer à l'action.
-          </p>
+      <div class="topbar">
+        <a class="back" href="index.html">
+          <i data-lucide="arrow-left" style="width:18px;height:18px;"></i>
+          Retour
+        </a>
+        <div class="crumb">
+          <i data-lucide="sparkles" style="width:18px;height:18px;"></i>
+          Créer
+        </div>
+        <div class="badge">
+          <span style="display:inline-flex;align-items:center;gap:8px;">
+            <span style="width:10px;height:10px;border-radius:999px;background:var(--yellow);display:inline-block;"></span>
+            Expérience perso → valeur pro
+          </span>
         </div>
       </div>
 
-      <!-- ACTION -->
-      <div class="md:col-span-12 pop-card p-0 overflow-hidden animate-pop delay-200">
-        <div class="bg-[#FFB74D] p-4 border-b-3 border-black flex items-center justify-between">
-          <h3 class="font-black text-xl md:text-2xl text-black drop-shadow-[1px_1px_0px_#FFF]">
-            🗺️ ACTION : CALQUE « TALENTS »
-          </h3>
-          <span class="bg-black text-[#FFB74D] text-xs font-bold px-2 py-1 rounded border border-white">CODE : ORANGE</span>
-        </div>
+      <section class="hero">
+        <div class="heroCard">
+          <div class="grain" aria-hidden="true"></div>
 
-        <div class="p-6 bg-white">
-
-          <!-- Step 1 -->
-          <div class="mb-6 relative">
-            <div class="absolute -left-3 -top-3 bg-[#4DD0E1] w-8 h-8 rounded-full border-2 border-black flex items-center justify-center font-black shadow-[2px_2px_0px_#000]">1</div>
-            <div class="border-2 border-dashed border-gray-300 rounded-xl p-4 ml-2">
-              <h4 class="font-black text-lg text-[#C62828] mb-2">L'Inventaire du Don/Contre-don</h4>
-              <p class="text-sm mb-2">Le territoire a des besoins, tu as des savoir-faire (même informels).</p>
-              <ul class="text-sm font-medium space-y-2">
-                <li class="flex items-start gap-2">
-                  <span class="text-[#FFB74D] font-bold">Q1 :</span>
-                  Où as-tu déjà donné un coup de main ? (Déménagement, réparation, fête locale).
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-[#FFB74D] font-bold">Q2 :</span>
-                  Quelle qualité as-tu utilisée ? (Force, patience, technique, cuisine).
-                </li>
-              </ul>
+          <div class="heroTop">
+            <div class="kicker">
+              <i data-lucide="hammer" style="width:18px;height:18px;"></i>
+              Module 2 — CRÉER
+            </div>
+            <div class="heroIcon" aria-hidden="true">
+              <i data-lucide="zap" style="width:22px;height:22px;"></i>
             </div>
           </div>
 
-          <!-- Step 2 -->
-          <div class="relative">
-            <div class="absolute -left-3 -top-3 bg-[#4DD0E1] w-8 h-8 rounded-full border-2 border-black flex items-center justify-center font-black shadow-[2px_2px_0px_#000]">2</div>
-            <div class="bg-[#E0F2F1] border-2 border-black rounded-xl p-4 ml-2 shadow-[4px_4px_0px_#4DD0E1]">
-              <h4 class="font-black text-lg text-[#C62828] mb-2">La Cartographie Digitale (My Maps)</h4>
-              <p class="text-sm mb-3">Sur ton calque <strong>« Mes Talents »</strong>, fais le lien entre toi et l'économie locale.</p>
+          <h1 class="title">CRÉER — Ce que je sais déjà faire pour être utile</h1>
+          <p class="subtitle">
+            Tu n’as pas besoin d’un “grand CV” pour avoir de la valeur : tes expériences perso
+            montrent déjà des <strong>compétences</strong>. Ici, tu les rends visibles et tu transformes ça en phrase pro.
+          </p>
 
-              <ol class="list-decimal list-inside text-sm space-y-2 font-medium">
-                <li>Place un repère sur une <strong>Zone d'Activité</strong> ou entreprise phare <span class="text-gray-500 text-xs">(ex: Zone Technocité)</span>.</li>
-                <li>Trace une ligne entre <strong>Ton Domicile</strong> (ou lieu de bénévolat) et cette Zone.</li>
-                <li class="bg-white p-2 border border-black rounded mt-2">
-                  <span class="font-bold text-[#00ACC1]">Nomme la ligne :</span> Traduis ton aide en compétence CV.
-                  <div class="mt-2 text-xs text-gray-600 border-l-2 border-[#C62828] pl-2 space-y-1">
-                    <div class="line-through opacity-50">"J'ai aidé à la Banque Alimentaire"</div>
-                    <div class="font-bold text-black">"Logistique & Rigueur → Utile pour les entreprises de cette zone"</div>
+          <div class="callout">
+            👉 <strong>Ton expérience perso = déjà de la valeur pro.</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="board">
+        <div class="grid">
+
+          <!-- 1 - Experiences -->
+          <article class="card">
+            <div class="cardHead">
+              <h3>🔧 Choses que j’ai déjà faites</h3>
+              <span class="chip"><span class="dot y"></span>Post-it</span>
+            </div>
+            <div class="cardBody">
+              <p style="margin:0; font-weight:800; color:var(--muted); font-size:13px;">
+                Note tout ce que tu as déjà fait dans la vraie vie (même “petit”).
+              </p>
+
+              <div class="postits" aria-label="Exemples">
+                <span class="postit"><i data-lucide="truck"></i>Aider à déménager</span>
+                <span class="postit"><i data-lucide="baby"></i>Garder des enfants</span>
+                <span class="postit"><i data-lucide="heart-handshake"></i>Aider un grand-parent</span>
+                <span class="postit"><i data-lucide="tool"></i>Bricoler</span>
+                <span class="postit"><i data-lucide="package"></i>Monter un meuble</span>
+                <span class="postit"><i data-lucide="party-popper"></i>Organiser une fête</span>
+                <span class="postit"><i data-lucide="wallet"></i>Gérer une caisse asso</span>
+                <span class="postit"><i data-lucide="construction"></i>Aider sur chantier</span>
+                <span class="postit"><i data-lucide="sprout"></i>Jardiner</span>
+                <span class="postit"><i data-lucide="bike"></i>Réparer vélo / scooter</span>
+              </div>
+
+              <label for="faits">Mes expériences (liste)</label>
+              <textarea id="faits" placeholder="Ex : déménagement (porter + organiser) / garder enfants / aider papi (courses) / montage meuble / aider sur chantier / réparation vélo…"></textarea>
+
+              <div class="smallHint">
+                💡 Ajoute si possible : <strong>où</strong> / <strong>avec qui</strong> / <strong>combien de temps</strong> / <strong>ce qui était difficile</strong>.
+              </div>
+            </div>
+          </article>
+
+          <!-- 2 - Hidden skills -->
+          <article class="card">
+            <div class="cardHead" style="background: rgba(198,40,40,.10);">
+              <h3>🧠 Compétences cachées derrière</h3>
+              <span class="chip"><span class="dot r"></span>Compétences</span>
+            </div>
+            <div class="cardBody">
+              <p style="margin:0; font-weight:800; color:var(--muted); font-size:13px;">
+                Clique pour sélectionner. Tu peux en choisir plusieurs.
+              </p>
+
+              <div class="skills" id="skills">
+                <div class="skill" data-skill="Organisation"><span class="tag"></span>Organisation</div>
+                <div class="skill" data-skill="Relation client"><span class="tag"></span>Relation client</div>
+                <div class="skill" data-skill="Travail équipe"><span class="tag"></span>Travail équipe</div>
+                <div class="skill" data-skill="Logique"><span class="tag"></span>Logique</div>
+                <div class="skill" data-skill="Manuel / technique"><span class="tag"></span>Manuel / technique</div>
+                <div class="skill" data-skill="Autonomie"><span class="tag"></span>Autonomie</div>
+                <div class="skill" data-skill="Gestion stress"><span class="tag"></span>Gestion stress</div>
+                <div class="skill" data-skill="Respect consignes"><span class="tag"></span>Respect consignes</div>
+              </div>
+
+              <label for="skillsPlus">Autres compétences (si tu veux)</label>
+              <input id="skillsPlus" type="text" placeholder="Ex : ponctualité, précision, sens du service, sécurité…" />
+
+              <div class="smallHint">
+                ✅ Ton objectif : relier au moins <strong>2 expériences</strong> à <strong>3 compétences</strong>.
+              </div>
+            </div>
+          </article>
+
+          <!-- 3 - Local sectors -->
+          <article class="card">
+            <div class="cardHead" style="background: rgba(32,184,174,.14);">
+              <h3>🏢 Où ça peut servir localement</h3>
+              <span class="chip"><span class="dot t"></span>Secteurs</span>
+            </div>
+            <div class="cardBody">
+              <p style="margin:0; font-weight:800; color:var(--muted); font-size:13px;">
+                Coche les secteurs où tes compétences peuvent être utiles.
+              </p>
+
+              <div class="sectors" role="group" aria-label="Secteurs">
+                <label class="sector"><input type="checkbox" id="s1"> BTP</label>
+                <label class="sector"><input type="checkbox" id="s2"> Logistique</label>
+                <label class="sector"><input type="checkbox" id="s3"> Commerce</label>
+                <label class="sector"><input type="checkbox" id="s4"> Tourisme</label>
+                <label class="sector"><input type="checkbox" id="s5"> Agroalimentaire</label>
+                <label class="sector"><input type="checkbox" id="s6"> Aide à domicile</label>
+                <label class="sector"><input type="checkbox" id="s7"> Industrie</label>
+                <label class="sector"><input type="checkbox" id="s8"> Autre</label>
+              </div>
+
+              <label for="secteurAutre">Si “Autre”, précise</label>
+              <input id="secteurAutre" type="text" placeholder="Ex : événementiel, sport, mécanique, nettoyage…" />
+
+              <div class="smallHint">
+                💡 Le but : faire le lien entre <strong>ta vie</strong> et <strong>les besoins du territoire</strong>.
+              </div>
+            </div>
+          </article>
+
+          <!-- 4 - Concrete proposal -->
+          <article class="card">
+            <div class="cardHead" style="background: rgba(255,176,103,.18);">
+              <h3>⭐ Ce que je peux proposer concrètement</h3>
+              <span class="chip"><span class="dot y"></span>Phrase pro</span>
+            </div>
+            <div class="cardBody">
+
+              <div class="sentence">
+                <p>👉 Je peux aider une entreprise à <span style="color:var(--red);">__________</span> grâce à <span style="color:var(--red);">__________</span>.</p>
+
+                <div class="line">
+                  <div>
+                    <label for="verbe">Aider à… (verbe d’action)</label>
+                    <input id="verbe" type="text" placeholder="Ex : organiser / réparer / accueillir / livrer / ranger…" />
                   </div>
-                </li>
-              </ol>
+                  <div>
+                    <label for="grace">Grâce à… (preuve)</label>
+                    <input id="grace" type="text" placeholder="Ex : mon expérience déménagement / mon bricolage / mon sens du service…" />
+                  </div>
+                </div>
+
+                <div class="preview" id="preview">
+                  Prévisualisation : <span style="opacity:.75;">(remplis les 2 champs)</span>
+                </div>
+              </div>
+
+              <label for="exemple">Exemple concret (1 situation)</label>
+              <textarea id="exemple" placeholder="Ex : Lors d’un déménagement, j’ai organisé les cartons par pièces + géré le timing → ça montre organisation + travail d’équipe."></textarea>
+
+              <div class="smallHint">
+                ✅ Objectif : avoir <strong>1 phrase pro</strong> que tu peux dire en entretien.
+              </div>
             </div>
-          </div>
+          </article>
 
+        </div>
+      </section>
+
+      <div class="actions">
+        <div class="note">
+          👉 <strong>À retenir :</strong> on ne cherche pas “un CV parfait”. On cherche une <strong>preuve</strong> que tu sais être utile.
+        </div>
+        <div class="btns">
+          <button class="btn btn-ghost" type="button" onclick="resetForm()">
+            <i data-lucide="rotate-ccw" style="width:18px;height:18px;"></i>
+            Réinitialiser
+          </button>
+          <button class="btn btn-yellow" type="button" onclick="saveLocal()">
+            <i data-lucide="save" style="width:18px;height:18px;"></i>
+            Sauver
+          </button>
+          <a class="btn btn-primary" href="habiter.html" style="text-decoration:none;">
+            <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
+            Continuer → Habiter
+          </a>
         </div>
       </div>
 
-      <!-- DÉCLIC PRO -->
-      <div class="md:col-span-12 pop-card bg-[#4DD0E1] p-5 animate-pop delay-300 border-2 border-black flex flex-col md:flex-row gap-4 items-center">
-        <div class="bg-white p-3 rounded-full border-2 border-black shadow-[3px_3px_0px_#000]">
-          <svg class="w-8 h-8 text-[#00ACC1]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-          </svg>
-        </div>
-        <div>
-          <h4 class="font-black text-lg uppercase tracking-wide text-white drop-shadow-[1px_1px_0px_#000]">💡 LE DÉCLIC PRO</h4>
-          <p class="text-sm font-bold text-black leading-snug">
-            Tu prouves ta <strong>« Capacité d'agir »</strong>. Un employeur verra sur ta carte que tu n'attends pas, mais que tu es déjà un
-            <strong>« Offreur de solutions »</strong> sur ton territoire.
-          </p>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- FOOTER CAPSULES -->
-    <div class="mt-8 flex justify-center gap-3 animate-pop delay-400">
-      <div class="h-3 w-12 bg-[#FFB74D] rounded-full border border-black shadow-[2px_2px_0px_rgba(0,0,0,0.1)]"></div>
-      <div class="h-3 w-12 bg-[#FFD54F] rounded-full border border-black shadow-[2px_2px_0px_rgba(0,0,0,0.1)]"></div>
-      <div class="h-3 w-12 bg-[#4DD0E1] rounded-full border border-black shadow-[2px_2px_0px_rgba(0,0,0,0.1)]"></div>
-      <div class="h-3 w-12 bg-[#C62828] rounded-full border border-black shadow-[2px_2px_0px_rgba(0,0,0,0.1)]"></div>
-    </div>
-
+    </section>
   </main>
+
+  <script>
+    const KEY = "mls4you_territoire_creer_v1";
+
+    function qs(id){ return document.getElementById(id); }
+
+    function readSelectedSkills(){
+      return Array.from(document.querySelectorAll('.skill.active')).map(el => el.dataset.skill);
+    }
+
+    function setSelectedSkills(list){
+      const set = new Set(list || []);
+      document.querySelectorAll('.skill').forEach(el=>{
+        const on = set.has(el.dataset.skill);
+        el.classList.toggle('active', on);
+        el.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+    }
+
+    function getFields(){
+      return {
+        faits: qs('faits').value.trim(),
+        skills: readSelectedSkills(),
+        skillsPlus: qs('skillsPlus').value.trim(),
+        secteurs: {
+          btp: qs('s1').checked,
+          logistique: qs('s2').checked,
+          commerce: qs('s3').checked,
+          tourisme: qs('s4').checked,
+          agro: qs('s5').checked,
+          aide: qs('s6').checked,
+          industrie: qs('s7').checked,
+          autre: qs('s8').checked,
+        },
+        secteurAutre: qs('secteurAutre').value.trim(),
+        verbe: qs('verbe').value.trim(),
+        grace: qs('grace').value.trim(),
+        exemple: qs('exemple').value.trim(),
+        savedAt: new Date().toISOString()
+      };
+    }
+
+    function setFields(d){
+      if(!d) return;
+      qs('faits').value = d.faits || "";
+      qs('skillsPlus').value = d.skillsPlus || "";
+      setSelectedSkills(d.skills || []);
+
+      const s = d.secteurs || {};
+      qs('s1').checked = !!s.btp;
+      qs('s2').checked = !!s.logistique;
+      qs('s3').checked = !!s.commerce;
+      qs('s4').checked = !!s.tourisme;
+      qs('s5').checked = !!s.agro;
+      qs('s6').checked = !!s.aide;
+      qs('s7').checked = !!s.industrie;
+      qs('s8').checked = !!s.autre;
+
+      qs('secteurAutre').value = d.secteurAutre || "";
+      qs('verbe').value = d.verbe || "";
+      qs('grace').value = d.grace || "";
+      qs('exemple').value = d.exemple || "";
+      updatePreview();
+    }
+
+    function updatePreview(){
+      const v = qs('verbe').value.trim();
+      const g = qs('grace').value.trim();
+      const p = qs('preview');
+      if(!v && !g){
+        p.innerHTML = `Prévisualisation : <span style="opacity:.75;">(remplis les 2 champs)</span>`;
+        return;
+      }
+      const vv = v || "__________";
+      const gg = g || "__________";
+      p.textContent = `Prévisualisation : Je peux aider une entreprise à ${vv} grâce à ${gg}.`;
+    }
+
+    function saveLocal(){
+      try{
+        localStorage.setItem(KEY, JSON.stringify(getFields()));
+        toast("Sauvegardé ✅");
+      }catch(e){
+        toast("Impossible de sauvegarder ❌");
+      }
+    }
+
+    function resetForm(){
+      if(!confirm("Réinitialiser tout le contenu ?")) return;
+      localStorage.removeItem(KEY);
+      setFields({});
+      toast("Réinitialisé");
+    }
+
+    function toast(text){
+      const t = document.createElement('div');
+      t.textContent = text;
+      t.style.position = 'fixed';
+      t.style.left = '50%';
+      t.style.bottom = '18px';
+      t.style.transform = 'translateX(-50%)';
+      t.style.background = 'rgba(16,17,20,.92)';
+      t.style.color = 'white';
+      t.style.padding = '12px 14px';
+      t.style.borderRadius = '14px';
+      t.style.fontWeight = '900';
+      t.style.letterSpacing = '.04em';
+      t.style.zIndex = '9999';
+      t.style.boxShadow = '0 14px 28px rgba(0,0,0,.18)';
+      document.body.appendChild(t);
+      setTimeout(()=>{ t.style.opacity = '0'; t.style.transition='opacity .25s ease'; }, 1100);
+      setTimeout(()=>{ t.remove(); }, 1500);
+    }
+
+    // interactions
+    document.addEventListener('click', (e)=>{
+      const el = e.target.closest('.skill');
+      if(!el) return;
+      el.classList.toggle('active');
+      const on = el.classList.contains('active');
+      el.setAttribute('aria-pressed', on ? 'true' : 'false');
+      try { localStorage.setItem(KEY, JSON.stringify(getFields())); } catch {}
+    });
+
+    ['faits','skillsPlus','secteurAutre','verbe','grace','exemple','s1','s2','s3','s4','s5','s6','s7','s8'].forEach(id=>{
+      const el = qs(id);
+      if(!el) return;
+      el.addEventListener('input', ()=>{
+        if(id === 'verbe' || id === 'grace') updatePreview();
+      });
+      el.addEventListener('change', ()=>{ try { localStorage.setItem(KEY, JSON.stringify(getFields())); } catch {} });
+    });
+
+    window.addEventListener('load', function(){
+      try{
+        const saved = JSON.parse(localStorage.getItem(KEY) || "null");
+        if(saved) setFields(saved);
+      }catch{}
+      updatePreview();
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    });
+  </script>
 </body>
 </html>
 
