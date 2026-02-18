@@ -1,9 +1,9 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MLS4YOU — Accueillir (Fiche intégrée)</title>
+  <title>Accueillir — Mes tribus & réseaux | MLS4YOU Territoire</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,121 +11,675 @@
   <script src="https://unpkg.com/lucide@0.263.1/dist/umd/lucide.min.js"></script>
 
   <style>
-    :root { --red:#C62828; --yellow:#FFC928; --turq:#20B8AE; --mint:#BFEFE8; --orange:#FFB067; --bg:#FFF9F0; --ink:#101114; --muted:rgba(16,17,20,.7); --max:980px; }
-    *{box-sizing:border-box} html,body{height:100%}
-    body{margin:0;background:var(--bg);color:var(--ink);font-family:'Montserrat',system-ui,-apple-system,sans-serif;overflow-x:hidden}
-    h1,h2,h3{font-family:'Baloo 2',cursive;font-weight:800;margin:0}
-    .bg-shapes{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
-    .bg-circle{position:absolute;border-radius:999px;filter:blur(2px);opacity:.8}
-    .c-mint{width:400px;height:400px;left:-100px;top:-100px;background:var(--mint);opacity:.9}
-    .c-yellow{width:350px;height:350px;right:-100px;top:15%;background:rgba(255,201,40,.5)}
-    .c-orange{width:450px;height:450px;left:-150px;bottom:0;background:rgba(255,176,103,.4)}
-    .c-red{width:300px;height:300px;right:-50px;bottom:-50px;background:rgba(198,40,40,.25)}
-    .wrap{position:relative;z-index:1;max-width:var(--max);margin:22px auto 28px;padding:0 16px 26px}
-    .frame{border-radius:24px;box-shadow:0 20px 40px rgba(0,0,0,.1);overflow:hidden;border:5px solid transparent;background-image:linear-gradient(rgba(255,255,255,.95),rgba(255,255,255,.95)),linear-gradient(135deg,var(--red),var(--yellow),var(--turq));background-origin:border-box;background-clip:padding-box,border-box}
-    .content{background:#fff;padding:18px 16px 14px}
+    :root{
+      --red:#C62828;
+      --yellow:#FFC928;
+      --turq:#20B8AE;
+      --mint:#BFEFE8;
+      --orange:#FFB067;
+      --ink:#101114;
+      --muted: rgba(16,17,20,.72);
+      --bg:#FFF9F0;
+      --paper:#ffffff;
+      --shadow: 0 18px 36px rgba(16,17,20,.10);
+      --stroke: 3px;
+      --radius: 18px;
+      --max: 980px;
+    }
 
-    .panel{margin-top:14px;border-radius:18px;border:3px solid rgba(16,17,20,.08);box-shadow:0 8px 16px rgba(16,17,20,.06);overflow:hidden}
-    .panel-h{padding:14px 14px;background:rgba(191,239,232,.25);display:flex;align-items:center;justify-content:space-between;gap:10px}
-    .panel-h h2{font-size:18px}
-    .chip{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:#fff;border:2px solid rgba(16,17,20,.08);font-weight:900;font-size:11px}
-    .panel-b{padding:14px}
-    .hint{color:var(--muted);font-weight:600;font-size:13px;line-height:1.4}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:'Montserrat',system-ui,-apple-system,sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      overflow-x:hidden;
+    }
+    h1,h2,h3,.baloo{font-family:'Baloo 2',cursive; font-weight:800; letter-spacing:-.02em;}
+    a{color:inherit}
 
-    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 14px;border-radius:14px;border:none;font-weight:900;cursor:pointer;text-transform:uppercase;letter-spacing:.05em;box-shadow:0 4px 12px rgba(0,0,0,.10);text-decoration:none}
-    .btn.ghost{background:#fff;border:2px solid rgba(16,17,20,.12);color:var(--ink);box-shadow:0 2px 4px rgba(0,0,0,.05)}
+    /* BACKGROUND (whiteboard grain + blobs) */
+    .bg{
+      position: fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden;
+    }
+    .blob{position:absolute; border-radius:999px; filter: blur(2px); opacity:.65;}
+    .b1{width:420px;height:420px; left:-140px; top:-140px; background:var(--mint); opacity:.9;}
+    .b2{width:380px;height:380px; right:-140px; top:18%; background:rgba(255,201,40,.45);}
+    .b3{width:460px;height:460px; left:-180px; bottom:-120px; background:rgba(255,176,103,.40);}
+    .b4{width:320px;height:320px; right:-80px; bottom:-100px; background:rgba(198,40,40,.18);}
 
-    /* ✅ IMAGE */
-    .viz {
-      margin-top: 12px;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 2px solid rgba(16,17,20,.10);
+    .wrap{
+      position: relative;
+      z-index: 1;
+      max-width: var(--max);
+      margin: 18px auto 28px;
+      padding: 0 16px 28px;
+    }
+
+    .frame{
+      border-radius: 24px;
+      overflow:hidden;
+      border: 5px solid transparent;
+      background-image:
+        linear-gradient(rgba(255,255,255,.95), rgba(255,255,255,.95)),
+        linear-gradient(135deg, var(--red), var(--yellow), var(--turq));
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      box-shadow: 0 22px 44px rgba(0,0,0,.10);
+    }
+
+    /* Header */
+    .topbar{
+      padding: 14px 16px;
       background: #fff;
-      box-shadow: 0 6px 14px rgba(16,17,20,.06);
+      border-bottom: 4px solid var(--turq);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
     }
-    .viz img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .viz-caption{
-      padding: 10px 12px;
-      font-size: 12px;
-      font-weight: 700;
+    .back{
+      display:inline-flex; align-items:center; gap:10px;
+      text-decoration:none;
+      font-weight:800;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.05em;
       color: var(--muted);
-      border-top: 2px solid rgba(16,17,20,.08);
-      background: rgba(255,255,255,.9);
+      padding:10px 12px;
+      border-radius:999px;
+      border:2px solid rgba(16,17,20,.10);
+      background: #fff;
+      transition:.18s ease;
+      white-space:nowrap;
+    }
+    .back:hover{transform: translateY(-1px); border-color: var(--turq); color: var(--ink); box-shadow: 0 8px 18px rgba(16,17,20,.08);}
+    .crumb{
+      display:inline-flex; align-items:center; gap:8px;
+      font-weight:800; font-size:12px; color: var(--muted);
+      text-transform:uppercase; letter-spacing:.06em;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      font-weight:900;
+      padding:10px 12px;
+      border-radius:999px;
+      border: 3px solid var(--ink);
+      background: rgba(191,239,232,.28);
+      box-shadow: 6px 6px 0 rgba(16,17,20,.08);
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      font-size:12px;
+      white-space:nowrap;
     }
 
-    .embed-frame{margin-top:12px;border-radius:16px;overflow:hidden;border:2px solid rgba(16,17,20,.10);background:#fff}
-    .embed-frame iframe{width:100%;height:900px;border:0;display:block}
+    .hero{
+      padding: 18px 16px 0;
+      background: #fff;
+    }
 
-    @media(max-width:760px){
-      .embed-frame iframe{height:760px}
+    .heroCard{
+      position:relative;
+      border-radius: 22px;
+      padding: 18px 18px;
+      border: 4px solid var(--ink);
+      background: linear-gradient(180deg, rgba(191,239,232,.25), rgba(255,255,255,.92));
+      box-shadow: 10px 10px 0 rgba(16,17,20,.08);
+      overflow:hidden;
+    }
+    .grain{
+      position:absolute; inset:0; opacity:.07; pointer-events:none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .heroTop{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:14px;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:8px;
+      background: var(--turq);
+      color:#fff;
+      font-weight:900;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 3px solid var(--ink);
+      box-shadow: 6px 6px 0 rgba(16,17,20,.10);
+      text-transform:uppercase;
+      letter-spacing:.05em;
+      font-size:12px;
+    }
+    .heroIcon{
+      width: 44px; height:44px;
+      border-radius: 14px;
+      border: 3px solid var(--ink);
+      background: #fff;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow: 6px 6px 0 rgba(16,17,20,.08);
+      flex:0 0 auto;
+    }
+    .heroIcon i{color: var(--turq)}
+    .title{
+      margin: 14px 0 6px;
+      font-size: clamp(26px, 4vw, 38px);
+      line-height:1.0;
+      text-transform:uppercase;
+    }
+    .subtitle{
+      margin: 0;
+      font-weight:800;
+      color: var(--muted);
+      max-width: 80ch;
+      line-height:1.4;
+    }
+    .callout{
+      margin-top: 14px;
+      padding: 14px 14px;
+      border-radius: 16px;
+      border: 3px dashed rgba(16,17,20,.25);
+      background: rgba(255,255,255,.92);
+      font-weight:700;
+      color: var(--ink);
+    }
+    .callout strong{font-weight:900}
+    .callout .tip{
+      margin-top:8px;
+      font-size: 13px;
+      color: rgba(16,17,20,.75);
+    }
+
+    /* Whiteboard grid */
+    .board{
+      padding: 16px;
+      background: #fff;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .card{
+      border-radius: var(--radius);
+      border: 3px solid var(--ink);
+      background: var(--paper);
+      box-shadow: 10px 10px 0 rgba(16,17,20,.08);
+      overflow:hidden;
+      position:relative;
+    }
+    .cardHead{
+      padding: 12px 14px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      border-bottom: 3px solid rgba(16,17,20,.12);
+      background: rgba(191,239,232,.22);
+    }
+    .cardHead h3{
+      margin:0;
+      font-size: 16px;
+      text-transform:uppercase;
+      letter-spacing:.03em;
+      line-height:1.1;
+    }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background:#fff;
+      border:2px solid rgba(16,17,20,.10);
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+      font-size: 11px;
+      white-space:nowrap;
+    }
+    .dot{width:12px;height:12px;border-radius:999px;}
+    .dot.t{background:var(--turq)}
+    .dot.m{background:var(--mint)}
+    .dot.y{background:var(--yellow)}
+    .dot.o{background:var(--orange)}
+    .dot.r{background:var(--red)}
+
+    .cardBody{ padding: 14px; }
+
+    /* Post-its + hand arrows vibe */
+    .postits{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 8px;
+    }
+    .postit{
+      padding: 10px 10px;
+      border-radius: 14px;
+      border: 2px solid rgba(16,17,20,.20);
+      font-weight:800;
+      font-size: 12px;
+      box-shadow: 6px 6px 0 rgba(16,17,20,.06);
+      transform: rotate(-1deg);
+      background: rgba(255,201,40,.25);
+    }
+    .postit:nth-child(2n){ transform: rotate(1.5deg); }
+    .postit:nth-child(3n){ transform: rotate(-2deg); background: rgba(191,239,232,.35); }
+
+    .smallHint{
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight:700;
+    }
+
+    /* Inputs */
+    label{
+      display:block;
+      font-weight:900;
+      font-size: 12px;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      margin: 10px 0 6px;
+      color: rgba(16,17,20,.85);
+    }
+    textarea, input[type="text"]{
+      width:100%;
+      border: 3px solid rgba(16,17,20,.14);
+      border-radius: 14px;
+      padding: 12px 12px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight:600;
+      background: rgba(255,255,255,.92);
+      outline:none;
+      transition: .15s ease;
+    }
+    textarea{ min-height: 92px; resize: vertical; }
+    textarea:focus, input[type="text"]:focus{
+      border-color: var(--turq);
+      box-shadow: 0 0 0 6px rgba(32,184,174,.18);
+    }
+
+    .row2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    /* Checkbox list */
+    .checks{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 12px;
+      margin-top: 10px;
+    }
+    .check{
+      display:flex; align-items:flex-start; gap:10px;
+      border-radius: 14px;
+      border: 2px solid rgba(16,17,20,.10);
+      background: rgba(255,255,255,.92);
+      padding: 10px 10px;
+      font-weight:800;
+      color: rgba(16,17,20,.80);
+    }
+    .check input{ margin-top:2px; width:18px; height:18px; accent-color: var(--turq); }
+
+    /* Bottom action bar */
+    .actions{
+      padding: 14px 16px 18px;
+      background:#fff;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      border-top: 3px solid rgba(16,17,20,.10);
+    }
+    .note{
+      font-size: 12px;
+      font-weight:800;
+      color: var(--muted);
+      max-width: 70ch;
+      line-height:1.4;
+    }
+    .btns{display:flex; gap:10px; flex-wrap:wrap;}
+    .btn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      box-shadow: 0 10px 20px rgba(16,17,20,.10);
+      transition:.18s ease;
+    }
+    .btn:hover{ transform: translateY(-2px); box-shadow: 0 16px 28px rgba(16,17,20,.14); }
+    .btn-primary{ background: var(--turq); color:#fff; }
+    .btn-ghost{ background:#fff; color: var(--ink); border: 3px solid rgba(16,17,20,.14); }
+
+    /* Responsive */
+    @media (max-width: 860px){
+      .grid{ grid-template-columns: 1fr; }
+      .checks{ grid-template-columns: 1fr; }
+      .row2{ grid-template-columns: 1fr; }
+      .badge{ display:none; }
     }
   </style>
 </head>
 
 <body>
-  <div class="bg-shapes" aria-hidden="true">
-    <div class="bg-circle c-mint"></div>
-    <div class="bg-circle c-yellow"></div>
-    <div class="bg-circle c-orange"></div>
-    <div class="bg-circle c-red"></div>
+  <div class="bg" aria-hidden="true">
+    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div>
   </div>
 
   <main class="wrap">
     <section class="frame">
-      <section class="content">
 
-        <div class="panel">
-          <div class="panel-h">
-            <h2>Fiche — Accueillir (intégrée)</h2>
-            <span class="chip"><i data-lucide="external-link"></i>TEST</span>
+      <!-- TOP BAR -->
+      <div class="topbar">
+        <a class="back" href="index.html">
+          <i data-lucide="arrow-left" style="width:18px;height:18px;"></i>
+          Retour
+        </a>
+        <div class="crumb">
+          <i data-lucide="sparkles" style="width:18px;height:18px;"></i>
+          Accueillir
+        </div>
+        <div class="badge">
+          <span style="display:inline-flex;align-items:center;gap:8px;">
+            <span style="width:10px;height:10px;border-radius:999px;background:var(--turq);display:inline-block;"></span>
+            Mes tribus & réseaux
+          </span>
+        </div>
+      </div>
+
+      <!-- HERO -->
+      <section class="hero">
+        <div class="heroCard">
+          <div class="grain" aria-hidden="true"></div>
+
+          <div class="heroTop">
+            <div class="kicker">
+              <i data-lucide="users" style="width:18px;height:18px;"></i>
+              Module 1 — ACCUEILLIR
+            </div>
+            <div class="heroIcon" aria-hidden="true">
+              <i data-lucide="map-pin" style="width:22px;height:22px;"></i>
+            </div>
           </div>
 
-          <div class="panel-b">
-            <div class="hint">
-              Parcours intégré ici. Si besoin, ouvre en plein écran.
-            </div>
+          <h1 class="title">MES TRIBUS & RÉSEAUX</h1>
+          <p class="subtitle">
+            Ici tu construis ta <strong>carte relationnelle</strong> : les lieux où tu vas + les adultes ressources que tu connais.
+            L’idée : <strong>tu as déjà un réseau</strong> — tu ne pars jamais de zéro.
+          </p>
 
-            <!-- ✅ IMAGE AJOUTÉE (à uploader dans le repo) -->
-            <div class="viz" aria-label="Schéma Accueillir - Tribus">
-              <img
-                src="./assets/img/accueillir-tribus.png"
-                alt="Du statut de nouveau venu à membre — Calque 1 : Accueillir (Tribus)"
-                loading="lazy"
-              />
-              <div class="viz-caption">
-                Calque 1 — Accueillir (Tribus) : passer de “nouveau venu” à “membre” en activant des réseaux et opportunités.
+          <div class="callout">
+            <strong>Astuce du formateur :</strong> dans chaque repère MyMaps, n’écris pas juste “Foot”.
+            <div class="tip">Écris : <strong>un prénom</strong> + <strong>son vrai métier</strong> + <strong>comment ça peut t’aider</strong> + <strong>comment le recontacter</strong>.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHITEBOARD CONTENT -->
+      <section class="board">
+
+        <div class="grid">
+          <!-- CARD 1: Lieux -->
+          <article class="card">
+            <div class="cardHead">
+              <h3>🏟 Lieux où je vais régulièrement</h3>
+              <span class="chip"><span class="dot t"></span>À épingler</span>
+            </div>
+            <div class="cardBody">
+              <p style="margin:0; font-weight:700; color:var(--muted); font-size:13px;">
+                Liste tes lieux “vrais” (même informels). Ensuite : <strong>1 lieu = 1 repère</strong> dans MyMaps.
+              </p>
+
+              <div class="postits" aria-label="Exemples">
+                <span class="postit">Club sport</span>
+                <span class="postit">Salle des fêtes</span>
+                <span class="postit">Association</span>
+                <span class="postit">Centre social</span>
+                <span class="postit">Mission Locale</span>
+                <span class="postit">Lieu religieux</span>
+                <span class="postit">Bar / café</span>
+                <span class="postit">Garage / atelier</span>
+                <span class="postit">Salle de sport</span>
+                <span class="postit">École / CFA</span>
+              </div>
+
+              <label for="lieux">Mes lieux (liste rapide)</label>
+              <textarea id="lieux" placeholder="Ex : Stade X (mardi/jeudi) / Salle des fêtes Y (week-end) / Mission Locale (RDV) / Garage de Z (j’aide mon oncle)…"></textarea>
+
+              <div class="smallHint">
+                💡 Pour chaque lieu, ajoute : <strong>quand j’y vais</strong> + <strong>qui je croise</strong> + <strong>ce que je fais</strong>.
               </div>
             </div>
+          </article>
 
-            <div class="embed-frame">
-              <iframe
-                src="https://mlpb-tools.github.io/TEST/"
-                title="MLS4YOU TEST"
-                loading="lazy"
-                sandbox="allow-scripts allow-forms allow-same-origin allow-popups"
-              ></iframe>
+          <!-- CARD 2: Adultes ressources -->
+          <article class="card">
+            <div class="cardHead" style="background: rgba(255,201,40,.18);">
+              <h3>👤 Adultes ressources que je connais</h3>
+              <span class="chip"><span class="dot y"></span>Réseau</span>
             </div>
+            <div class="cardBody">
+              <p style="margin:0; font-weight:700; color:var(--muted); font-size:13px;">
+                Même si tu les vois “vite fait”, ce sont des <strong>portes d’entrée</strong>.
+              </p>
 
-            <div class="actions">
-              <a class="btn ghost" href="https://mlpb-tools.github.io/TEST/" target="_blank" rel="noopener noreferrer">
-                Ouvrir en plein écran
-              </a>
+              <div class="postits" aria-label="Exemples">
+                <span class="postit" style="background: rgba(191,239,232,.35);">Coach / éducateur</span>
+                <span class="postit">Président asso</span>
+                <span class="postit" style="background: rgba(255,201,40,.25);">Patron stage</span>
+                <span class="postit">Voisin (métier)</span>
+                <span class="postit" style="background: rgba(191,239,232,.35);">Parent d’ami</span>
+                <span class="postit">Ancien prof</span>
+                <span class="postit" style="background: rgba(255,201,40,.25);">Animateur</span>
+              </div>
+
+              <label for="adultes">Mes adultes ressources (liste rapide)</label>
+              <textarea id="adultes" placeholder="Ex : Kevin (coach) / Mme X (ancienne prof) / M. Y (patron stage) / Père de Léo (plombier)…"></textarea>
+
+              <div class="smallHint">
+                ✅ Objectif : trouver au moins <strong>3 personnes</strong> à épingler.
+              </div>
             </div>
-          </div>
+          </article>
+
+          <!-- CARD 3: Fiche repère -->
+          <article class="card">
+            <div class="cardHead" style="background: rgba(255,176,103,.18);">
+              <h3>🧠 Description “utile” d’un repère</h3>
+              <span class="chip"><span class="dot o"></span>À copier</span>
+            </div>
+            <div class="cardBody">
+              <p style="margin:0; font-weight:700; color:var(--muted); font-size:13px;">
+                Quand tu crées un repère MyMaps, remplis comme ça (sinon ça ne sert à rien).
+              </p>
+
+              <div class="row2">
+                <div>
+                  <label for="prenom">Prénom</label>
+                  <input id="prenom" type="text" placeholder="Ex : Sofiane" />
+                </div>
+                <div>
+                  <label for="metier">Métier réel</label>
+                  <input id="metier" type="text" placeholder="Ex : chef d’équipe BTP" />
+                </div>
+              </div>
+
+              <label for="ou">Où il/elle travaille</label>
+              <input id="ou" type="text" placeholder="Ex : Entreprise X (Bayonne), chantier, asso…" />
+
+              <label for="aide">Pourquoi il/elle peut m’aider</label>
+              <textarea id="aide" placeholder="Ex : peut me donner un contact / me faire visiter / m’aider à trouver un stage / m’expliquer le métier…"></textarea>
+
+              <label for="recontact">Comment je peux le/la recontacter</label>
+              <input id="recontact" type="text" placeholder="Ex : je le vois mardi au stade / WhatsApp / via l’asso / demander au secrétariat…" />
+
+              <div class="smallHint">
+                🎯 Script : “Ton coach, il fait quoi le lundi matin ?”
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 4: Ce que ça peut m'apporter -->
+          <article class="card">
+            <div class="cardHead" style="background: rgba(198,40,40,.10);">
+              <h3>🤝 Ce que mon réseau peut m’apporter</h3>
+              <span class="chip"><span class="dot r"></span>Objectifs</span>
+            </div>
+            <div class="cardBody">
+              <p style="margin:0; font-weight:700; color:var(--muted); font-size:13px;">
+                Coche ce que tu veux obtenir grâce à ta carte. (Tu peux cocher plusieurs.)
+              </p>
+
+              <div class="checks" role="group" aria-label="Objectifs réseau">
+                <label class="check"><input type="checkbox" id="c1"> Info métier</label>
+                <label class="check"><input type="checkbox" id="c2"> Stage</label>
+                <label class="check"><input type="checkbox" id="c3"> Job saisonnier</label>
+                <label class="check"><input type="checkbox" id="c4"> Contact entreprise</label>
+                <label class="check"><input type="checkbox" id="c5"> Conseil CV</label>
+                <label class="check"><input type="checkbox" id="c6"> Logement / mobilité</label>
+              </div>
+
+              <label for="action">Mon 1er pas (simple) cette semaine</label>
+              <textarea id="action" placeholder="Ex : mardi je demande à Sofiane où il bosse / je demande un contact / je note son numéro / je prends RDV…"></textarea>
+
+              <div class="smallHint">
+                ✅ Un objectif clair = un réseau plus utile.
+              </div>
+            </div>
+          </article>
         </div>
 
       </section>
+
+      <!-- ACTIONS -->
+      <div class="actions">
+        <div class="note">
+          👉 <strong>À retenir :</strong> tu as déjà un réseau. Ta carte sert à le rendre visible, concret, et activable.
+        </div>
+        <div class="btns">
+          <button class="btn btn-ghost" type="button" onclick="resetForm()">
+            <i data-lucide="rotate-ccw" style="width:18px;height:18px;"></i>
+            Réinitialiser
+          </button>
+          <button class="btn btn-primary" type="button" onclick="saveLocal()">
+            <i data-lucide="save" style="width:18px;height:18px;"></i>
+            Sauver sur mon appareil
+          </button>
+          <a class="btn btn-primary" href="creer.html" style="text-decoration:none;">
+            <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
+            Continuer → Créer
+          </a>
+        </div>
+      </div>
+
     </section>
   </main>
 
   <script>
-    window.addEventListener('load', function() {
+    const KEY = "mls4you_territoire_accueillir_v1";
+
+    function getFields(){
+      return {
+        lieux: document.getElementById('lieux').value.trim(),
+        adultes: document.getElementById('adultes').value.trim(),
+        prenom: document.getElementById('prenom').value.trim(),
+        metier: document.getElementById('metier').value.trim(),
+        ou: document.getElementById('ou').value.trim(),
+        aide: document.getElementById('aide').value.trim(),
+        recontact: document.getElementById('recontact').value.trim(),
+        checks: {
+          info_metier: document.getElementById('c1').checked,
+          stage: document.getElementById('c2').checked,
+          job_saisonnier: document.getElementById('c3').checked,
+          contact_entreprise: document.getElementById('c4').checked,
+          conseil_cv: document.getElementById('c5').checked,
+          logement_mobilite: document.getElementById('c6').checked,
+        },
+        action: document.getElementById('action').value.trim(),
+        savedAt: new Date().toISOString()
+      };
+    }
+
+    function setFields(data){
+      if(!data) return;
+      document.getElementById('lieux').value = data.lieux || "";
+      document.getElementById('adultes').value = data.adultes || "";
+      document.getElementById('prenom').value = data.prenom || "";
+      document.getElementById('metier').value = data.metier || "";
+      document.getElementById('ou').value = data.ou || "";
+      document.getElementById('aide').value = data.aide || "";
+      document.getElementById('recontact').value = data.recontact || "";
+
+      const c = data.checks || {};
+      document.getElementById('c1').checked = !!c.info_metier;
+      document.getElementById('c2').checked = !!c.stage;
+      document.getElementById('c3').checked = !!c.job_saisonnier;
+      document.getElementById('c4').checked = !!c.contact_entreprise;
+      document.getElementById('c5').checked = !!c.conseil_cv;
+      document.getElementById('c6').checked = !!c.logement_mobilite;
+
+      document.getElementById('action').value = data.action || "";
+    }
+
+    function saveLocal(){
+      try{
+        localStorage.setItem(KEY, JSON.stringify(getFields()));
+        toast("Sauvegardé ✅");
+      }catch(e){
+        toast("Impossible de sauvegarder ❌");
+      }
+    }
+
+    function resetForm(){
+      if(!confirm("Réinitialiser tout le contenu ?")) return;
+      localStorage.removeItem(KEY);
+      setFields({});
+      toast("Réinitialisé");
+    }
+
+    function toast(text){
+      const t = document.createElement('div');
+      t.textContent = text;
+      t.style.position = 'fixed';
+      t.style.left = '50%';
+      t.style.bottom = '18px';
+      t.style.transform = 'translateX(-50%)';
+      t.style.background = 'rgba(16,17,20,.92)';
+      t.style.color = 'white';
+      t.style.padding = '12px 14px';
+      t.style.borderRadius = '14px';
+      t.style.fontWeight = '900';
+      t.style.letterSpacing = '.04em';
+      t.style.zIndex = '9999';
+      t.style.boxShadow = '0 14px 28px rgba(0,0,0,.18)';
+      document.body.appendChild(t);
+      setTimeout(()=>{ t.style.opacity = '0'; t.style.transition='opacity .25s ease'; }, 1100);
+      setTimeout(()=>{ t.remove(); }, 1500);
+    }
+
+    // Auto-save light (on change)
+    const autos = ['lieux','adultes','prenom','metier','ou','aide','recontact','action','c1','c2','c3','c4','c5','c6'];
+    autos.forEach(id=>{
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.addEventListener('change', ()=> {
+        try { localStorage.setItem(KEY, JSON.stringify(getFields())); } catch {}
+      });
+    });
+
+    // Restore on load + icons
+    window.addEventListener('load', function(){
+      try{
+        const saved = JSON.parse(localStorage.getItem(KEY) || "null");
+        if(saved) setFields(saved);
+      }catch{}
       if (typeof lucide !== 'undefined') lucide.createIcons();
     });
   </script>
