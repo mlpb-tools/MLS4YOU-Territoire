@@ -1,271 +1,589 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fiche 4 : Prendre Soin - LS4YOU</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prendre soin — Mes Ressources Zaintza | MLS4YOU Territoire</title>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
-
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@0.263.1/dist/umd/lucide.min.js"></script>
 
   <style>
     :root{
-      --c-red:#C62828;
-      --c-green:#43A047;
-      --c-green-light:#C8E6C9;
-      --c-green-dark:#2E7D32;
-      --c-yellow:#FFD54F;
-      --c-turq:#4DD0E1;
-      --c-white:#ffffff;
-      --c-black:#1a1a1a;
+      --red:#C62828;
+      --green:#2E7D32;
+      --green2:#43A047;
+      --turq:#20B8AE;
+      --mint:#BFEFE8;
+      --yellow:#FFC928;
+      --orange:#FFB067;
+
+      --ink:#101114;
+      --muted: rgba(16,17,20,.72);
+      --bg:#FFF9F0;
+      --paper:#ffffff;
+
+      --max: 980px;
     }
 
+    *{box-sizing:border-box}
+    html,body{height:100%}
     body{
-      font-family:'Montserrat',sans-serif;
-      background-color:#f8f9fa;
-      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-      color:var(--c-black);
+      margin:0;
+      font-family:'Montserrat',system-ui,-apple-system,sans-serif;
+      background: var(--bg);
+      color: var(--ink);
       overflow-x:hidden;
-      min-height:100vh;
+    }
+    h1,h2,h3,.baloo{font-family:'Baloo 2',cursive; font-weight:800; letter-spacing:-.02em;}
+    a{color:inherit}
+
+    /* background */
+    .bg{
+      position: fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden;
+    }
+    .blob{position:absolute; border-radius:999px; filter: blur(2px); opacity:.65;}
+    .b1{width:420px;height:420px; left:-160px; top:-140px; background:rgba(191,239,232,.35);}
+    .b2{width:360px;height:360px; right:-140px; top:18%; background:rgba(46,125,50,.18);}
+    .b3{width:520px;height:520px; left:-220px; bottom:-220px; background:rgba(198,40,40,.10);}
+    .b4{width:320px;height:320px; right:-80px; bottom:-120px; background:rgba(255,201,40,.14);}
+
+    .wrap{
+      position: relative;
+      z-index: 1;
+      max-width: var(--max);
+      margin: 18px auto 28px;
+      padding: 0 16px 28px;
+    }
+
+    .frame{
+      border-radius: 24px;
+      overflow:hidden;
+      border: 5px solid transparent;
+      background-image:
+        linear-gradient(rgba(255,255,255,.95), rgba(255,255,255,.95)),
+        linear-gradient(135deg, var(--green), var(--turq), var(--red));
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      box-shadow: 0 22px 44px rgba(0,0,0,.10);
+    }
+
+    /* topbar */
+    .topbar{
+      padding: 14px 16px;
+      background: #fff;
+      border-bottom: 4px solid var(--green);
       display:flex;
-      justify-content:center;
       align-items:center;
-      padding:20px;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .back{
+      display:inline-flex; align-items:center; gap:10px;
+      text-decoration:none;
+      font-weight:900;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      color: var(--muted);
+      padding:10px 12px;
+      border-radius:999px;
+      border:2px solid rgba(16,17,20,.10);
+      background: #fff;
+      transition:.18s ease;
+      white-space:nowrap;
+    }
+    .back:hover{
+      transform: translateY(-1px);
+      border-color: var(--green);
+      color: var(--ink);
+      box-shadow: 0 8px 18px rgba(16,17,20,.08);
+    }
+    .crumb{
+      display:inline-flex; align-items:center; gap:8px;
+      font-weight:900; font-size:12px; color: var(--muted);
+      text-transform:uppercase; letter-spacing:.06em;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      font-weight:900;
+      padding:10px 12px;
+      border-radius:999px;
+      border: 3px solid var(--ink);
+      background: rgba(46,125,50,.12);
+      box-shadow: 6px 6px 0 rgba(16,17,20,.08);
+      text-transform:uppercase;
+      letter-spacing:.05em;
+      font-size:12px;
+      white-space:nowrap;
     }
 
-    h1,h2,h3,.font-title{
-      font-family:'Poppins',sans-serif;
-      letter-spacing:-0.02em;
-    }
-
-    .pop-card{
-      background:white;
-      border:3px solid var(--c-black);
-      box-shadow:8px 8px 0px var(--c-black);
-      border-radius:20px;
+    /* hero */
+    .hero{ padding: 18px 16px 0; background:#fff; }
+    .heroCard{
       position:relative;
-      z-index:10;
-      transition:transform 0.2s ease;
+      border-radius: 22px;
+      padding: 18px 18px;
+      border: 4px solid var(--ink);
+      background: linear-gradient(180deg, rgba(191,239,232,.55), rgba(255,255,255,.92));
+      box-shadow: 10px 10px 0 rgba(16,17,20,.08);
+      overflow:hidden;
     }
-    .pop-card:hover{
-      transform:translate(-2px,-2px);
-      box-shadow:10px 10px 0px var(--c-black);
+    .grain{
+      position:absolute; inset:0; opacity:.07; pointer-events:none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .heroTop{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:8px;
+      background: var(--green2);
+      color: #fff;
+      font-weight:900;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 3px solid var(--ink);
+      box-shadow: 6px 6px 0 rgba(16,17,20,.10);
+      text-transform:uppercase;
+      letter-spacing:.05em;
+      font-size:12px;
+    }
+    .heroIcon{
+      width: 44px; height:44px;
+      border-radius: 14px;
+      border: 3px solid var(--ink);
+      background: #fff;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow: 6px 6px 0 rgba(16,17,20,.08);
+      flex:0 0 auto;
+    }
+    .heroIcon i{color: var(--red)}
+    .title{
+      margin: 14px 0 6px;
+      font-size: clamp(26px, 4vw, 38px);
+      line-height:1.0;
+      text-transform:uppercase;
+    }
+    .subtitle{
+      margin: 0;
+      font-weight:800;
+      color: var(--muted);
+      max-width: 92ch;
+      line-height:1.4;
+    }
+    .callout{
+      margin-top: 14px;
+      padding: 14px 14px;
+      border-radius: 16px;
+      border: 3px dashed rgba(16,17,20,.25);
+      background: rgba(255,255,255,.92);
+      font-weight:900;
+      color: var(--ink);
     }
 
-    @keyframes popIn{
-      0%{opacity:0;transform:scale(0.95);}
-      100%{opacity:1;transform:scale(1);}
-    }
-    @keyframes float{
-      0%,100%{transform:translateY(0px);}
-      50%{transform:translateY(-8px);}
-    }
+    /* board */
+    .board{ padding: 16px; background:#fff; }
 
-    .animate-pop{animation:popIn 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards;}
-    .delay-100{animation-delay:0.1s;}
-    .delay-200{animation-delay:0.2s;}
-    .delay-300{animation-delay:0.3s;}
-    .delay-400{animation-delay:0.4s;}
-    .floating{animation:float 4s ease-in-out infinite;}
-
-    .decoration-circle{
-      position:absolute;
-      border-radius:50%;
-      border:2px solid var(--c-black);
-      z-index:-1;
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items: start;
     }
 
-    .shine{position:relative;overflow:hidden;}
-    .shine::after{
-      content:'';
-      position:absolute;
-      top:0;left:-100%;
-      width:50%;height:100%;
-      background:linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
-      transform:skewX(-25deg);
-      animation:shine 3s infinite;
+    .panel{
+      border-radius: 18px;
+      border: 3px solid var(--ink);
+      background: #fff;
+      box-shadow: 10px 10px 0 rgba(16,17,20,.08);
+      overflow:hidden;
     }
-    @keyframes shine{100%{left:125%;}}
+    .head{
+      padding: 12px 14px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      border-bottom: 3px solid rgba(16,17,20,.12);
+    }
+    .head.green{ background: rgba(46,125,50,.12); }
+    .head.red{ background: rgba(198,40,40,.10); }
+    .head h3{
+      margin:0;
+      font-size: 16px;
+      text-transform:uppercase;
+      letter-spacing:.03em;
+      line-height:1.1;
+      display:flex; align-items:center; gap:10px;
+    }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background:#fff;
+      border:2px solid rgba(16,17,20,.10);
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+      font-size: 11px;
+      white-space:nowrap;
+    }
+    .dot{width:12px;height:12px;border-radius:999px;}
+    .dot.g{background:var(--green2)}
+    .dot.r{background:var(--red)}
 
-    /* bouton retour simple */
-    .back-btn{
-      position:fixed;
-      left:16px;
-      bottom:16px;
-      z-index:50;
+    .body{ padding: 14px; }
+
+    label{
+      display:block;
+      font-weight:900;
+      font-size: 12px;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      margin: 10px 0 6px;
+      color: rgba(16,17,20,.85);
+    }
+    input[type="text"], textarea{
+      width:100%;
+      border: 3px solid rgba(16,17,20,.14);
+      border-radius: 14px;
+      padding: 12px 12px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight:700;
+      background: rgba(255,255,255,.92);
+      outline:none;
+      transition: .15s ease;
+    }
+    textarea{ min-height: 92px; resize: vertical; }
+    textarea:focus, input[type="text"]:focus{
+      box-shadow: 0 0 0 6px rgba(32,184,174,.18);
+      border-color: var(--turq);
+    }
+
+    .examples{
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 16px;
+      border: 2px dashed rgba(16,17,20,.22);
+      background: rgba(191,239,232,.22);
+      font-weight:900;
+      color: rgba(16,17,20,.85);
+      line-height:1.4;
+      font-size: 12px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius:999px;
+      background:#fff;
+      border:2px solid rgba(16,17,20,.10);
+      margin: 6px 6px 0 0;
+      font-weight:900;
+      font-size: 11px;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+    }
+
+    .alertBox{
+      margin-top: 14px;
+      border-radius: 18px;
+      border: 3px solid rgba(16,17,20,.16);
+      background: rgba(255,201,40,.14);
+      padding: 14px;
+      box-shadow: 10px 10px 0 rgba(16,17,20,.06);
+    }
+    .alertBox h3{ margin:0 0 8px; font-size:16px; text-transform:uppercase; }
+    .hint{ margin-top: 10px; font-size: 12px; color: var(--muted); font-weight:800; }
+
+    /* footer actions */
+    .actions{
+      padding: 14px 16px 18px;
+      background:#fff;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      border-top: 3px solid rgba(16,17,20,.10);
+    }
+    .note{
+      font-size: 12px;
+      font-weight:900;
+      color: var(--muted);
+      max-width: 92ch;
+      line-height:1.4;
+    }
+    .btns{display:flex; gap:10px; flex-wrap:wrap;}
+    .btn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.06em;
       display:inline-flex;
       align-items:center;
       gap:10px;
-      padding:12px 14px;
-      background:#fff;
-      border:2px solid #000;
-      border-radius:14px;
-      font-weight:800;
+      box-shadow: 0 10px 20px rgba(16,17,20,.10);
+      transition:.18s ease;
       text-decoration:none;
-      color:#111;
-      box-shadow:4px 4px 0 #000;
-      transition:transform .15s ease;
     }
-    .back-btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #000;}
+    .btn:hover{ transform: translateY(-2px); box-shadow: 0 16px 28px rgba(16,17,20,.14); }
+    .btn-primary{ background: var(--ink); color:#fff; }
+    .btn-green{ background: var(--green2); color: #fff; }
+    .btn-ghost{ background:#fff; color: var(--ink); border: 3px solid rgba(16,17,20,.14); }
+
+    @media (max-width: 920px){
+      .badge{display:none;}
+    }
+    @media (max-width: 860px){
+      .grid{ grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 
-<body class="bg-gray-50">
-
-  <!-- Bouton retour vers l'accueil du site -->
-  <a class="back-btn" href="./index.html" aria-label="Retour au parcours">
-    ← Retour
-  </a>
-
-  <!-- DECORATIVE BACKGROUND ELEMENTS (Fixed) -->
-  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
-    <div class="decoration-circle bg-[#43A047] w-40 h-40 bottom-10 right-10 opacity-50 floating" style="animation-delay:0.2s;"></div>
-    <div class="decoration-circle bg-[#C62828] w-24 h-24 top-20 left-10 opacity-60 floating" style="animation-delay:1.2s;"></div>
-
-    <svg class="absolute top-10 right-10 w-32 h-32 text-[#C8E6C9] -z-10" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
-      <rect x="35" y="10" width="30" height="80" rx="5" />
-      <rect x="10" y="35" width="80" height="30" rx="5" />
-    </svg>
+<body>
+  <div class="bg" aria-hidden="true">
+    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div>
   </div>
 
-  <!-- MAIN CONTAINER -->
-  <main class="max-w-3xl w-full mx-auto relative z-10 my-10">
+  <main class="wrap">
+    <section class="frame">
 
-    <!-- FICHE HEADER -->
-    <div class="pop-card p-6 md:p-10 mb-6 animate-pop bg-white shine">
-      <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-4">
-        <span class="bg-[#43A047] text-white font-black px-4 py-1 rounded-full border-2 border-black shadow-[3px_3px_0px_#000] text-sm uppercase tracking-wider mb-2 md:mb-0">
-          Fiche 4 : Prendre Soin
-        </span>
-
-        <svg class="w-10 h-10 text-[#C62828]" fill="currentColor" viewBox="0 0 24 24" stroke="black" stroke-width="2" aria-hidden="true">
-          <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
-        </svg>
-      </div>
-
-      <h1 class="text-4xl md:text-5xl font-black text-[#1a1a1a] mb-2 leading-tight">
-        S'ARMER
-      </h1>
-      <h2 class="text-lg md:text-xl font-bold text-[#43A047] font-title drop-shadow-[1px_1px_0px_#000]">
-        De la performance épuisante à la robustesse durable
-      </h2>
-    </div>
-
-    <!-- CONTENT BLOCKS -->
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-
-      <!-- POURQUOI -->
-      <div class="md:col-span-12 pop-card p-6 bg-[#C8E6C9] animate-pop delay-100 border-l-8 border-l-[#2E7D32]">
-        <h3 class="font-black text-2xl mb-3 text-[#1B5E20] flex items-center gap-2">
-          <span class="text-3xl">?</span> POURQUOI CETTE FICHE
-        </h3>
-        <p class="mb-4 font-medium leading-relaxed">
-          Pour tenir le coup, il faut être solide. Le concept basque de
-          <strong class="bg-white px-1 border border-black rounded">Zaintza</strong>
-          (le soin, la vigilance) nous rappelle que la santé mentale n'est pas taboue : c'est une condition de ta réussite.
-        </p>
-        <div class="bg-white p-4 rounded-xl border-2 border-black shadow-[4px_4px_0px_#43A047]">
-          <p class="text-sm">
-            <span class="font-bold text-[#C62828]">L'ENJEU :</span> Reconnaître sa vulnérabilité n'est pas une faiblesse.
-            C'est une compétence de gestionnaire : savoir <strong>recharger ses batteries</strong> pour encaisser les chocs et durer dans l'emploi.
-          </p>
+      <div class="topbar">
+        <a class="back" href="index.html">
+          <i data-lucide="arrow-left" style="width:18px;height:18px;"></i>
+          Retour
+        </a>
+        <div class="crumb">
+          <i data-lucide="heart-handshake" style="width:18px;height:18px;"></i>
+          Prendre soin
+        </div>
+        <div class="badge">
+          <span style="display:inline-flex;align-items:center;gap:8px;">
+            <span style="width:10px;height:10px;border-radius:999px;background:var(--green2);display:inline-block;"></span>
+            Zaintza = durer
+          </span>
         </div>
       </div>
 
-      <!-- ACTION -->
-      <div class="md:col-span-12 pop-card p-0 overflow-hidden animate-pop delay-200">
-        <div class="bg-gradient-to-r from-[#43A047] to-[#C62828] p-4 border-b-3 border-black flex items-center justify-between">
-          <h3 class="font-black text-xl md:text-2xl text-white drop-shadow-[2px_2px_0px_#000]">
-            🗺️ ACTION : CALQUE « RESSOURCES »
-          </h3>
-          <span class="bg-black text-white text-xs font-bold px-2 py-1 rounded border border-white">CODE : VERT/ROUGE</span>
-        </div>
+      <section class="hero">
+        <div class="heroCard">
+          <div class="grain" aria-hidden="true"></div>
 
-        <div class="p-6 bg-white">
-
-          <!-- Step 1 -->
-          <div class="mb-6 relative">
-            <div class="absolute -left-3 -top-3 bg-black text-white w-8 h-8 rounded-full border-2 border-gray-500 flex items-center justify-center font-black shadow-[2px_2px_0px_#000]">1</div>
-            <div class="border-2 border-dashed border-gray-300 rounded-xl p-4 ml-2">
-              <h4 class="font-black text-lg text-black mb-2">Tes Batteries</h4>
-              <p class="text-sm mb-2">Comme un athlète, tu as besoin de récupération.</p>
-              <ul class="text-sm font-medium space-y-2">
-                <li class="flex items-start gap-2">
-                  <span class="text-[#43A047] font-bold">🔋 Recharge :</span>
-                  Où vas-tu pour souffler gratuitement ? (Nature, Océan, Montagne).
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-[#C62828] font-bold">🆘 Secours :</span>
-                  Qui peut t'aider si tu craques ? (Pros de santé).
-                </li>
-              </ul>
+          <div class="heroTop">
+            <div class="kicker">
+              <i data-lucide="shield" style="width:18px;height:18px;"></i>
+              Module 4 — PRENDRE SOIN
+            </div>
+            <div class="heroIcon" aria-hidden="true">
+              <i data-lucide="heart-pulse" style="width:22px;height:22px;"></i>
             </div>
           </div>
 
-          <!-- Step 2 -->
-          <div class="relative">
-            <div class="absolute -left-3 -top-3 bg-black text-white w-8 h-8 rounded-full border-2 border-gray-500 flex items-center justify-center font-black shadow-[2px_2px_0px_#000]">2</div>
-            <div class="bg-gray-50 border-2 border-black rounded-xl p-4 ml-2 shadow-[4px_4px_0px_#9E9E9E]">
-              <h4 class="font-black text-lg text-black mb-2">La Cartographie Digitale (My Maps)</h4>
-              <p class="text-sm mb-3">Localise ton <strong>filet de sécurité</strong>.</p>
+          <h1 class="title">MES RESSOURCES ZAINTZA — Tenir dans la durée</h1>
+          <p class="subtitle">
+            Ici, tu construis ton <strong>filet de sécurité</strong> : ce qui te recharge (vert) et ce qui t’aide si ça ne va pas (rouge).
+            Objectif : <strong>tenir dans la durée</strong> sans rupture.
+          </p>
 
-              <div class="space-y-3">
-                <div class="flex items-start gap-3 bg-[#E8F5E9] p-3 rounded-lg border border-[#43A047]">
-                  <div class="text-2xl">🟢</div>
-                  <div>
-                    <strong class="text-[#2E7D32] text-sm block">Repères VERTS (Récupération Gratuite)</strong>
-                    <p class="text-xs text-gray-700 mt-1">"Promenade de la Barre", "Forêt d'Iraty".</p>
-                    <div class="text-[10px] font-bold mt-1 bg-white inline-block px-1 border border-gray-300">Note : Zone de décompression</div>
-                  </div>
-                </div>
+          <div class="callout">
+            👉 <strong>Se connaître = éviter les ruptures.</strong>
+          </div>
+        </div>
+      </section>
 
-                <div class="flex items-start gap-3 bg-[#FFEBEE] p-3 rounded-lg border border-[#C62828]">
-                  <div class="text-2xl">🔴</div>
-                  <div>
-                    <strong class="text-[#C62828] text-sm block">Repères ROUGES (Soutien Pro)</strong>
-                    <p class="text-xs text-gray-700 mt-1">"Maison des Ados", "Atherbea", "Hôpital".</p>
-                    <div class="text-[10px] font-bold mt-1 bg-white inline-block px-1 border border-gray-300">Note : En cas d'urgence</div>
-                  </div>
-                </div>
+      <section class="board">
+        <div class="grid">
+
+          <!-- GREEN PANEL -->
+          <article class="panel">
+            <div class="head green">
+              <h3>
+                <span style="font-size:18px;">🟢</span>
+                Recharge (énergie mentale / physique)
+              </h3>
+              <span class="chip"><span class="dot g"></span>VERT</span>
+            </div>
+
+            <div class="body">
+              <label for="lieux">Lieux nature où je me sens bien</label>
+              <textarea id="lieux" placeholder="Ex : plage / forêt / montagne / parc… (où exactement ?)"></textarea>
+
+              <label for="activites">Activités qui me font du bien</label>
+              <textarea id="activites" placeholder="Ex : sport / musique / cuisine / lecture / jeux vidéo (raisonnable)…"></textarea>
+
+              <label for="personnes">Personnes avec qui je décompresse</label>
+              <textarea id="personnes" placeholder="Ex : ami / frère / tante / coloc… (qui, comment je les contacte ?)"></textarea>
+
+              <label for="moments">Moments où je récupère</label>
+              <input id="moments" type="text" placeholder="Ex : le soir 20–22h / dimanche matin / après sport…">
+
+              <div class="examples" aria-label="Exemples">
+                <strong>Exemples (petit) :</strong><br>
+                <span class="pill">Océan</span>
+                <span class="pill">Montagne</span>
+                <span class="pill">Sport</span>
+                <span class="pill">Musique</span>
+                <span class="pill">Jeux vidéo (raisonnable)</span>
+                <span class="pill">Promenade</span>
               </div>
 
+              <div class="hint">
+                ✅ Le but : avoir des solutions “gratuites / accessibles” pour recharger vite.
+              </div>
             </div>
-          </div>
+          </article>
 
+          <!-- RED PANEL -->
+          <article class="panel">
+            <div class="head red">
+              <h3>
+                <span style="font-size:18px;">🔴</span>
+                Soutien (si ça ne va pas)
+              </h3>
+              <span class="chip"><span class="dot r"></span>ROUGE</span>
+            </div>
+
+            <div class="body">
+              <label for="pro">Pro santé que je peux voir</label>
+              <textarea id="pro" placeholder="Ex : médecin / psy / infirmier / CMP… (nom + comment prendre RDV)"></textarea>
+
+              <label for="structures">Structures d’aide</label>
+              <textarea id="structures" placeholder="Ex : Maison des Ados / assistante sociale / Mission Locale / association…"></textarea>
+
+              <label for="confiance">Personne adulte de confiance</label>
+              <input id="confiance" type="text" placeholder="Ex : prénom + lien + comment je l’appelle">
+
+              <label for="urgence">Numéro urgence</label>
+              <input id="urgence" type="text" placeholder="Ex : 15 / 112 / 3114 (si besoin) / proche à appeler">
+
+              <div class="alertBox">
+                <h3>🧩 Mes signes d’alerte perso</h3>
+                <label for="alertes" style="margin-top:0;">Quand ça commence à dérailler, je remarque :</label>
+                <textarea id="alertes" placeholder="Ex : je me referme / je dors mal / je m’énerve vite / je décroche / je m’isole…"></textarea>
+
+                <div class="hint">
+                  💡 Astuce : si je vois 2 signes d’alerte → j’active 1 ressource verte + 1 ressource rouge.
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <div class="actions">
+        <div class="note">
+          👉 <strong>Phrase pédagogique :</strong> Se connaître = éviter les ruptures.
+          <span style="opacity:.9;">(Tu repères tes signes d’alerte + tu sais quoi activer.)</span>
+        </div>
+        <div class="btns">
+          <button class="btn btn-ghost" type="button" onclick="resetForm()">
+            <i data-lucide="rotate-ccw" style="width:18px;height:18px;"></i>
+            Réinitialiser
+          </button>
+          <button class="btn btn-green" type="button" onclick="saveLocal()">
+            <i data-lucide="save" style="width:18px;height:18px;"></i>
+            Sauver
+          </button>
+          <a class="btn btn-primary" href="synthese.html">
+            <i data-lucide="check-circle" style="width:18px;height:18px;"></i>
+            Aller au passeport
+          </a>
         </div>
       </div>
 
-      <!-- DECLIC PRO -->
-      <div class="md:col-span-12 pop-card bg-[#2E7D32] p-5 animate-pop delay-300 border-2 border-black flex flex-col md:flex-row gap-4 items-center">
-        <div class="bg-white p-3 rounded-full border-2 border-black shadow-[3px_3px_0px_#000]">
-          <svg class="w-8 h-8 text-[#2E7D32]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-          </svg>
-        </div>
-        <div>
-          <h4 class="font-black text-lg uppercase tracking-wide text-white drop-shadow-[1px_1px_0px_#000]">💡 LE DÉCLIC PRO</h4>
-          <p class="text-sm font-bold text-white leading-snug">
-            Tu gères ta propre <strong>« Robustesse »</strong>. Tu montres que tu es responsable de ton équilibre.
-            Ta carte est ton outil pour <strong>ne pas t'effondrer</strong> à la première difficulté.
-          </p>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- FOOTER CAPSULES -->
-    <div class="mt-8 flex justify-center gap-3 animate-pop delay-400">
-      <div class="h-3 w-12 bg-[#43A047] rounded-full border border-black shadow-[2px_2px_0px_rgba(0,0,0,0.1)]"></div>
-      <div class="h-3 w-12 bg-[#C62828] rounded-full border border-black shadow-[2px_2px_0px_rgba(0,0,0,0.1)]"></div>
-      <div class="h-3 w-12 bg-[#FFD54F] rounded-full border border-black shadow-[2px_2px_0px_rgba(0,0,0,0.1)]"></div>
-      <div class="h-3 w-12 bg-[#4DD0E1] rounded-full border border-black shadow-[2px_2px_0px_rgba(0,0,0,0.1)]"></div>
-    </div>
-
+    </section>
   </main>
+
+  <script>
+    const KEY = "mls4you_territoire_soin_v1";
+    function qs(id){ return document.getElementById(id); }
+
+    function getFields(){
+      return {
+        lieux: qs('lieux').value.trim(),
+        activites: qs('activites').value.trim(),
+        personnes: qs('personnes').value.trim(),
+        moments: qs('moments').value.trim(),
+
+        pro: qs('pro').value.trim(),
+        structures: qs('structures').value.trim(),
+        confiance: qs('confiance').value.trim(),
+        urgence: qs('urgence').value.trim(),
+
+        alertes: qs('alertes').value.trim(),
+        savedAt: new Date().toISOString()
+      };
+    }
+
+    function setFields(d){
+      if(!d) return;
+      ['lieux','activites','personnes','moments','pro','structures','confiance','urgence','alertes']
+        .forEach(k => { if(qs(k)) qs(k).value = d[k] || ""; });
+    }
+
+    function saveLocal(){
+      try{
+        localStorage.setItem(KEY, JSON.stringify(getFields()));
+        toast("Sauvegardé ✅");
+      }catch(e){
+        toast("Impossible de sauvegarder ❌");
+      }
+    }
+
+    function resetForm(){
+      if(!confirm("Réinitialiser tout le contenu ?")) return;
+      localStorage.removeItem(KEY);
+      setFields({});
+      toast("Réinitialisé");
+    }
+
+    function toast(text){
+      const t = document.createElement('div');
+      t.textContent = text;
+      t.style.position = 'fixed';
+      t.style.left = '50%';
+      t.style.bottom = '18px';
+      t.style.transform = 'translateX(-50%)';
+      t.style.background = 'rgba(16,17,20,.92)';
+      t.style.color = 'white';
+      t.style.padding = '12px 14px';
+      t.style.borderRadius = '14px';
+      t.style.fontWeight = '900';
+      t.style.letterSpacing = '.04em';
+      t.style.zIndex = '9999';
+      t.style.boxShadow = '0 14px 28px rgba(0,0,0,.18)';
+      document.body.appendChild(t);
+      setTimeout(()=>{ t.style.opacity = '0'; t.style.transition='opacity .25s ease'; }, 1100);
+      setTimeout(()=>{ t.remove(); }, 1500);
+    }
+
+    // autosave
+    const ids = ['lieux','activites','personnes','moments','pro','structures','confiance','urgence','alertes'];
+    ids.forEach(id=>{
+      const el = qs(id);
+      if(!el) return;
+      el.addEventListener('input', ()=>{ try{ localStorage.setItem(KEY, JSON.stringify(getFields())); }catch{} });
+      el.addEventListener('change', ()=>{ try{ localStorage.setItem(KEY, JSON.stringify(getFields())); }catch{} });
+    });
+
+    window.addEventListener('load', function(){
+      try{
+        const saved = JSON.parse(localStorage.getItem(KEY) || "null");
+        if(saved) setFields(saved);
+      }catch{}
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    });
+  </script>
 </body>
 </html>
