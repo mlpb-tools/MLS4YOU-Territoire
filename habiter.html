@@ -3,269 +3,752 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fiche 3 : Habiter - LS4YOU</title>
+  <title>Habiter — Mes Bons Plans & Trajets | MLS4YOU Territoire</title>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
-
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@0.263.1/dist/umd/lucide.min.js"></script>
 
   <style>
     :root{
-      --c-red:#C62828;
-      --c-yellow:#FFD54F;
-      --c-yellow-dark:#FFC107;
-      --c-turq:#4DD0E1;
-      --c-turq-dark:#00ACC1;
-      --c-mint:#E0F2F1;
-      --c-orange:#FFB74D;
-      --c-white:#ffffff;
-      --c-black:#1a1a1a;
+      --red:#C62828;
+      --yellow:#FFC928;
+      --turq:#20B8AE;
+      --mint:#BFEFE8;
+      --orange:#FFB067;
+
+      --ink:#101114;
+      --muted: rgba(16,17,20,.72);
+      --bg:#FFF9F0;
+      --paper:#ffffff;
+
+      --shadow: 0 18px 36px rgba(16,17,20,.10);
+      --radius: 18px;
+      --max: 980px;
     }
 
+    *{box-sizing:border-box}
+    html,body{height:100%}
     body{
-      font-family:'Montserrat',sans-serif;
-      background-color:#f8f9fa;
-      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-      color:var(--c-black);
+      margin:0;
+      font-family:'Montserrat',system-ui,-apple-system,sans-serif;
+      background: var(--bg);
+      color: var(--ink);
       overflow-x:hidden;
-      min-height:100vh;
+    }
+    h1,h2,h3,.baloo{font-family:'Baloo 2',cursive; font-weight:800; letter-spacing:-.02em;}
+    a{color:inherit}
+
+    /* background blobs */
+    .bg{
+      position: fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden;
+    }
+    .blob{position:absolute; border-radius:999px; filter: blur(2px); opacity:.65;}
+    .b1{width:420px;height:420px; left:-160px; top:-140px; background:rgba(255,176,103,.30);}
+    .b2{width:360px;height:360px; right:-140px; top:18%; background:rgba(255,201,40,.28);}
+    .b3{width:520px;height:520px; left:-220px; bottom:-220px; background:rgba(198,40,40,.10);}
+    .b4{width:320px;height:320px; right:-80px; bottom:-120px; background:rgba(255,176,103,.18);}
+
+    .wrap{
+      position: relative;
+      z-index: 1;
+      max-width: var(--max);
+      margin: 18px auto 28px;
+      padding: 0 16px 28px;
+    }
+
+    .frame{
+      border-radius: 24px;
+      overflow:hidden;
+      border: 5px solid transparent;
+      background-image:
+        linear-gradient(rgba(255,255,255,.95), rgba(255,255,255,.95)),
+        linear-gradient(135deg, var(--orange), var(--yellow), var(--red));
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      box-shadow: 0 22px 44px rgba(0,0,0,.10);
+    }
+
+    /* topbar */
+    .topbar{
+      padding: 14px 16px;
+      background: #fff;
+      border-bottom: 4px solid var(--orange);
       display:flex;
-      justify-content:center;
       align-items:center;
-      padding:20px;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .back{
+      display:inline-flex; align-items:center; gap:10px;
+      text-decoration:none;
+      font-weight:900;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      color: var(--muted);
+      padding:10px 12px;
+      border-radius:999px;
+      border:2px solid rgba(16,17,20,.10);
+      background: #fff;
+      transition:.18s ease;
+      white-space:nowrap;
+    }
+    .back:hover{transform: translateY(-1px); border-color: var(--orange); color: var(--ink); box-shadow: 0 8px 18px rgba(16,17,20,.08);}
+    .crumb{
+      display:inline-flex; align-items:center; gap:8px;
+      font-weight:900; font-size:12px; color: var(--muted);
+      text-transform:uppercase; letter-spacing:.06em;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      font-weight:900;
+      padding:10px 12px;
+      border-radius:999px;
+      border: 3px solid var(--ink);
+      background: rgba(255,176,103,.20);
+      box-shadow: 6px 6px 0 rgba(16,17,20,.08);
+      text-transform:uppercase;
+      letter-spacing:.05em;
+      font-size:12px;
+      white-space:nowrap;
     }
 
-    h1,h2,h3,.font-title{
-      font-family:'Poppins',sans-serif;
-      letter-spacing:-0.02em;
-    }
-
-    .pop-card{
-      background:white;
-      border:3px solid var(--c-black);
-      box-shadow:8px 8px 0px var(--c-black);
-      border-radius:20px;
+    /* hero */
+    .hero{ padding: 18px 16px 0; background:#fff; }
+    .heroCard{
       position:relative;
-      z-index:10;
-      transition:transform 0.2s ease;
+      border-radius: 22px;
+      padding: 18px 18px;
+      border: 4px solid var(--ink);
+      background: linear-gradient(180deg, rgba(255,176,103,.28), rgba(255,255,255,.92));
+      box-shadow: 10px 10px 0 rgba(16,17,20,.08);
+      overflow:hidden;
     }
-    .pop-card:hover{
-      transform:translate(-2px,-2px);
-      box-shadow:10px 10px 0px var(--c-black);
+    .grain{
+      position:absolute; inset:0; opacity:.07; pointer-events:none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .heroTop{ display:flex; align-items:flex-start; justify-content:space-between; gap:14px; }
+    .kicker{
+      display:inline-flex; align-items:center; gap:8px;
+      background: var(--orange);
+      color: var(--ink);
+      font-weight:900;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 3px solid var(--ink);
+      box-shadow: 6px 6px 0 rgba(16,17,20,.10);
+      text-transform:uppercase;
+      letter-spacing:.05em;
+      font-size:12px;
+    }
+    .heroIcon{
+      width: 44px; height:44px;
+      border-radius: 14px;
+      border: 3px solid var(--ink);
+      background: #fff;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow: 6px 6px 0 rgba(16,17,20,.08);
+      flex:0 0 auto;
+    }
+    .heroIcon i{color: var(--red)}
+    .title{
+      margin: 14px 0 6px;
+      font-size: clamp(26px, 4vw, 38px);
+      line-height:1.0;
+      text-transform:uppercase;
+    }
+    .subtitle{
+      margin: 0;
+      font-weight:800;
+      color: var(--muted);
+      max-width: 88ch;
+      line-height:1.4;
+    }
+    .callout{
+      margin-top: 14px;
+      padding: 14px 14px;
+      border-radius: 16px;
+      border: 3px dashed rgba(16,17,20,.25);
+      background: rgba(255,255,255,.92);
+      font-weight:900;
+      color: var(--ink);
     }
 
-    @keyframes popIn{
-      0%{opacity:0;transform:scale(0.9) translateY(10px);}
-      100%{opacity:1;transform:scale(1) translateY(0);}
-    }
-    @keyframes float{
-      0%,100%{transform:translateY(0px);}
-      50%{transform:translateY(-10px);}
+    /* board + map */
+    .board{ padding: 16px; background:#fff; }
+    .layout{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 14px;
+      align-items:start;
     }
 
-    .animate-pop{animation:popIn 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards;}
-    .delay-100{animation-delay:0.1s;}
-    .delay-200{animation-delay:0.2s;}
-    .delay-300{animation-delay:0.3s;}
-    .delay-400{animation-delay:0.4s;}
-    .floating{animation:float 4s ease-in-out infinite;}
+    .card{
+      border-radius: var(--radius);
+      border: 3px solid var(--ink);
+      background: var(--paper);
+      box-shadow: 10px 10px 0 rgba(16,17,20,.08);
+      overflow:hidden;
+    }
+    .cardHead{
+      padding: 12px 14px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      border-bottom: 3px solid rgba(16,17,20,.12);
+      background: rgba(255,201,40,.18);
+    }
+    .cardHead.orange{ background: rgba(255,176,103,.22); }
+    .cardHead h3{
+      margin:0;
+      font-size: 16px;
+      text-transform:uppercase;
+      letter-spacing:.03em;
+      line-height:1.1;
+    }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background:#fff;
+      border:2px solid rgba(16,17,20,.10);
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+      font-size: 11px;
+      white-space:nowrap;
+    }
+    .dot{width:12px;height:12px;border-radius:999px;}
+    .dot.o{background:var(--orange)}
+    .dot.y{background:var(--yellow)}
+    .dot.r{background:var(--red)}
 
-    .decoration-circle{
+    .cardBody{ padding: 14px; }
+
+    label{
+      display:block;
+      font-weight:900;
+      font-size: 12px;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      margin: 10px 0 6px;
+      color: rgba(16,17,20,.85);
+    }
+    input[type="text"], textarea{
+      width:100%;
+      border: 3px solid rgba(16,17,20,.14);
+      border-radius: 14px;
+      padding: 12px 12px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight:700;
+      background: rgba(255,255,255,.92);
+      outline:none;
+      transition: .15s ease;
+    }
+    textarea{ min-height: 84px; resize: vertical; }
+    textarea:focus, input[type="text"]:focus{
+      border-color: var(--orange);
+      box-shadow: 0 0 0 6px rgba(255,176,103,.22);
+    }
+    .row2{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .row3{ display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+    .smallHint{ margin-top: 10px; font-size: 12px; color: var(--muted); font-weight:800; }
+
+    /* mini map */
+    .mapCard{ position:sticky; top:14px; }
+    .map{
+      position:relative;
+      height: 420px;
+      border-radius: 18px;
+      border: 4px solid var(--ink);
+      background:
+        radial-gradient(circle at 18% 22%, rgba(255,176,103,.35) 0 32%, transparent 33%),
+        radial-gradient(circle at 78% 30%, rgba(255,201,40,.32) 0 30%, transparent 31%),
+        radial-gradient(circle at 62% 78%, rgba(198,40,40,.14) 0 34%, transparent 35%),
+        linear-gradient(180deg, rgba(250,250,250,1), rgba(255,255,255,.92));
+      box-shadow: 10px 10px 0 rgba(16,17,20,.08);
+      overflow:hidden;
+    }
+    .map::after{
+      content:"";
+      position:absolute; inset:0;
+      opacity:.07;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      pointer-events:none;
+    }
+    .pin{
       position:absolute;
-      border-radius:50%;
-      border:2px solid var(--c-black);
-      z-index:-1;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding: 10px 10px;
+      border-radius: 14px;
+      border: 3px solid var(--ink);
+      background: rgba(255,255,255,.95);
+      box-shadow: 8px 8px 0 rgba(16,17,20,.06);
+      font-weight:900;
+      font-size: 12px;
+      max-width: 190px;
     }
+    .pin .pico{
+      width:28px;height:28px;border-radius:12px;
+      border: 3px solid var(--ink);
+      display:flex;align-items:center;justify-content:center;
+      flex:0 0 auto;
+      background: rgba(255,201,40,.35);
+    }
+    .pin.o .pico{ background: rgba(255,176,103,.42); }
+    .pin.y .pico{ background: rgba(255,201,40,.42); }
+    .pin.r .pico{ background: rgba(198,40,40,.18); }
+    .pin i{ width:16px;height:16px;color: rgba(16,17,20,.78); }
 
-    .shine{position:relative;overflow:hidden;}
-    .shine::after{
-      content:'';
+    .pin1{ left: 18px; top: 22px;}
+    .pin2{ right: 18px; top: 54px;}
+    .pin3{ left: 26px; bottom: 24px;}
+    .route{
       position:absolute;
-      top:0;left:-100%;
-      width:50%;height:100%;
-      background:linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
-      transform:skewX(-25deg);
-      animation:shine 3s infinite;
+      left: 60px; top: 170px;
+      width: 70%;
+      height: 4px;
+      border-radius:999px;
+      background: repeating-linear-gradient(90deg, var(--orange) 0 14px, transparent 14px 22px);
+      opacity:.8;
+      transform: rotate(-10deg);
     }
-    @keyframes shine{100%{left:125%;}}
+    .coin{
+      position:absolute;
+      right: 16px; bottom: 16px;
+      display:flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border-radius: 999px;
+      border: 3px solid var(--ink);
+      background: rgba(255,176,103,.20);
+      box-shadow: 8px 8px 0 rgba(16,17,20,.06);
+      font-weight:900;
+      font-size: 12px;
+    }
 
-    /* bouton retour simple */
-    .back-btn{
-      position:fixed;
-      left:16px;
-      bottom:16px;
-      z-index:50;
+    /* actions */
+    .actions{
+      padding: 14px 16px 18px;
+      background:#fff;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      border-top: 3px solid rgba(16,17,20,.10);
+    }
+    .note{
+      font-size: 12px;
+      font-weight:900;
+      color: var(--muted);
+      max-width: 92ch;
+      line-height:1.4;
+    }
+    .btns{display:flex; gap:10px; flex-wrap:wrap;}
+    .btn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.06em;
       display:inline-flex;
       align-items:center;
       gap:10px;
-      padding:12px 14px;
-      background:#fff;
-      border:2px solid #000;
-      border-radius:14px;
-      font-weight:800;
+      box-shadow: 0 10px 20px rgba(16,17,20,.10);
+      transition:.18s ease;
       text-decoration:none;
-      color:#111;
-      box-shadow:4px 4px 0 #000;
-      transition:transform .15s ease;
     }
-    .back-btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #000;}
+    .btn:hover{ transform: translateY(-2px); box-shadow: 0 16px 28px rgba(16,17,20,.14); }
+    .btn-primary{ background: var(--ink); color:#fff; }
+    .btn-orange{ background: var(--orange); color: var(--ink); }
+    .btn-ghost{ background:#fff; color: var(--ink); border: 3px solid rgba(16,17,20,.14); }
+
+    @media (max-width: 920px){
+      .badge{display:none;}
+    }
+    @media (max-width: 860px){
+      .layout{ grid-template-columns: 1fr; }
+      .mapCard{ position:relative; top:auto; }
+      .row3{ grid-template-columns: 1fr; }
+      .row2{ grid-template-columns: 1fr; }
+      .map{ height: 340px; }
+    }
   </style>
 </head>
 
-<body class="bg-gray-50">
-
-  <!-- Bouton retour vers l'accueil du site -->
-  <a class="back-btn" href="./index.html" aria-label="Retour au parcours">
-    ← Retour
-  </a>
-
-  <!-- DECORATIVE BACKGROUND ELEMENTS (Fixed) -->
-  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
-    <div class="decoration-circle bg-[#FFD54F] w-48 h-48 -top-10 -left-10 opacity-50 floating" style="animation-delay:0s;"></div>
-    <div class="decoration-circle bg-[#FFB74D] w-32 h-32 bottom-20 left-10 opacity-60 floating" style="animation-delay:1s;"></div>
-    <div class="decoration-circle bg-[#4DD0E1] w-24 h-24 top-1/2 right-5 opacity-40 floating" style="animation-delay:2s;"></div>
-
-    <svg class="absolute bottom-0 right-0 w-56 h-56 text-[#FFF9C4] -z-10" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
-      <path d="M50 10 C30 10 15 25 15 45 C15 70 50 95 50 95 C50 95 85 70 85 45 C85 25 70 10 50 10 Z M50 55 C44 55 40 51 40 45 C40 39 44 35 50 35 C56 35 60 39 60 45 C60 51 56 55 50 55 Z" />
-    </svg>
+<body>
+  <div class="bg" aria-hidden="true">
+    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div>
   </div>
 
-  <!-- MAIN CONTAINER -->
-  <main class="max-w-3xl w-full mx-auto relative z-10 my-10">
+  <main class="wrap">
+    <section class="frame">
 
-    <!-- FICHE HEADER -->
-    <div class="pop-card p-6 md:p-10 mb-6 animate-pop bg-white shine">
-      <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-4">
-        <span class="bg-[#FFD54F] text-black font-black px-4 py-1 rounded-full border-2 border-black shadow-[3px_3px_0px_#000] text-sm uppercase tracking-wider mb-2 md:mb-0">
-          Fiche 3 : Habiter
-        </span>
-
-        <svg class="w-10 h-10 text-[#C62828]" fill="currentColor" viewBox="0 0 24 24" stroke="black" stroke-width="2" aria-hidden="true">
-          <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/>
-        </svg>
-      </div>
-
-      <h1 class="text-4xl md:text-5xl font-black text-[#1a1a1a] mb-2 leading-tight">
-        NAVIGUER
-      </h1>
-      <h2 class="text-lg md:text-xl font-bold text-[#FFC107] font-title drop-shadow-[1px_1px_0px_#000]">
-        Passer de la géographie à la stratégie
-      </h2>
-    </div>
-
-    <!-- CONTENT BLOCKS -->
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-
-      <!-- POURQUOI -->
-      <div class="md:col-span-12 pop-card p-6 bg-[#FFF9C4] animate-pop delay-100 border-l-8 border-l-[#FFD54F]">
-        <h3 class="font-black text-2xl mb-3 text-[#FBC02D] flex items-center gap-2">
-          <span class="text-3xl">?</span> POURQUOI CETTE FICHE
-        </h3>
-        <p class="mb-4 font-medium leading-relaxed">
-          Habiter ici, ce n'est pas juste avoir un toit. Selon le géographe Martin Vanier, il faut passer de la « culture du faire » à la
-          <strong>« culture de l'habiter »</strong>. Tu n'es pas isolé : tu dépends des autres pour bouger, te loger et travailler.
-        </p>
-        <div class="bg-white p-4 rounded-xl border-2 border-black shadow-[4px_4px_0px_#FFD54F]">
-          <p class="text-sm">
-            <span class="font-bold text-[#C62828]">L'ENJEU :</span> La crise du logement et des transports est réelle. Pour t'en sortir, tu dois
-            <strong>maîtriser l'interdépendance</strong> : utiliser les réseaux d'entraide et les astuces locales pour contourner les obstacles.
-          </p>
+      <div class="topbar">
+        <a class="back" href="index.html">
+          <i data-lucide="arrow-left" style="width:18px;height:18px;"></i>
+          Retour
+        </a>
+        <div class="crumb">
+          <i data-lucide="map" style="width:18px;height:18px;"></i>
+          Habiter
+        </div>
+        <div class="badge">
+          <span style="display:inline-flex;align-items:center;gap:8px;">
+            <span style="width:10px;height:10px;border-radius:999px;background:var(--orange);display:inline-block;"></span>
+            Bons plans + trajets + plan B
+          </span>
         </div>
       </div>
 
-      <!-- ACTION -->
-      <div class="md:col-span-12 pop-card p-0 overflow-hidden animate-pop delay-200">
-        <div class="bg-[#FFD54F] p-4 border-b-3 border-black flex items-center justify-between">
-          <h3 class="font-black text-xl md:text-2xl text-black drop-shadow-[1px_1px_0px_#FFF]">
-            🗺️ ACTION : CALQUE « BONS PLANS »
-          </h3>
-          <span class="bg-black text-[#FFD54F] text-xs font-bold px-2 py-1 rounded border border-white">CODE : JAUNE</span>
-        </div>
+      <section class="hero">
+        <div class="heroCard">
+          <div class="grain" aria-hidden="true"></div>
 
-        <div class="p-6 bg-white">
-
-          <!-- Step 1 -->
-          <div class="mb-6 relative">
-            <div class="absolute -left-3 -top-3 bg-[#C62828] w-8 h-8 rounded-full border-2 border-black flex items-center justify-center font-black text-white shadow-[2px_2px_0px_#000]">1</div>
-            <div class="border-2 border-dashed border-gray-300 rounded-xl p-4 ml-2">
-              <h4 class="font-black text-lg text-[#C62828] mb-2">Ta Stratégie de Survie</h4>
-              <p class="text-sm mb-2">Sois réaliste face au territoire.</p>
-              <ul class="text-sm font-medium space-y-2">
-                <li class="flex items-start gap-2">
-                  <span class="text-[#FFC107] font-bold">⛔ Frein n°1 :</span>
-                  Quel est-il ? (Loyer trop cher sur la côte ? Pas de permis ?).
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-[#4DD0E1] font-bold">🛠️ Système D :</span>
-                  Quelle est ta solution ? (Covoit', hébergement famille, foyer).
-                </li>
-              </ul>
+          <div class="heroTop">
+            <div class="kicker">
+              <i data-lucide="route" style="width:18px;height:18px;"></i>
+              Module 3 — HABITER
+            </div>
+            <div class="heroIcon" aria-hidden="true">
+              <i data-lucide="euro" style="width:22px;height:22px;"></i>
             </div>
           </div>
 
-          <!-- Step 2 -->
-          <div class="relative">
-            <div class="absolute -left-3 -top-3 bg-[#C62828] w-8 h-8 rounded-full border-2 border-black flex items-center justify-center font-black text-white shadow-[2px_2px_0px_#000]">2</div>
-            <div class="bg-[#FFFDE7] border-2 border-black rounded-xl p-4 ml-2 shadow-[4px_4px_0px_#FFD54F]">
-              <h4 class="font-black text-lg text-[#C62828] mb-2">La Cartographie Digitale (My Maps)</h4>
-              <p class="text-sm mb-3">Crée ton <strong>« Waze de l'Insertion »</strong>.</p>
+          <h1 class="title">MES BONS PLANS &amp; TRAJETS — Rendre mon projet possible</h1>
+          <p class="subtitle">
+            Ici, tu fais ton <strong>plan concret</strong> : transport, logement, économies, galères possibles… et surtout ton <strong>plan B</strong>.
+            C’est ça qui te rend crédible.
+          </p>
 
-              <ol class="list-decimal list-inside text-sm space-y-3 font-medium">
-                <li>
-                  <strong>Épingle les Obstacles :</strong> Marque les zones rouges.
-                  <span class="block text-xs text-red-600 ml-5 font-bold">"Loyer &gt; 600€ sur la zone littorale"</span>
-                </li>
-                <li>
-                  <strong>Épingle tes Solutions (Crowdsourcing) :</strong>
-                  <div class="flex flex-wrap gap-2 mt-1 ml-1">
-                    <span class="bg-white px-2 py-1 border border-black rounded text-xs">🚗 Covoit' fiable (Txik Txak)</span>
-                    <span class="bg-white px-2 py-1 border border-black rounded text-xs">🧺 Laverie pas chère</span>
-                    <span class="bg-white px-2 py-1 border border-black rounded text-xs">🥗 Épicerie Solidaire</span>
+          <div class="callout">
+            👉 <strong>Anticiper = être crédible pour un employeur.</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="board">
+        <div class="layout">
+
+          <!-- left column: forms -->
+          <div style="display:flex; flex-direction:column; gap:14px;">
+
+            <!-- TRANSPORT -->
+            <article class="card">
+              <div class="cardHead orange">
+                <h3>🚗 Mes solutions transport</h3>
+                <span class="chip"><span class="dot o"></span>Trajets</span>
+              </div>
+              <div class="cardBody">
+                <div class="row2">
+                  <div>
+                    <label for="bus">Bus ligne :</label>
+                    <input id="bus" type="text" placeholder="Ex : L40 / L28 / ligne Txik Txak…">
                   </div>
-                </li>
-                <li class="bg-white p-2 border border-black rounded mt-1">
-                  <span class="font-bold text-[#00ACC1]">Trace ton itinéraire réel :</span> Note le coût temps/argent.
-                  <div class="mt-2 text-xs text-gray-700 italic border-l-2 border-[#C62828] pl-2">
-                    "Hasparren → Bayonne = 45 min de route mais 200€ d'économie de loyer"
+                  <div>
+                    <label for="train">Train gare :</label>
+                    <input id="train" type="text" placeholder="Ex : gare de Bayonne / St-Jean…">
                   </div>
-                </li>
-              </ol>
-            </div>
+                </div>
+
+                <div class="row2">
+                  <div>
+                    <label for="covoit">Covoiturage avec :</label>
+                    <input id="covoit" type="text" placeholder="Ex : collègue / ami / appli / arrêt covoit…">
+                  </div>
+                  <div>
+                    <label for="velo">Scooter / vélo / marche :</label>
+                    <input id="velo" type="text" placeholder="Ex : vélo + 10 min / scooter prêté…">
+                  </div>
+                </div>
+
+                <label for="permis">Aide permis possible :</label>
+                <input id="permis" type="text" placeholder="Ex : Mission Locale / CPF / aides locales…">
+
+                <div class="smallHint">
+                  ✅ Mets des infos concrètes : <strong>horaires</strong>, <strong>durée</strong>, <strong>coût</strong>.
+                </div>
+              </div>
+            </article>
+
+            <!-- LOGEMENT -->
+            <article class="card">
+              <div class="cardHead" style="background: rgba(255,201,40,.18);">
+                <h3>🏠 Mes solutions logement</h3>
+                <span class="chip"><span class="dot y"></span>Logement</span>
+              </div>
+              <div class="cardBody">
+                <div class="row2">
+                  <div>
+                    <label for="famille">Famille possible :</label>
+                    <input id="famille" type="text" placeholder="Ex : chez tante 2 mois / dépannage…">
+                  </div>
+                  <div>
+                    <label for="coloc">Coloc possible :</label>
+                    <input id="coloc" type="text" placeholder="Ex : ami / recherche / secteur…">
+                  </div>
+                </div>
+
+                <div class="row2">
+                  <div>
+                    <label for="foyer">Foyer jeune :</label>
+                    <input id="foyer" type="text" placeholder="Ex : FJT / résidence jeune…">
+                  </div>
+                  <div>
+                    <label for="temporaire">Solution temporaire :</label>
+                    <input id="temporaire" type="text" placeholder="Ex : hébergement court / saison…">
+                  </div>
+                </div>
+
+                <div class="smallHint">
+                  💡 L’idée : avoir <strong>une option rapide</strong> si ton projet démarre demain.
+                </div>
+              </div>
+            </article>
+
+            <!-- ECONOMIES -->
+            <article class="card">
+              <div class="cardHead orange">
+                <h3>💰 Mes solutions économies</h3>
+                <span class="chip"><span class="dot o"></span>€</span>
+              </div>
+              <div class="cardBody">
+                <div class="row2">
+                  <div>
+                    <label for="epicerie">Épicerie sociale :</label>
+                    <input id="epicerie" type="text" placeholder="Ex : où / horaires / conditions…">
+                  </div>
+                  <div>
+                    <label for="aides">Aides possibles :</label>
+                    <input id="aides" type="text" placeholder="Ex : aides transport / logement / CAF…">
+                  </div>
+                </div>
+
+                <div class="row2">
+                  <div>
+                    <label for="food">Bons plans nourriture :</label>
+                    <input id="food" type="text" placeholder="Ex : paniers anti-gaspi / cantine…">
+                  </div>
+                  <div>
+                    <label for="transportBp">Bons plans transport :</label>
+                    <input id="transportBp" type="text" placeholder="Ex : abonnements / réduction / covoit…">
+                  </div>
+                </div>
+
+                <div class="smallHint">
+                  ✅ Objectif : réduire tes dépenses “fixes” pour tenir dans la durée.
+                </div>
+              </div>
+            </article>
+
+            <!-- GALERES + PLAN B -->
+            <article class="card">
+              <div class="cardHead" style="background: rgba(198,40,40,.12);">
+                <h3>⚠ Mes galères possibles</h3>
+                <span class="chip"><span class="dot r"></span>Risques</span>
+              </div>
+              <div class="cardBody">
+                <label for="galeres">Liste (simple + réaliste)</label>
+                <textarea id="galeres" placeholder="Ex : horaires transport compliqués / budget serré / distance travail / fatigue / retard…"></textarea>
+
+                <div class="smallHint">
+                  💡 Une galère prévue = une galère gérable.
+                </div>
+
+                <div style="height:12px;"></div>
+
+                <div class="sentenceBox" style="border-radius:18px;border:3px solid rgba(16,17,20,.16);background:rgba(255,176,103,.16);padding:14px;box-shadow:10px 10px 0 rgba(16,17,20,.06);">
+                  <h3 style="margin:0 0 8px; font-size:16px; text-transform:uppercase;">🛟 Mon plan B</h3>
+
+                  <div class="row3">
+                    <div>
+                      <label for="planBus">Si je rate bus →</label>
+                      <input id="planBus" type="text" placeholder="Ex : covoit / vélo / appeler…">
+                    </div>
+                    <div>
+                      <label for="planLog">Si problème logement →</label>
+                      <input id="planLog" type="text" placeholder="Ex : famille / FJT / solution…">
+                    </div>
+                    <div>
+                      <label for="planPanne">Si panne voiture →</label>
+                      <input id="planPanne" type="text" placeholder="Ex : bus + covoit / dépannage…">
+                    </div>
+                  </div>
+
+                  <div style="margin-top:10px; padding:12px; border-radius:14px; border:2px dashed rgba(16,17,20,.22); background:#fff; font-weight:900; color:rgba(16,17,20,.85); line-height:1.35;">
+                    ✅ Ton message pro : <span style="color:var(--red);">“J’ai anticipé mes trajets et mes plans B, je serai fiable.”</span>
+                  </div>
+                </div>
+
+              </div>
+            </article>
+
           </div>
 
+          <!-- right column: simple map visual -->
+          <aside class="mapCard">
+            <div class="map" aria-label="Carte simple (visuel pédagogique)">
+              <div class="route" aria-hidden="true"></div>
+
+              <div class="pin pin1 y">
+                <div class="pico"><i data-lucide="train"></i></div>
+                <div>Gare / bus<br><span style="opacity:.7;font-weight:900;">horaires + coût</span></div>
+              </div>
+
+              <div class="pin pin2 o">
+                <div class="pico"><i data-lucide="car"></i></div>
+                <div>Covoit / véhicule<br><span style="opacity:.7;font-weight:900;">plan A / plan B</span></div>
+              </div>
+
+              <div class="pin pin3 r">
+                <div class="pico"><i data-lucide="alert-triangle"></i></div>
+                <div>Galère possible<br><span style="opacity:.7;font-weight:900;">solution prévue</span></div>
+              </div>
+
+              <div class="coin">
+                <i data-lucide="euro" style="width:18px;height:18px;"></i>
+                Budget maîtrisé
+              </div>
+            </div>
+
+            <div class="smallHint" style="margin-top:10px;">
+              🗺️ Version “terrain” : tu peux aussi reporter ça dans <strong>My Maps</strong> (calque “Bons plans & trajets”).
+            </div>
+          </aside>
+
+        </div>
+      </section>
+
+      <div class="actions">
+        <div class="note">
+          👉 <strong>Phrase pédagogique :</strong> Anticiper = être crédible pour un employeur.
+          <span style="opacity:.9;">(Tu montres que tu as prévu le réel : transport, logement, budget, imprévus.)</span>
+        </div>
+        <div class="btns">
+          <button class="btn btn-ghost" type="button" onclick="resetForm()">
+            <i data-lucide="rotate-ccw" style="width:18px;height:18px;"></i>
+            Réinitialiser
+          </button>
+          <button class="btn btn-orange" type="button" onclick="saveLocal()">
+            <i data-lucide="save" style="width:18px;height:18px;"></i>
+            Sauver
+          </button>
+          <a class="btn btn-primary" href="soin.html">
+            <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
+            Continuer → Prendre soin
+          </a>
         </div>
       </div>
 
-      <!-- DECLIC PRO -->
-      <div class="md:col-span-12 pop-card bg-[#C62828] p-5 animate-pop delay-300 border-2 border-black flex flex-col md:flex-row gap-4 items-center">
-        <div class="bg-white p-3 rounded-full border-2 border-black shadow-[3px_3px_0px_#000]">
-          <svg class="w-8 h-8 text-[#C62828]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
-          </svg>
-        </div>
-        <div>
-          <h4 class="font-black text-lg uppercase tracking-wide text-white drop-shadow-[1px_1px_0px_#000]">💡 LE DÉCLIC PRO</h4>
-          <p class="text-sm font-bold text-white leading-snug">
-            Tu montres que tu sais <strong>« Naviguer »</strong>. Un patron a besoin d'être rassuré : en voyant ta carte, il sait que tu as anticipé
-            les problèmes de transport et que <strong>tu seras fiable</strong>.
-          </p>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- FOOTER CAPSULES -->
-    <div class="mt-8 flex justify-center gap-3 animate-pop delay-400">
-      <div class="h-3 w-12 bg-[#FFD54F] rounded-full border border-black shadow-[2px_2px_0px_rgba(0,0,0,0.1)]"></div>
-      <div class="h-3 w-12 bg-[#FFB74D] rounded-full border border-black shadow-[2px_2px_0px_rgba(0,0,0,0.1)]"></div>
-      <div class="h-3 w-12 bg-[#C62828] rounded-full border border-black shadow-[2px_2px_0px_rgba(0,0,0,0.1)]"></div>
-      <div class="h-3 w-12 bg-[#4DD0E1] rounded-full border border-black shadow-[2px_2px_0px_rgba(0,0,0,0.1)]"></div>
-    </div>
-
+    </section>
   </main>
+
+  <script>
+    const KEY = "mls4you_territoire_habiter_v1";
+    function qs(id){ return document.getElementById(id); }
+
+    function getFields(){
+      return {
+        bus: qs('bus').value.trim(),
+        train: qs('train').value.trim(),
+        covoit: qs('covoit').value.trim(),
+        velo: qs('velo').value.trim(),
+        permis: qs('permis').value.trim(),
+
+        famille: qs('famille').value.trim(),
+        coloc: qs('coloc').value.trim(),
+        foyer: qs('foyer').value.trim(),
+        temporaire: qs('temporaire').value.trim(),
+
+        epicerie: qs('epicerie').value.trim(),
+        aides: qs('aides').value.trim(),
+        food: qs('food').value.trim(),
+        transportBp: qs('transportBp').value.trim(),
+
+        galeres: qs('galeres').value.trim(),
+
+        planBus: qs('planBus').value.trim(),
+        planLog: qs('planLog').value.trim(),
+        planPanne: qs('planPanne').value.trim(),
+
+        savedAt: new Date().toISOString()
+      };
+    }
+
+    function setFields(d){
+      if(!d) return;
+      [
+        'bus','train','covoit','velo','permis',
+        'famille','coloc','foyer','temporaire',
+        'epicerie','aides','food','transportBp',
+        'galeres','planBus','planLog','planPanne'
+      ].forEach(k => { if(qs(k)) qs(k).value = d[k] || ""; });
+    }
+
+    function saveLocal(){
+      try{
+        localStorage.setItem(KEY, JSON.stringify(getFields()));
+        toast("Sauvegardé ✅");
+      }catch(e){
+        toast("Impossible de sauvegarder ❌");
+      }
+    }
+
+    function resetForm(){
+      if(!confirm("Réinitialiser tout le contenu ?")) return;
+      localStorage.removeItem(KEY);
+      setFields({});
+      toast("Réinitialisé");
+    }
+
+    function toast(text){
+      const t = document.createElement('div');
+      t.textContent = text;
+      t.style.position = 'fixed';
+      t.style.left = '50%';
+      t.style.bottom = '18px';
+      t.style.transform = 'translateX(-50%)';
+      t.style.background = 'rgba(16,17,20,.92)';
+      t.style.color = 'white';
+      t.style.padding = '12px 14px';
+      t.style.borderRadius = '14px';
+      t.style.fontWeight = '900';
+      t.style.letterSpacing = '.04em';
+      t.style.zIndex = '9999';
+      t.style.boxShadow = '0 14px 28px rgba(0,0,0,.18)';
+      document.body.appendChild(t);
+      setTimeout(()=>{ t.style.opacity = '0'; t.style.transition='opacity .25s ease'; }, 1100);
+      setTimeout(()=>{ t.remove(); }, 1500);
+    }
+
+    // autosave
+    const ids = [
+      'bus','train','covoit','velo','permis',
+      'famille','coloc','foyer','temporaire',
+      'epicerie','aides','food','transportBp',
+      'galeres','planBus','planLog','planPanne'
+    ];
+    ids.forEach(id=>{
+      const el = qs(id);
+      if(!el) return;
+      el.addEventListener('input', ()=>{ try{ localStorage.setItem(KEY, JSON.stringify(getFields())); }catch{} });
+      el.addEventListener('change', ()=>{ try{ localStorage.setItem(KEY, JSON.stringify(getFields())); }catch{} });
+    });
+
+    window.addEventListener('load', function(){
+      try{
+        const saved = JSON.parse(localStorage.getItem(KEY) || "null");
+        if(saved) setFields(saved);
+      }catch{}
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    });
+  </script>
 </body>
 </html>
