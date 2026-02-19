@@ -487,7 +487,7 @@
           <div class="n" style="background: var(--red); color: white;">2</div>
           <div class="ct">
             <h3>QUI JE CONNAIS / QUI ME CONNAÎT</h3>
-            <p>Interagir : comprendre les codes, créer du lien, être à l’aise avec les gens.</p>
+            <p>Les gens et les lieux où je suis déjà reconnu(e) et à l'aise.</p>
             <span class="pill"><span class="dot r"></span>Réseaux</span>
           </div>
         </div>
@@ -496,7 +496,7 @@
           <div class="n" style="background: var(--yellow); color: var(--ink);">3</div>
           <div class="ct">
             <h3>CE QUE JE FAIS, CE QUE JE SAIS FAIRE</h3>
-            <p>Proposer de la valeur : repérer un besoin local et répondre concrètement.</p>
+            <p>Mes compétences et expériences posées sur le territoire.</p>
             <span class="pill"><span class="dot y"></span>Valeur</span>
           </div>
         </div>
@@ -505,7 +505,7 @@
           <div class="n" style="background: var(--turq); color: white;">4</div>
           <div class="ct">
             <h3>MES BONS PLANS ET LES LIEUX QUI M’AIDENT AU QUOTIDIEN</h3>
-            <p>Gérer le réel : anticiper logement, transport, budget, contraintes du Pays Basque.</p>
+            <p>Mes solutions concrètes (transports, repas, papiers).</p>
             <span class="pill"><span class="dot m"></span>Bons plans</span>
           </div>
         </div>
@@ -514,7 +514,7 @@
           <div class="n" style="background: var(--orange); color: white;">5</div>
           <div class="ct">
             <h3>LÀ OÙ JE ME RESSOURCE</h3>
-            <p>Durer : équilibre, énergie, stress, réseau de soutien, plan anti-rupture.</p>
+            <p>Mes spots et appuis pour tenir dans la durée.</p>
             <span class="pill"><span class="dot o"></span>Zaintza</span>
           </div>
         </div>
@@ -619,41 +619,37 @@
         number: 2,
         title: "QUI JE CONNAIS / QUI ME CONNAÎT",
         color: "var(--red)",
-        desc: `<strong>Accueillir = Interagir</strong><br><br>
-        Comprendre les codes, créer du lien, être à l’aise avec les gens.<br><br>
+        desc: `<strong>Les gens et les lieux où je suis déjà reconnu(e) et à l'aise.</strong><br><br>
         Tu vas cartographier : <strong>Mes Tribus & Réseaux</strong> (les gens que tu connais déjà).`,
         link: "./accueillir.html",
-        btnText: "Lancer ACCUEILLIR"
+        btnText: "Ouvrir"
       },
       creer: {
         number: 3,
         title: "CE QUE JE FAIS, CE QUE JE SAIS FAIRE",
         color: "var(--yellow)",
-        desc: `<strong>Créer = Proposer de la valeur</strong><br><br>
-        Repérer un besoin local et répondre concrètement (posture “offreur de solutions”).<br><br>
+        desc: `<strong>Mes compétences et expériences posées sur le territoire.</strong><br><br>
         Tu vas transformer tes expériences perso en <strong>valeur pro</strong>.`,
         link: "./creer.html",
-        btnText: "Lancer CRÉER"
+        btnText: "Ouvrir"
       },
       habiter: {
         number: 4,
         title: "MES BONS PLANS ET LES LIEUX QUI M’AIDENT AU QUOTIDIEN",
         color: "var(--turq)",
-        desc: `<strong>Habiter = Gérer le réel</strong><br><br>
-        Anticiper logement, transport, budget, contraintes du Pays Basque.<br><br>
+        desc: `<strong>Mes solutions concrètes</strong> : transports, repas, papiers, organisation.<br><br>
         Tu construis tes <strong>bons plans + trajets + plan B</strong>.`,
         link: "./habiter.html",
-        btnText: "Lancer HABITER"
+        btnText: "Ouvrir"
       },
       soin: {
         number: 5,
         title: "LÀ OÙ JE ME RESSOURCE",
         color: "var(--orange)",
-        desc: `<strong>Prendre soin = Durer</strong><br><br>
-        Être solide dans la durée : soutien, équilibre, réseaux, entraide locale.<br><br>
+        desc: `<strong>Mes spots et appuis pour tenir dans la durée.</strong><br><br>
         Tu crées ton calque <strong>Ressources Zaintza</strong> (vert/rouge + signes d’alerte).`,
         link: "./soin.html",
-        btnText: "Lancer PRENDRE SOIN"
+        btnText: "Ouvrir"
       },
 
       lexique: {
@@ -664,7 +660,7 @@
         • Un <strong>lexique</strong> (mots-clés territoire / insertion / mobilité)<br>
         • Des <strong>cartes pédagogiques</strong> (tu pourras les ajouter ensuite)<br><br>
         <div style="background:rgba(32,184,174,0.10); padding:10px; border-radius:12px; border:2px dashed rgba(16,17,20,.18);">
-          Astuce : place tes fichiers ici : <strong>pdf/lexique.pdf</strong> et plus tard des images dans <strong>assets/cartes/</strong>.
+          Astuce : place ton fichier ici : <strong>pdf/lexique.pdf</strong>
         </div>`,
         multiLinks: [
           { text: "Ouvrir le lexique (PDF)", url: "./pdf/lexique.pdf" },
@@ -709,9 +705,7 @@
           btn.href = link.url;
           btn.target = (link.url === "#") ? "_self" : "_blank";
           btn.rel = (btn.target === "_blank") ? "noopener" : "";
-          btn.innerHTML = (link.url === "#")
-            ? `🗺️ ${link.text}`
-            : `📄 ${link.text}`;
+          btn.innerHTML = (link.url === "#") ? `🗺️ ${link.text}` : `📄 ${link.text}`;
           btn.style.background = data.color;
           btn.style.color = (data.color === 'var(--yellow)' || data.color === 'var(--mint)') ? 'var(--ink)' : 'white';
           if(link.url === "#"){
