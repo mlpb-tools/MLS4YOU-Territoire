@@ -354,6 +354,7 @@
       padding-right: 8px;
     }
     .modal-body strong { color: var(--ink); font-weight: 800; }
+
     .modal-footer { flex-shrink: 0; display: flex; flex-direction: column; gap: 10px; }
     .modal-btn {
       display: flex;
@@ -370,8 +371,15 @@
       letter-spacing: 0.05em;
       transition: all 0.2s;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      gap: 10px;
     }
     .modal-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+    .modal-btn.secondary {
+      background: #fff;
+      color: var(--ink);
+      border: 3px solid rgba(16,17,20,.12);
+    }
+    .modal-btn.secondary:hover { border-color: var(--turq); }
 
     .modal-body::-webkit-scrollbar { width: 6px; }
     .modal-body::-webkit-scrollbar-track { background: transparent; }
@@ -511,12 +519,13 @@
           </div>
         </div>
 
-        <div class="card card-6" onclick="openModal('passeport')">
+        <!-- 6 devient Lexique et cartes -->
+        <div class="card card-6" onclick="openModal('lexique')">
           <div class="n" style="background: var(--turq); color: white;">6</div>
           <div class="ct">
-            <h3>PASSEPORT TERRITOIRE</h3>
-            <p>Ta synthèse exploitable : réseau, valeur, bons plans, ressources Zaintza.</p>
-            <span class="pill"><span class="dot t"></span>Bilan</span>
+            <h3>LEXIQUE &amp; CARTES</h3>
+            <p>Le vocabulaire utile + des cartes pédagogiques (tu pourras les ajouter après).</p>
+            <span class="pill"><span class="dot t"></span>Ressources</span>
           </div>
         </div>
 
@@ -647,19 +656,24 @@
         link: "./soin.html",
         btnText: "Lancer PRENDRE SOIN"
       },
-      passeport: {
+
+      // NOUVEAU : Lexique & Cartes
+      lexique: {
         number: 6,
-        title: "PASSEPORT TERRITOIRE",
+        title: "LEXIQUE & CARTES",
         color: "var(--turq)",
-        desc: `<strong>Ce que tu obtiens :</strong><br>
-        • Ton <strong>réseau activable</strong><br>
-        • Ta <strong>valeur / contribution</strong><br>
-        • Tes <strong>bons plans & plans B</strong><br>
-        • Tes <strong>ressources Zaintza</strong><br><br>
-        Tout est exploitable en entretien.`,
-        link: "./synthese.html",
-        btnText: "Voir mon passeport"
+        desc: `<strong>Ressources utiles :</strong><br><br>
+        • Un <strong>lexique</strong> (mots-clés territoire / insertion / mobilité)<br>
+        • Des <strong>cartes pédagogiques</strong> (tu pourras les ajouter ensuite)<br><br>
+        <div style="background:rgba(32,184,174,0.10); padding:10px; border-radius:12px; border:2px dashed rgba(16,17,20,.18);">
+          Astuce : place tes fichiers ici : <strong>pdf/lexique.pdf</strong> et plus tard des images dans <strong>assets/cartes/</strong>.
+        </div>`,
+        multiLinks: [
+          { text: "Ouvrir le lexique (PDF)", url: "./pdf/lexique.pdf" },
+          { text: "Voir les cartes (bientôt)", url: "#" }
+        ]
       },
+
       synthese: {
         number: "★",
         title: "SYNTHÈSE FINALE",
@@ -695,10 +709,18 @@
           const btn = document.createElement('a');
           btn.className = 'modal-btn';
           btn.href = link.url;
-          btn.target = '_self';
-          btn.innerText = link.text;
+          btn.target = (link.url === "#") ? "_self" : "_blank";
+          btn.rel = (btn.target === "_blank") ? "noopener" : "";
+          btn.innerHTML = (link.url === "#")
+            ? `🗺️ ${link.text}`
+            : `📄 ${link.text}`;
           btn.style.background = data.color;
           btn.style.color = (data.color === 'var(--yellow)' || data.color === 'var(--mint)') ? 'var(--ink)' : 'white';
+          if(link.url === "#"){
+            btn.classList.add('secondary');
+            btn.style.background = '#fff';
+            btn.style.color = 'var(--ink)';
+          }
           footer.appendChild(btn);
         });
       } else if (data.link) {
@@ -727,4 +749,3 @@
   </script>
 </body>
 </html>
-
