@@ -56,14 +56,6 @@
         .stat-label { font-weight: 700; font-size: 0.85rem; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
         .stat-desc { font-size: 0.8rem; color: #64748B; margin-top: 4px; line-height: 1.3; }
 
-        .nav-btn {
-            background: var(--ink); color: white;
-            padding: 12px 24px; border-radius: 999px;
-            font-weight: 700; display: inline-flex; align-items: center; gap: 8px;
-            transition: all 0.2s;
-        }
-        .nav-btn:hover { background: var(--red); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(198, 40, 40, 0.3); }
-
         .pill-number {
             display: inline-flex; align-items: center; justify-content: center;
             width: 32px; height: 32px; border-radius: 50%;
@@ -87,156 +79,84 @@
         </p>
     </header>
 
+    <!-- RESSOURCE PDF -->
+    <div class="bg-white p-4 rounded-xl border-2 border-black shadow-lg mt-6 mb-10 max-w-md">
+      <div class="font-black text-sm uppercase mb-2">Ressource approfondie</div>
+
+      <a href="pdf/Maitriser_son_territoire.pdf"
+         target="_blank"
+         rel="noopener"
+         class="inline-flex items-center justify-center gap-2 w-full px-4 py-3 rounded-full font-extrabold transition hover:translate-y-[-2px]"
+         style="background:#20B8AE;color:white;">
+         📄 Ouvrir le PDF pédagogique
+      </a>
+
+      <p class="text-xs mt-2 opacity-70">
+        Lecture courte pour comprendre le territoire comme levier d’insertion.
+      </p>
+    </div>
+
     <!-- 1. L'IDÉE SIMPLE -->
     <section class="section-card border-l-8 border-l-[#1a1a1a]">
         <h2 class="text-2xl font-black mb-4 flex items-center">
             <span class="pill-number bg-[#1a1a1a]">1</span> L’idée simple
         </h2>
-        <div class="prose max-w-none text-gray-800">
-            <p class="mb-4 font-medium">
-                Connaître ton territoire (Pays Basque / Iparralde), ce n’est pas “faire le malin en géo”.
-            </p>
-            <p class="mb-4">
-                C’est une <strong>compétence utile</strong> : tu repères où sont les opportunités, qui fait quoi, comment ça marche, et tu arrêtes de chercher “dans le vide”.
-            </p>
-            <div class="bg-gray-100 p-4 rounded-lg border-l-4 border-[#C62828]">
-                <strong>Ton territoire devient ton premier partenaire :</strong> entreprises, assos, réseaux, bons plans, mobilité, logement.
-            </div>
+        <p class="mb-4 font-medium">
+            Connaître ton territoire, ce n’est pas “faire le malin en géo”.
+        </p>
+        <p class="mb-4">
+            C’est une <strong>compétence utile</strong> : tu repères où sont les opportunités,
+            qui fait quoi, comment ça marche, et tu arrêtes de chercher dans le vide.
+        </p>
+        <div class="bg-gray-100 p-4 rounded-lg border-l-4 border-[#C62828]">
+            <strong>Ton territoire devient ton premier partenaire :</strong>
+            entreprises, réseaux, mobilité, logement, ressources locales.
         </div>
     </section>
 
-    <!-- 2. POURQUOI C'EST IMPORTANT -->
+    <!-- 2. POURQUOI -->
     <section class="section-card border-l-8 border-l-[#FFC107]">
         <h2 class="text-2xl font-black mb-4 flex items-center">
             <span class="pill-number bg-[#FFC107] text-black">2</span> Pourquoi c’est important
         </h2>
-        <p class="mb-4">
-            L’“économie” paraît souvent loin et abstraite, alors qu’ici, il y a des <strong>savoir-faire forts</strong> et des <strong>relations humaines de proximité</strong>.
+        <p>
+            L’économie paraît souvent abstraite, alors qu’ici il y a des savoir-faire forts
+            et des relations humaines de proximité.
         </p>
-        <div class="flex items-center gap-3 font-bold text-[#C62828] bg-red-50 p-3 rounded-lg">
-            <i data-lucide="zap" class="w-5 h-5"></i>
-            <span>Donc apprendre le territoire, c’est apprendre à voir ce que les autres ne voient pas… et à t’en servir.</span>
-        </div>
     </section>
-<div class="bg-white p-4 rounded-xl border-2 border-black shadow-lg mt-6 max-w-md">
-  <div class="font-black text-sm uppercase mb-2">Ressource approfondie</div>
 
-  <a href="Maitriser_son_territoire.pdf"
-     target="_blank"
-     class="inline-flex items-center justify-center gap-2 w-full px-4 py-3 rounded-full font-extrabold transition hover:translate-y-[-2px]"
-     style="background:#20B8AE;color:white;">
-     📄 Ouvrir le PDF pédagogique
-  </a>
-
-  <p class="text-xs mt-2 opacity-70">
-    Lecture courte pour comprendre le territoire comme levier d’insertion.
-  </p>
-</div>
-
-    <!-- 3. CHIFFRES CLES -->
+    <!-- 3. CHIFFRES -->
     <div class="mb-10">
         <h2 class="text-xl font-black mb-4 flex items-center">
-            <span class="pill-number bg-[#C62828]">3</span> 4 chiffres qui expliquent le jeu local
+            <span class="pill-number bg-[#C62828]">3</span> 4 chiffres clés
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             <div class="stat-box">
                 <div class="stat-value">140k</div>
                 <div class="stat-label">Emplois</div>
-                <div class="stat-desc">Ça bouge, vraie dynamique.</div>
             </div>
             <div class="stat-box">
                 <div class="stat-value">96%</div>
                 <div class="stat-label">TPE</div>
-                <div class="stat-desc">Moins de 10 salariés.</div>
             </div>
             <div class="stat-box">
                 <div class="stat-value">1/2</div>
-                <div class="stat-label">Emploi Local</div>
-                <div class="stat-desc">1 emploi sur 2 est dans une TPE.</div>
+                <div class="stat-label">Emploi local</div>
             </div>
             <div class="stat-box">
                 <div class="stat-value text-[#2E7D32]">6%</div>
                 <div class="stat-label">Chômage</div>
-                <div class="stat-desc">Plus bas que beaucoup d’endroits.</div>
             </div>
-        </div>
-        <div class="mt-4 text-sm font-bold text-gray-700 bg-white p-3 border border-gray-300 rounded-lg text-center shadow-sm">
-            👉 Ce que ça change pour toi : tu n’es pas recruté via une “grosse annonce”, mais via réseau, contact, preuve, confiance.
         </div>
     </div>
 
-    <!-- 4. LES 4 PILIERS -->
-    <section class="section-card border-l-8 border-l-[#20B8AE]">
-        <h2 class="text-2xl font-black mb-6 flex items-center">
-            <span class="pill-number bg-[#20B8AE]">4</span> La compétence “Territoire” en 4 piliers
-        </h2>
-        
-        <div class="grid md:grid-cols-2 gap-6">
-            <!-- 1 -->
-            <div class="bg-gray-50 p-4 rounded-xl border-2 border-transparent hover:border-[#C62828] transition-colors">
-                <h3 class="font-bold text-[#C62828] mb-1 uppercase text-sm tracking-wide">1. Accueillir = Interagir</h3>
-                <p class="text-sm font-medium">Comprendre les codes, créer du lien, être à l’aise avec les gens.</p>
-            </div>
-            <!-- 2 -->
-            <div class="bg-gray-50 p-4 rounded-xl border-2 border-transparent hover:border-[#FFB74D] transition-colors">
-                <h3 class="font-bold text-[#FFB74D] mb-1 uppercase text-sm tracking-wide">2. Créer = Proposer de la valeur</h3>
-                <p class="text-sm font-medium">Repérer un besoin local et répondre concrètement (posture “offreur de solutions”).</p>
-            </div>
-            <!-- 3 -->
-            <div class="bg-gray-50 p-4 rounded-xl border-2 border-transparent hover:border-[#FFD54F] transition-colors">
-                <h3 class="font-bold text-[#FFD54F] mb-1 uppercase text-sm tracking-wide text-yellow-600">3. Habiter = Gérer le réel</h3>
-                <p class="text-sm font-medium">Anticiper logement, transport, budget, contraintes du Pays Basque.</p>
-            </div>
-            <!-- 4 -->
-            <div class="bg-gray-50 p-4 rounded-xl border-2 border-transparent hover:border-[#2E7D32] transition-colors">
-                <h3 class="font-bold text-[#2E7D32] mb-1 uppercase text-sm tracking-wide">4. Prendre soin = Durer</h3>
-                <p class="text-sm font-medium">Être solide dans la durée : soutien, équilibre, réseaux, entraide locale.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. ECONOMIE LOCALE -->
-    <section class="section-card border-l-8 border-l-[#2E7D32]">
-        <h2 class="text-2xl font-black mb-4 flex items-center">
-            <span class="pill-number bg-[#2E7D32]">5</span> Comprendre l’économie sans se tromper
-        </h2>
-        <div class="prose max-w-none text-gray-700">
-            <p class="mb-4">
-                <strong>Non, le Pays Basque Nord ce n’est pas “que le tourisme”.</strong> Il y a aussi une économie productive qui pèse lourd.
-            </p>
-            
-            <div class="flex flex-col md:flex-row gap-6 mb-6">
-                <div class="flex-1 bg-red-50 p-4 rounded-lg border border-red-100">
-                    <strong class="text-[#C62828] block mb-2 uppercase text-xs tracking-wider">📤 Ce qui sort (L'offre / Export)</strong>
-                    <ul class="text-sm space-y-1 list-disc list-inside">
-                        <li><strong>52%</strong> de la production part à l’extérieur (industrie, experts).</li>
-                        <li><strong>80%</strong> en agroalimentaire.</li>
-                    </ul>
-                </div>
-                <div class="flex-1 bg-blue-50 p-4 rounded-lg border border-blue-100">
-                    <strong class="text-[#20B8AE] block mb-2 uppercase text-xs tracking-wider">📥 Ce qui entre (La demande / Import)</strong>
-                    <ul class="text-sm space-y-1 list-disc list-inside">
-                        <li><strong>56%</strong> de ce qu’on consomme ici vient d’ailleurs.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="bg-[#E8F5E9] p-4 rounded-lg border-l-4 border-[#2E7D32]">
-                <strong class="text-[#2E7D32] block mb-1">👉 Le bon réflexe pro</strong>
-                <p class="text-sm">Là où on dépend trop de l’extérieur, il y a des opportunités (fabriquer/localiser, réparer, services de proximité, circuits courts). Ce n’est pas juste “militant” : ça peut être un vrai créneau d’emploi.</p>
-            </div>
-        </div>
-    </section>
-
     <!-- CONCLUSION -->
     <div class="bg-[#1a1a1a] text-white rounded-2xl p-8 text-center shadow-xl mb-12">
-        <h3 class="text-2xl font-black mb-4 uppercase text-[#FFC107]">À Retenir</h3>
+        <h3 class="text-2xl font-black mb-4 uppercase text-[#FFC107]">À retenir</h3>
         <p class="text-lg font-medium mb-6 max-w-2xl mx-auto leading-relaxed">
-            Connaître ton territoire = <span class="text-[#20B8AE]">gagner du temps</span> + <span class="text-[#20B8AE]">viser juste</span> + <span class="text-[#20B8AE]">créer des contacts</span> + <span class="text-[#20B8AE]">devenir plus autonome</span>.
-            <br><br>
-            <span class="opacity-80 text-sm">Ce n’est pas de la culture générale : c’est une stratégie d’insertion.</span>
+            Connaître ton territoire = viser juste + créer des contacts + devenir plus autonome.
         </p>
-        <a href="index.html" class="inline-block bg-white text-[#1a1a1a] font-bold py-3 px-8 rounded-full hover:bg-[#FFC107] hover:scale-105 transition-all">
+        <a href="index.html" class="inline-block bg-white text-[#1a1a1a] font-bold py-3 px-8 rounded-full hover:bg-[#FFC107] transition-all">
             Ok, je passe à l'action !
         </a>
     </div>
@@ -248,5 +168,6 @@
             }
         });
     </script>
+
 </body>
 </html>
