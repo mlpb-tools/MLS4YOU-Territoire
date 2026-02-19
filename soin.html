@@ -187,6 +187,37 @@
       color: var(--ink);
     }
 
+    /* PDF button (clean + consistent) */
+    .pdf-row{
+      margin-top: 14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+    .pdf-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 16px;
+      border-radius:999px;
+      font-weight:900;
+      text-decoration:none;
+      background: var(--green);
+      color:#fff;
+      border:3px solid var(--ink);
+      box-shadow:6px 6px 0 rgba(0,0,0,0.12);
+      transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      font-size: 12px;
+    }
+    .pdf-btn:hover{
+      transform: translateY(-2px);
+      background: var(--red);
+      box-shadow:10px 10px 0 rgba(0,0,0,0.12);
+    }
+    .pdf-btn span{opacity:.85; font-weight:800; text-transform:none; letter-spacing:0; font-size:12px;}
+
     /* board */
     .board{ padding: 16px; background:#fff; }
 
@@ -374,43 +405,6 @@
           </span>
         </div>
       </div>
-<!-- BOUTON SUPPORT PDF ROBUSTESSE / SOIN -->
-<div style="margin-top:14px; display:flex; flex-wrap:wrap; gap:10px;">
-
-  <a
-    href="./assets/pdfs/Professional_Robustness.pdf"
-    target="_blank"
-    rel="noopener"
-    style="
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:12px 16px;
-      border-radius:999px;
-      font-weight:800;
-      text-decoration:none;
-      background:#2E7D32;
-      color:white;
-      border:3px solid #101114;
-      box-shadow:6px 6px 0 rgba(0,0,0,0.12);
-      transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
-    "
-    onmouseover="
-      this.style.transform='translateY(-2px)';
-      this.style.background='#C62828';
-      this.style.boxShadow='10px 10px 0 rgba(0,0,0,0.12)';
-    "
-    onmouseout="
-      this.style.transform='translateY(0)';
-      this.style.background='#2E7D32';
-      this.style.boxShadow='6px 6px 0 rgba(0,0,0,0.12)';
-    "
-  >
-    🛡 Support — Robustesse professionnelle
-    <span style="opacity:.85; font-weight:700;">(PDF)</span>
-  </a>
-
-</div>
 
       <section class="hero">
         <div class="heroCard">
@@ -434,6 +428,14 @@
 
           <div class="callout">
             👉 <strong>Se connaître = éviter les ruptures.</strong>
+          </div>
+
+          <!-- PDF button (corrected placement + path) -->
+          <div class="pdf-row">
+            <a class="pdf-btn" href="pdf/soin.pdf" target="_blank" rel="noopener">
+              <i data-lucide="file-text" style="width:18px;height:18px;"></i>
+              Support — Robustesse professionnelle <span>(PDF)</span>
+            </a>
           </div>
         </div>
       </section>
@@ -624,3 +626,4 @@
   </script>
 </body>
 </html>
+
