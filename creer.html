@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <script src="https://unpkg.com/lucide@0.263.1/dist/umd/lucide.min.js"></script>
 
   <style>
@@ -24,7 +25,6 @@
       --paper:#ffffff;
 
       --shadow: 0 18px 36px rgba(16,17,20,.10);
-      --stroke: 3px;
       --radius: 18px;
       --max: 980px;
     }
@@ -179,6 +179,37 @@
     }
     .callout strong{font-weight:900}
 
+    /* PDF button (under title) */
+    .pdf-row{
+      margin-top: 14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+    .pdf-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 16px;
+      border-radius:999px;
+      font-weight:900;
+      text-decoration:none;
+      background: var(--ink);
+      color:#fff;
+      border:3px solid var(--ink);
+      box-shadow:6px 6px 0 rgba(0,0,0,0.12);
+      transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      font-size: 12px;
+    }
+    .pdf-btn:hover{
+      transform: translateY(-2px);
+      background: var(--red);
+      box-shadow:10px 10px 0 rgba(0,0,0,0.12);
+    }
+    .pdf-btn span{opacity:.85; font-weight:800; text-transform:none; letter-spacing:0; font-size:12px;}
+
     /* content */
     .board{ padding: 16px; background:#fff; }
     .grid{
@@ -274,8 +305,6 @@
       box-shadow: 0 0 0 6px rgba(255,201,40,.22);
     }
 
-    .row2{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-
     /* skills chips */
     .skills{
       display:flex;
@@ -340,9 +369,7 @@
       grid-template-columns: 1fr 1fr;
       gap:10px;
     }
-    .sentence input{
-      border-color: rgba(16,17,20,.16);
-    }
+    .sentence input{ border-color: rgba(16,17,20,.16); }
     .preview{
       margin-top: 10px;
       padding: 12px 12px;
@@ -387,6 +414,7 @@
       gap:10px;
       box-shadow: 0 10px 20px rgba(16,17,20,.10);
       transition:.18s ease;
+      text-decoration:none;
     }
     .btn:hover{ transform: translateY(-2px); box-shadow: 0 16px 28px rgba(16,17,20,.14); }
     .btn-primary{ background: var(--ink); color:#fff; }
@@ -396,7 +424,6 @@
     @media (max-width: 860px){
       .grid{ grid-template-columns: 1fr; }
       .sectors{ grid-template-columns: 1fr; }
-      .row2{ grid-template-columns: 1fr; }
       .sentence .line{ grid-template-columns: 1fr; }
       .badge{ display:none; }
     }
@@ -410,28 +437,6 @@
 
   <main class="wrap">
     <section class="frame">
-<!-- BOUTON SUPPORT PDF (à placer sous le titre) -->
-<div style="margin-top:14px; display:flex; flex-wrap:wrap; gap:10px;">
-  <a
-    href="./assets/pdfs/L_agir_creatif.pdf"
-    target="_blank"
-    rel="noopener"
-    style="
-      display:inline-flex; align-items:center; gap:10px;
-      padding:12px 16px; border-radius:999px;
-      font-weight:800; text-decoration:none;
-      background:#101114; color:#fff;
-      border:3px solid #101114;
-      box-shadow:6px 6px 0 rgba(0,0,0,0.12);
-      transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
-    "
-    onmouseover="this.style.transform='translateY(-2px)'; this.style.background='#C62828'; this.style.boxShadow='10px 10px 0 rgba(0,0,0,0.12)';"
-    onmouseout="this.style.transform='translateY(0)'; this.style.background='#101114'; this.style.boxShadow='6px 6px 0 rgba(0,0,0,0.12)';"
-  >
-    📄 Support — L’agir créatif
-    <span style="opacity:.85; font-weight:700;">(PDF)</span>
-  </a>
-</div>
 
       <div class="topbar">
         <a class="back" href="index.html">
@@ -472,6 +477,14 @@
 
           <div class="callout">
             👉 <strong>Ton expérience perso = déjà de la valeur pro.</strong>
+          </div>
+
+          <!-- PDF button (corrected path) -->
+          <div class="pdf-row">
+            <a class="pdf-btn" href="pdf/creer.pdf" target="_blank" rel="noopener">
+              <i data-lucide="file-text" style="width:18px;height:18px;"></i>
+              Support — L’agir créatif <span>(PDF)</span>
+            </a>
           </div>
         </div>
       </section>
@@ -524,14 +537,14 @@
               </p>
 
               <div class="skills" id="skills">
-                <div class="skill" data-skill="Organisation"><span class="tag"></span>Organisation</div>
-                <div class="skill" data-skill="Relation client"><span class="tag"></span>Relation client</div>
-                <div class="skill" data-skill="Travail équipe"><span class="tag"></span>Travail équipe</div>
-                <div class="skill" data-skill="Logique"><span class="tag"></span>Logique</div>
-                <div class="skill" data-skill="Manuel / technique"><span class="tag"></span>Manuel / technique</div>
-                <div class="skill" data-skill="Autonomie"><span class="tag"></span>Autonomie</div>
-                <div class="skill" data-skill="Gestion stress"><span class="tag"></span>Gestion stress</div>
-                <div class="skill" data-skill="Respect consignes"><span class="tag"></span>Respect consignes</div>
+                <div class="skill" role="button" tabindex="0" aria-pressed="false" data-skill="Organisation"><span class="tag"></span>Organisation</div>
+                <div class="skill" role="button" tabindex="0" aria-pressed="false" data-skill="Relation client"><span class="tag"></span>Relation client</div>
+                <div class="skill" role="button" tabindex="0" aria-pressed="false" data-skill="Travail équipe"><span class="tag"></span>Travail équipe</div>
+                <div class="skill" role="button" tabindex="0" aria-pressed="false" data-skill="Logique"><span class="tag"></span>Logique</div>
+                <div class="skill" role="button" tabindex="0" aria-pressed="false" data-skill="Manuel / technique"><span class="tag"></span>Manuel / technique</div>
+                <div class="skill" role="button" tabindex="0" aria-pressed="false" data-skill="Autonomie"><span class="tag"></span>Autonomie</div>
+                <div class="skill" role="button" tabindex="0" aria-pressed="false" data-skill="Gestion stress"><span class="tag"></span>Gestion stress</div>
+                <div class="skill" role="button" tabindex="0" aria-pressed="false" data-skill="Respect consignes"><span class="tag"></span>Respect consignes</div>
               </div>
 
               <label for="skillsPlus">Autres compétences (si tu veux)</label>
@@ -626,7 +639,7 @@
             <i data-lucide="save" style="width:18px;height:18px;"></i>
             Sauver
           </button>
-          <a class="btn btn-primary" href="habiter.html" style="text-decoration:none;">
+          <a class="btn btn-primary" href="habiter.html">
             <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
             Continuer → Habiter
           </a>
@@ -638,7 +651,6 @@
 
   <script>
     const KEY = "mls4you_territoire_creer_v1";
-
     function qs(id){ return document.getElementById(id); }
 
     function readSelectedSkills(){
@@ -749,14 +761,29 @@
       setTimeout(()=>{ t.remove(); }, 1500);
     }
 
-    // interactions
-    document.addEventListener('click', (e)=>{
-      const el = e.target.closest('.skill');
-      if(!el) return;
+    // skills click + keyboard
+    function toggleSkill(el){
       el.classList.toggle('active');
       const on = el.classList.contains('active');
       el.setAttribute('aria-pressed', on ? 'true' : 'false');
       try { localStorage.setItem(KEY, JSON.stringify(getFields())); } catch {}
+    }
+
+    document.addEventListener('click', (e)=>{
+      const el = e.target.closest('.skill');
+      if(!el) return;
+      toggleSkill(el);
+    });
+
+    document.addEventListener('keydown', (e)=>{
+      const el = document.activeElement && document.activeElement.classList && document.activeElement.classList.contains('skill')
+        ? document.activeElement
+        : null;
+      if(!el) return;
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        toggleSkill(el);
+      }
     });
 
     ['faits','skillsPlus','secteurAutre','verbe','grace','exemple','s1','s2','s3','s4','s5','s6','s7','s8'].forEach(id=>{
@@ -779,5 +806,4 @@
   </script>
 </body>
 </html>
-
 
